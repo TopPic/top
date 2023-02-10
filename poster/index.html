@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+  <link href="https://fonts.googleapis.com/css?family=Mitr" rel="stylesheet">
+  <link rel="stylesheet" href="th.css">
+  <title>Document</title>
+</head>
+<style>
+  .btn-mobile {
+    margin-bottom: 30px;
+    padding: 0;
+  }
+
+  .btn-mobile a {
+    padding: 5px 15px;
+    width: 100%;
+    font-weight: 600;
+    background: #222;
+    color: #fff;
+    text-align: center;
+    display: inline-block;
+  }
+
+  .line {
+    border-right: 1px solid #fff;
+    border-left: 1px solid #fff;
+  }
+
+  .btn-mobile a {
+    text-decoration: none;
+  }
+
+  .single_product_img>.lazy {
+    background-image: url("https://www.playpark.com/th-th/wp-content/uploads/2019/10/bg-lazy.jpg");
+    background-position: center;
+    background-size: cover;
+  }
+
+  .pp-btn-game {
+    padding: 5px 15px;
+    background: #ffffff;
+    color: black;
+    text-align: center;
+  }
+</style>
+
+<body>
+  <div class="container" style="margin-top:  50px;">
+
+    <!-- start -->
+    <div id="PP_pcGame">
+      <div class="mobile">
+        <div class="row">
+          <section class="product">
+            <div class="main_product">
+              <div class="main_product_content text-center">
+
+                <div class="col-md-3 col-sm-6 col-xs-12 " v-for="gamelist in  ordered">
+                  <div class="single_product">
+                    <div class="single_product_img">
+                      <img :src="gamelist.Image" :alt="gamelist.GameName" />
+                      <span :class="gamelist.TagLine"></span>
+                      <div class="single_product_overlay all_overlay">
+                        <div class="text-headproduct">{{gamelist.GameName}} <br>{{gamelist.Type}}</div>
+                        <div class="tooltip-c">
+                          <a :href="gamelist.LinkId" target="_blank">{{gamelist.TypeId}}</a>
+                          <span class="tooltiptext">{{gamelist.DescId}}</span>
+                        </div>
+                        <div class="row" style="padding: 10px 20px;">
+                          <div class="col-12">
+                            <p style="color:#ffffff;">{{gamelist.DescGame}}</p>
+                            <a :href="gamelist.LinkSite" class="pp-btn-game">{{gamelist.TextSite}}</a>
+                            <a :href="gamelist.LinkLoad" class="pp-btn-game">{{gamelist.TextLoad}}</a>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <!-- end -->
+
+              </div>
+            </div>
+          </section>
+        </div>
+      </div>
+    </div>
+
+
+    <hr>
+    <h1>mobile Game</h1>
+
+    <div id="PP_MobileGame">
+      <div class="mobile">
+        <div class="row">
+          <section class="product">
+            <div class="main_product">
+              <div class="main_product_content text-center">
+                <!-- start -->
+                <div class="col-md-3 col-sm-6 col-xs-12 " v-for="gamelist in  ordered">
+                  <div class="single_product">
+                    <div class="single_product_img">
+                      <img :src="gamelist.Image" :alt="gamelist.GameName" />
+                      <span :class="gamelist.TagLine"></span>
+                      <div class="single_product_overlay all_overlay">
+                        <div class="text-headproduct">{{gamelist.GameName}} <br>{{gamelist.Type}}</div>
+                        <div class="tooltip-c">
+                          <a :href="gamelist.LinkId" target="_blank">{{gamelist.TypeId}}</a>
+                          <span class="tooltiptext">{{gamelist.DescId}}</span>
+                        </div>
+                        <div class="row" style="padding: 10px 20px;">
+                          <div class="col-12">
+                            <p style="color:#ffffff;">{{gamelist.DescGame}}</p>
+                            <a :href="gamelist.LinkSite"
+                              style="padding:5px 15px;background: #ffffff;color: black;text-align: center;">{{gamelist.TextSite}}</a>
+                            <a :href="gamelist.LinkLoad"
+                              style="padding:5px 15px;background: #ffffff;color: black;text-align: center;"
+                              :onclick="gamelist.alert">{{gamelist.TextLoad}}</a>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <!-- end -->
+
+              </div>
+            </div>
+          </section>
+        </div>
+      </div>
+    </div>
+    <!-- <div id="app">
+      <ul>
+        <li v-for="item in sortedTagLinks" :key="item.Order">{{ item.TagLine }}</li>
+      </ul>
+    </div> -->
+
+
+
+
+
+    <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <!-- Vue.js library -->
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.6.12/dist/vue.js"></script>
+    <!-- Axios library -->
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/lodash@4.17.15/lodash.min.js"></script>
+    <script src="pp_pcgame.js"></script>
+    <script src="pp_mobilegame.js"></script>
+
+    <!-- <script>
+      new Vue({
+        el: '#app',
+        data: {
+          TagLinks: [
+            { Order: "1", TagLine: "Option C" },
+            { Order: "3", TagLine: "Option D" },
+            { Order: "1", TagLine: "Option A" },
+          ],
+        },
+        computed: {
+          sortedTagLinks() {
+            return this.TagLinks.sort((a, b) => {
+              return a.Order.localeCompare(b.Order);
+            });
+          },
+        },
+      });
+    </script> -->
+</body>
+
+</html>
