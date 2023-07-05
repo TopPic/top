@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>WordPress Post Data</title>
+</head>
+
+<body>
+    <h1>WordPress Post Data</h1>
+    <div id="post-container"></div>
+
+    <script>
+        fetch('https://www.8090songhits.com/wp-json/wp/v2/posts?order=desc&orderby=date')
+            .then(response => response.json())
+            .then(posts => {
+                // วนลูปผ่านโพสต์ทั้งหมด
+                posts.forEach(post => {
+                    // ดึงข้อมูลที่ต้องการ
+                    const title = post.title.rendered;
+                    const featuredImageId = post.featured_media;
+                    const description = post.excerpt.rendered;
+
+                    // ดึง URL ของรูปภาพปก (featured image)
+                    fetch(`https://www.8090songhits.com/wp-json/wp/v2/media/${featuredImageId}`)
+                        .then(response => response.json())
+                        .then(image => {
+                            const featuredImageUrl = image.source_url;
+
+                            // สร้าง HTML สำหรับแสดงข้อมูลโพสต์
+                            const postHTML = `
+                        <div>
+                            <h2>${title}</h2>
+                            <img src="${featuredImageUrl}" alt="Featured Image" />
+                            <p>${description}</p>
+                        </div>
+                    `;
+
+                            // เพิ่ม HTML ของโพสต์ลงในคอนเทนเนอร์
+                            document.getElementById('post-container').innerHTML += postHTML;
+                        })
+                        .catch(error => {
+                            console.error('Error:', error);
+                        });
+                });
+            })
+            .catch(error => {
+                console.error('Error:', error);
+            });
+
+    </script>
+</body>
+
+</html>
