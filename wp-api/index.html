@@ -1,53 +1,70 @@
-<!DOCTYPE html>
-<html>
+<!doctype html>
+<html lang="en">
 
 <head>
-    <title>WordPress Post Data</title>
+    <title>Title</title>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS v5.2.1 -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+fzT" crossorigin="anonymous">
+
 </head>
+<style>
+    .menu {
+        list-style: none;
+      
+    }
+    .menu li a{
+        color: #fff;
+    }
+</style>
 
 <body>
-    <h1>WordPress Post Data</h1>
-    <div id="post-container"></div>
+    <header>
+        <nav class="navbar navbar-expand-sm navbar-light bg-dark">
+            <div class="container">
 
-    <script>
-        fetch('https://www.8090songhits.com/wp-json/wp/v2/posts?order=desc&orderby=date')
-            .then(response => response.json())
-            .then(posts => {
-                // วนลูปผ่านโพสต์ทั้งหมด
-                posts.forEach(post => {
-                    // ดึงข้อมูลที่ต้องการ
-                    const title = post.title.rendered;
-                    const featuredImageId = post.featured_media;
-                    const description = post.excerpt.rendered;
+                <a class="navbar-brand" href="#">
+                    <img src="https://audition.playpark.com/th-th/wp-content/uploads/2019/08/logo-au.png"
+                        class="img-fluid " alt="">
+                </a>
+                <!-- <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarID"
+                    aria-controls="navbarID" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarID">
+                    
+                </div> -->
+                <div class="navbar-nav  d-flex ml-auto">
+                    <ul class="menu ">
+                        <li><a class="nav-link " aria-current="page" href="#">Enter Site</a></li>
+                        <li> <a class="nav-link " aria-current="page" href="#">Refill</a></li>
+                        <li><a class="nav-link " aria-current="page" href="#">Register</a></li>
+                    </ul>
 
-                    // ดึง URL ของรูปภาพปก (featured image)
-                    fetch(`https://www.8090songhits.com/wp-json/wp/v2/media/${featuredImageId}`)
-                        .then(response => response.json())
-                        .then(image => {
-                            const featuredImageUrl = image.source_url;
 
-                            // สร้าง HTML สำหรับแสดงข้อมูลโพสต์
-                            const postHTML = `
-                        <div>
-                            <h2>${title}</h2>
-                            <img src="${featuredImageUrl}" alt="Featured Image" />
-                            <p>${description}</p>
-                        </div>
-                    `;
 
-                            // เพิ่ม HTML ของโพสต์ลงในคอนเทนเนอร์
-                            document.getElementById('post-container').innerHTML += postHTML;
-                        })
-                        .catch(error => {
-                            console.error('Error:', error);
-                        });
-                });
-            })
-            .catch(error => {
-                console.error('Error:', error);
-            });
+                </div>
+            </div>
+        </nav>
+    </header>
+    <main>
 
-    </script>
+    </main>
+    <footer>
+        <!-- place footer here -->
+    </footer>
+    <!-- Bootstrap JavaScript Libraries -->
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"
+        integrity="sha384-oBqDVmMz9ATKxIep9tiCxS/Z9fNfEXiDAYTujMAeBAsjFuCZSmKbSSUnQlmh/jp3" crossorigin="anonymous">
+        </script>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.min.js"
+        integrity="sha384-7VPbUDkoPSGFnVtYi0QogXtr74QeVeeIs99Qfg5YCF+TidwNdjvaKZX19NZ/e6oz" crossorigin="anonymous">
+        </script>
 </body>
 
 </html>
