@@ -1,70 +1,73 @@
-<!doctype html>
-<html lang="en">
-
+<!DOCTYPE html>
+<html>
 <head>
-    <title>Title</title>
-    <!-- Required meta tags -->
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-
-    <!-- Bootstrap CSS v5.2.1 -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet"
-        integrity="sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+fzT" crossorigin="anonymous">
-
+    <title>API Data Display</title>
 </head>
-<style>
-    .menu {
-        list-style: none;
-      
-    }
-    .menu li a{
-        color: #fff;
-    }
-</style>
-
 <body>
-    <header>
-        <nav class="navbar navbar-expand-sm navbar-light bg-dark">
-            <div class="container">
+    <div>
+        <h2>Character Name:</h2>
+        <div id="data1"></div>
+    </div>
+    <div>
+        <h2>Nickname:</h2>
+        <div id="data2"></div>
+    </div>
+    <div>
+        <h2>Playing Time:</h2>
+        <div id="data3"></div>
+    </div>
+    <div>
+        <h2>Self Introduction:</h2>
+        <div id="data4"></div>
+    </div>
+    <div>
+        <h2>Character Image:</h2>
+        <img id="data5" src="" alt="Character Image">
+    </div>
 
-                <a class="navbar-brand" href="#">
-                    <img src="https://audition.playpark.com/th-th/wp-content/uploads/2019/08/logo-au.png"
-                        class="img-fluid " alt="">
-                </a>
-                <!-- <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarID"
-                    aria-controls="navbarID" aria-expanded="false" aria-label="Toggle navigation">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
-                <div class="collapse navbar-collapse" id="navbarID">
-                    
-                </div> -->
-                <div class="navbar-nav  d-flex ml-auto">
-                    <ul class="menu ">
-                        <li><a class="nav-link " aria-current="page" href="#">Enter Site</a></li>
-                        <li> <a class="nav-link " aria-current="page" href="#">Refill</a></li>
-                        <li><a class="nav-link " aria-current="page" href="#">Register</a></li>
-                    </ul>
+    <script>
+        // Function to get cookie value by name
+        function getCookie(name) {
+            const value = "; " + document.cookie;
+            const parts = value.split("; " + name + "=");
+            if (parts.length === 2) return parts.pop().split(";").shift();
+        }
 
-
-
-                </div>
-            </div>
-        </nav>
-    </header>
-    <main>
-
-    </main>
-    <footer>
-        <!-- place footer here -->
-    </footer>
-    <!-- Bootstrap JavaScript Libraries -->
-    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"
-        integrity="sha384-oBqDVmMz9ATKxIep9tiCxS/Z9fNfEXiDAYTujMAeBAsjFuCZSmKbSSUnQlmh/jp3" crossorigin="anonymous">
-        </script>
-
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.min.js"
-        integrity="sha384-7VPbUDkoPSGFnVtYi0QogXtr74QeVeeIs99Qfg5YCF+TidwNdjvaKZX19NZ/e6oz" crossorigin="anonymous">
-        </script>
+        // Check if the client already has the data in the cookie
+        const cookieData = getCookie('characterData');
+        if (cookieData) {
+            // If data exists in the cookie, parse and display it
+            const characterData = JSON.parse(cookieData);
+            document.getElementById('data1').innerText = characterData['ชื่อตัวละคร'];
+            document.getElementById('data2').innerText = characterData['ชื่อเล่น'];
+            document.getElementById('data3').innerText = characterData['ช่วงเวลาที่เล่น'];
+            document.getElementById('data4').innerText = characterData['แนะนำตัวเอง'];
+            document.getElementById('data5').src = characterData['ลิงก์รูป'];
+        } else {
+            // If data doesn't exist in the cookie, fetch from the API and store in the cookie
+            fetch('https://script.google.com/macros/s/AKfycbw0Itj_2aDyGwBuEt1OwyLWcOjEOLxcBCAFnTYoAi9549uYoOB5LK0v2e6mCiyYog4Qgw/exec?cat=show')
+                .then(response => response.json())
+                .then(data => {
+                    if (data.status === "success" && data.data.length > 0) {
+                        const characterData = data.data[0];
+                        // Store the data in the cookie with a 300-second (5 minutes) expiration time
+                        const now = new Date();
+                        const expirationTime = new Date(now.getTime() + 300 * 1000); // 300 seconds
+                        document.cookie = 'characterData=' + JSON.stringify(characterData) + '; expires=' + expirationTime.toUTCString() + '; path=/';
+                        // Display the data on the page
+                        document.getElementById('data1').innerText = characterData['ชื่อตัวละคร'];
+                        document.getElementById('data2').innerText = characterData['ชื่อเล่น'];
+                        document.getElementById('data3').innerText = characterData['ช่วงเวลาที่เล่น'];
+                        document.getElementById('data4').innerText = characterData['แนะนำตัวเอง'];
+                        document.getElementById('data5').src = characterData['ลิงก์รูป'];
+                    } else {
+                        console.log('No data available.');
+                    }
+                })
+                .catch(error => {
+                    console.error('Error fetching data:', error);
+                });
+        }
+    </script>
 </body>
-
 </html>
