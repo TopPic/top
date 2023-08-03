@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Event Data</title>
+</head>
+<body>
+  <h1>Event Data</h1>
+  <div id="eventContainer"></div>
+
+  <script>
+    // Replace this URL with your actual API URL
+    const apiUrl = "https://sheets.googleapis.com/v4/spreadsheets/1LYT03adrhROJt2Fkm3VI-GRssvmvhel5m7RkQMnvj0s/values/Event%20AU!A2:C3?key=AIzaSyBbwdKwFzggFoK-77DbSyRK4I8LjpN2VBc";
+
+    // Fetch the data from the API
+    fetch(apiUrl)
+      .then(response => response.json())
+      .then(data => {
+        const eventContainer = document.getElementById('eventContainer');
+        const events = data.values;
+
+        // Loop through the events and create HTML elements to display the data
+        events.forEach(event => {
+          const imgSrc = event[0];
+          const date = new Date(event[1]).toLocaleString();
+          const link = event[2];
+
+          const eventDiv = document.createElement('div');
+          const image = document.createElement('img');
+          image.src = imgSrc;
+
+          const datePara = document.createElement('p');
+          datePara.textContent = `Date: ${date}`;
+
+          const linkPara = document.createElement('p');
+          const linkTag = document.createElement('a');
+          linkTag.href = link;
+          linkTag.textContent = "Learn More";
+
+          linkPara.appendChild(linkTag);
+
+          eventDiv.appendChild(image);
+          eventDiv.appendChild(datePara);
+          eventDiv.appendChild(linkPara);
+
+          eventContainer.appendChild(eventDiv);
+        });
+      })
+      .catch(error => console.error("Error fetching data:", error));
+  </script>
+</body>
+</html>
