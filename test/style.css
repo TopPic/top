@@ -1,0 +1,115 @@
+body {
+    margin: 0;
+    padding: 0;
+}
+
+.yg-pc-logo img {
+    position: absolute;
+    z-index: 999;
+}
+
+.yg-btn-play {
+    overflow: hidden;
+}
+
+#video-container {
+    position: absolute;
+    top: 0;
+    left: 50%;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    z-index: -1;
+    transform: translateX(-50%)
+}
+
+/* Style the video element */
+video {
+    min-width: 100%;
+    min-height: 100%;
+    object-fit: cover;
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%)
+}
+
+.cloud {
+    background-image: url(images/Group14.png);
+    background-position: center bottom;
+    background-size: cover;
+    background-repeat: no-repeat;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    position: absolute;
+}
+
+.yg-bg-content {
+    background-image: url(images/section-content-bg-main.png);
+    background-position: top;
+    background-size: cover;
+    width: 100%;
+    height: 100%;
+    /* position: relative; */
+    padding: 100px 0 100px 0;
+}
+
+.yg-logo-title-sec-2 {
+    position: absolute;
+    z-index: 1;
+    top: -60px;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+.yg-text1-title-sec-2 {
+    position: relative;
+    z-index: 2;
+}
+
+.row-gap-4 {
+    row-gap: 1.5rem !important;
+}
+
+.yg-nser-sec-2 {
+    position: relative;
+    z-index: 2;
+}
+
+.yg-content-sec-3 {
+    padding-top: 100px;
+}
+
+.yg-filter1 {
+    position: absolute;
+    background-image: url(images/effect-1.gif);
+    background-size: cover;
+    width: 100%;
+    height: 100%;
+    mix-blend-mode: color-dodge;
+}
+
+.yg-filter2 {
+    position: absolute;
+    background-image: url(images/effect-2.gif);
+    background-size: cover;
+    width: 100%;
+    height: 100%;
+    mix-blend-mode: color-dodge;
+}
+
+.yg-filter3 {
+    position: absolute;
+    background-image: url(images/effect-3.gif);
+    background-size: cover;
+    width: 100%;
+    height: 100%;
+    mix-blend-mode: color-dodge;
+}
+
+.yg-footer-bg {
+    background: #01142e;
+    color: #fff;
+    padding: 50px 0 50px 0;
+}
