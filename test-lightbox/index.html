@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="lightbox.css">
+    <title>Responsive Auto-Open Lightbox with Checkbox</title>
+</head>
+<body>
+    <!-- Content Trigger -->
+    <button id="openLightbox">Open Lightbox</button>
+
+    <!-- Lightbox Container -->
+    <div id="lightbox" class="lightbox">
+        <div class="lightbox-content">
+            <!-- Close Button -->
+            <span id="closeLightbox" class="close-button">&times;</span>
+
+            <!-- Lightbox Content -->
+            <img src="https://streetballers.playpark.com/wp-content/uploads/2023/06/banner-SB-Allstar-800x600-1.jpg" alt="Image">
+            
+            <!-- Checkbox -->
+            <div class="checkbox-container">
+                <input type="checkbox" id="checkbox">
+                <label for="checkbox">Check this box</label>
+              
+            </div>
+        </div>
+    </div>
+
+    <script src="lightbox.js"></script>
+</body>
+</html>
