@@ -1,0 +1,76 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <title>Title</title>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS v5.2.1 -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+fzT" crossorigin="anonymous">
+
+</head>
+
+<body>
+    <header>
+        <!-- place navbar here -->
+    </header>
+    <main>
+        <div class="container">
+
+            <div class="row">
+                <div class="col-6">
+                    <a href="#" id="yg-banner-url">
+                        <img src="#" class="img-fluid" alt="" id="yg-banner-img">
+                    </a>
+                    <span id="countdown"></span>
+                </div>
+            </div>
+
+
+
+        </div>
+    </main>
+    <footer>
+        <!-- place footer here -->
+    </footer>
+    <script src="https://code.jquery.com/jquery-3.7.1.js"></script>
+    <!-- Bootstrap JavaScript Libraries -->
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"
+        integrity="sha384-oBqDVmMz9ATKxIep9tiCxS/Z9fNfEXiDAYTujMAeBAsjFuCZSmKbSSUnQlmh/jp3" crossorigin="anonymous">
+        </script>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.min.js"
+        integrity="sha384-7VPbUDkoPSGFnVtYi0QogXtr74QeVeeIs99Qfg5YCF+TidwNdjvaKZX19NZ/e6oz" crossorigin="anonymous">
+        </script>
+    <script>
+      // Function to fetch JSON data from the given URL
+function fetchJSONData() {
+    fetch('https://sheets.googleapis.com/v4/spreadsheets/18QyrPXp8r4LB-XiZTr87m9czLLWhOVI0vDxc3GayRWQ/values/YG!A2:C8?key=AIzaSyBbwdKwFzggFoK-77DbSyRK4I8LjpN2VBc')
+        .then(response => response.json())
+        .then(data => {
+            // Assuming data is an array of objects
+            const jsonData = data.data;
+
+            if (jsonData.length > 0) {
+                const firstItem = jsonData[0];
+
+                // Update HTML elements with JSON data
+                document.getElementById('yg-banner-url').href = firstItem.url;
+                document.getElementById('yg-banner-img').src = firstItem.banner;
+                document.getElementById('countdown').textContent = firstItem.date;
+            }
+        })
+        .catch(error => {
+            console.error('Error fetching JSON data:', error);
+        });
+}
+
+// Call the function to fetch and update data
+fetchJSONData();
+    </script>
+</body>
+
+</html>
