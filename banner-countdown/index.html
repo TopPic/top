@@ -32,6 +32,10 @@
     </header>
     <main>
         <div class="container">
+            <div class="row" id="data-container">
+                <!-- Data will be inserted here -->
+            </div>
+
 
             <div class="row">
                 <!-- <div class="col-6">
@@ -40,14 +44,49 @@
                     </a>
                     <div id="countdown"></div>
                 </div> -->
-                <div class="row" id="data-container">
-                    <!-- Data will be inserted here -->
-                </div>
+              
             </div>
 
 
 
         </div>
+
+
+        	<!------------>
+					<!--Highligh-->
+					<!------------>
+	<div class="row mt-30">
+        <div class="col-12">
+            <div class="yg-line-highlight"><img src="https://yulgang.playpark.com/th-th/img-theme/title-highlight-yulgang.png" class="img-fluid yg-title-highlight" alt="Yulgang"></div>
+        </div>
+    </div>
+    <div class="yg-bg-highlight mt-20">
+        <div class="row" id="data-container">
+            <!-- Data will be inserted here -->
+        </div>
+        <!-- <div class="row">
+            <div class="col-12 col-md-6 mb-3 mb-md-0">
+                <div class="yg-event-0"></div>
+            </div>
+            <div class="col-12 col-md-6">
+                <div class="yg-event-1"></div>
+            </div>
+            <div class="col-12 col-md-6 mt-2">
+                <div class="yg-event-2"></div>
+            </div>
+            <div class="col-12 col-md-6 mt-2">
+                <div class="yg-event-3"></div>
+            </div>
+            <div class="col-12 col-md-6 mt-2">
+                <div class="yg-event-4"></div>
+            </div>
+            <div class="col-12 col-md-6 mt-2">
+                <div class="yg-event-5"></div>
+            </div>
+        </div> -->
+    </div>
+
+    
     </main>
     <footer>
         <!-- place footer here -->
@@ -161,56 +200,6 @@
 
 
 
-        // const apiUrl = 'https://sheets.googleapis.com/v4/spreadsheets/18QyrPXp8r4LB-XiZTr87m9czLLWhOVI0vDxc3GayRWQ/values/YG!A2:C8?key=AIzaSyBbwdKwFzggFoK-77DbSyRK4I8LjpN2VBc';
-
-        // fetch(apiUrl)
-        //     .then(response => response.json())
-        //     .then(data => {
-        //         const [header, ...rows] = data.values;
-        //         const [imageUrl, imageLink, countdownDate] = [rows[0][0], rows[0][2], rows[0][1]];
-
-        //         document.getElementById('yg-banner-url').href = imageLink;
-        //         document.getElementById('yg-banner-img').src = imageUrl;
-
-        //         // Calculate the remaining time until the countdownDate
-        //         const targetDate = new Date(countdownDate);
-        //         const now = new Date();
-        //         const timeRemaining = targetDate - now;
-
-        //         // Update the countdown element
-        //         const countdownElement = document.getElementById('countdown');
-
-        //         if (timeRemaining > 0) {
-        //             const days = Math.floor(timeRemaining / (1000 * 60 * 60 * 24));
-        //             const hours = Math.floor((timeRemaining % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-        //             const minutes = Math.floor((timeRemaining % (1000 * 60 * 60)) / (1000 * 60));
-        //             const seconds = Math.floor((timeRemaining % (1000 * 60)) / 1000);
-
-        //             countdownElement.textContent = `Countdown: ${days}d ${hours}h ${minutes}m ${seconds}s`;
-
-        //             // Update the countdown every second
-        //             setInterval(() => {
-        //                 const now = new Date();
-        //                 const timeRemaining = targetDate - now;
-
-        //                 if (timeRemaining <= 0) {
-        //                     countdownElement.textContent = 'Countdown has ended';
-        //                 } else {
-        //                     const days = Math.floor(timeRemaining / (1000 * 60 * 60 * 24));
-        //                     const hours = Math.floor((timeRemaining % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-        //                     const minutes = Math.floor((timeRemaining % (1000 * 60 * 60)) / (1000 * 60));
-        //                     const seconds = Math.floor((timeRemaining % (1000 * 60)) / 1000);
-
-        //                     countdownElement.textContent = `Countdown: ${days}d ${hours}h ${minutes}m ${seconds}s`;
-        //                 }
-        //             }, 1000); // Update every second
-        //         } else {
-        //             countdownElement.textContent = 'Countdown has ended';
-        //         }
-        //     })
-        //     .catch(error => {
-        //         console.error('Error fetching data:', error);
-        //     });
     </script>
 </body>
 
