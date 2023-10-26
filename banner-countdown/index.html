@@ -31,62 +31,64 @@
         <!-- place navbar here -->
     </header>
     <main>
+
         <div class="container">
+
+
+            <!------------>
+            <!--Highligh-->
+            <!------------>
+            <div class="row mt-30">
+                <div class="col-12">
+                    <div class="yg-line-highlight">
+                        <img src="https://yulgang.playpark.com/th-th/img-theme/title-highlight-yulgang.png"
+                            class="img-fluid yg-title-highlight" alt="Yulgang">
+                    </div>
+                </div>
+            </div>
+            <div class="yg-bg-highlight mt-20">
+
+
+
+
+
+                <!-- <div class="row">
+                <div class="col-12 col-md-6 mb-3 mb-md-0">
+                    <div class="yg-event-0"></div>
+                </div>
+                <div class="col-12 col-md-6">
+                    <div class="yg-event-1"></div>
+                </div>
+                <div class="col-12 col-md-6 mt-2">
+                    <div class="yg-event-2"></div>
+                </div>
+                <div class="col-12 col-md-6 mt-2">
+                    <div class="yg-event-3"></div>
+                </div>
+                <div class="col-12 col-md-6 mt-2">
+                    <div class="yg-event-4"></div>
+                </div>
+                <div class="col-12 col-md-6 mt-2">
+                    <div class="yg-event-5"></div>
+                </div>
+            </div> -->
+            </div>
+
+
             <div class="row" id="data-container">
-                <!-- Data will be inserted here -->
-            </div>
-
-
-            <div class="row">
-                <!-- <div class="col-6">
-                    <a href="#" id="yg-banner-url">
-                        <img src="#" class="img-fluid" alt="" id="yg-banner-img">
+                <!-- <div class="col-12 col-md-6">
+                    <a href="" id="banner-link">
+                        <img src="" class="img-fluid" id="banner-image">
                     </a>
-                    <div id="countdown"></div>
+                    <span class="countdown">เหลือเวลาอีก:</span>
                 </div> -->
-              
             </div>
-
 
 
         </div>
 
 
-        	<!------------>
-					<!--Highligh-->
-					<!------------>
-	<div class="row mt-30">
-        <div class="col-12">
-            <div class="yg-line-highlight"><img src="https://yulgang.playpark.com/th-th/img-theme/title-highlight-yulgang.png" class="img-fluid yg-title-highlight" alt="Yulgang"></div>
-        </div>
-    </div>
-    <div class="yg-bg-highlight mt-20">
-        <div class="row" id="data-container">
-            <!-- Data will be inserted here -->
-        </div>
-        <!-- <div class="row">
-            <div class="col-12 col-md-6 mb-3 mb-md-0">
-                <div class="yg-event-0"></div>
-            </div>
-            <div class="col-12 col-md-6">
-                <div class="yg-event-1"></div>
-            </div>
-            <div class="col-12 col-md-6 mt-2">
-                <div class="yg-event-2"></div>
-            </div>
-            <div class="col-12 col-md-6 mt-2">
-                <div class="yg-event-3"></div>
-            </div>
-            <div class="col-12 col-md-6 mt-2">
-                <div class="yg-event-4"></div>
-            </div>
-            <div class="col-12 col-md-6 mt-2">
-                <div class="yg-event-5"></div>
-            </div>
-        </div> -->
-    </div>
 
-    
     </main>
     <footer>
         <!-- place footer here -->
@@ -94,111 +96,196 @@
     <script src="https://code.jquery.com/jquery-3.7.1.js"></script>
     <!-- Bootstrap JavaScript Libraries -->
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"> </script>
-
+    <!-- AIzaSyBbwdKwFzggFoK-77DbSyRK4I8LjpN2VBc -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.min.js"> </script>
+    <!-- 1tKpTrVwuQr7-092kRbQR7e183KgwfGXgabmOK7Sn4No -->
     <script>
-        const apiUrl = 'https://sheets.googleapis.com/v4/spreadsheets/18QyrPXp8r4LB-XiZTr87m9czLLWhOVI0vDxc3GayRWQ/values/YG?key=AIzaSyBbwdKwFzggFoK-77DbSyRK4I8LjpN2VBc';
-        const cacheKey = 'cachedData';
-        const cacheTimeout = 5 * 60 * 1000; // 5 minutes in milliseconds
+        // URL ของ Google Sheets API
+        const apiUrl = "https://sheets.googleapis.com/v4/spreadsheets/1tKpTrVwuQr7-092kRbQR7e183KgwfGXgabmOK7Sn4No/values/YG?key=AIzaSyD0nCObiVxL_WLJTNn5X9A2pBrVH1IlnNY";
 
-        // Check if cached data exists and if it's still valid
-        const cachedData = JSON.parse(localStorage.getItem(cacheKey));
-        if (cachedData && (Date.now() - cachedData.timestamp) < cacheTimeout) {
-            displayData(cachedData.data);
-        } else {
-            fetchData();
+        // แปลงเวลาที่เหลือเป็น วัน ชั่วโมง นาที วินาที
+        function formatCountdown(timeRemaining) {
+            const days = Math.floor(timeRemaining / (1000 * 60 * 60 * 24));
+            const hours = Math.floor((timeRemaining % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            const minutes = Math.floor((timeRemaining % (1000 * 60 * 60)) / (1000 * 60));
+            const seconds = Math.floor((timeRemaining % (1000 * 60)) / 1000);
+
+            return `${days} วัน ${hours} ชั่วโมง ${minutes} นาที ${seconds} วินาที`;
         }
 
-        function fetchData() {
-            fetch(apiUrl)
-                .then(response => response.json())
-                .then(data => {
-                    // Cache the new data
-                    const cachedData = {
-                        data,
-                        timestamp: Date.now()
-                    };
-                    localStorage.setItem(cacheKey, JSON.stringify(cachedData));
+        // แสดง countdown และอัปเดตทุกๆ 1 วินาที
+        function updateCountdown() {
+            // เริ่มการวนรอบข้อมูลตั้งแต่ index 1 เพื่อข้ามหัวตาราง
+            for (let i = 1; i < data.values.length; i++) {
+                const row = data.values[i];
 
-                    // Display the data
-                    displayData(data);
-                })
-                .catch(error => {
-                    console.error('Error fetching data:', error);
-                });
-        }
-
-        function displayData(data) {
-            const [header, ...rows] = data.values;
-            console.log(rows);
-            // Get the container where data will be inserted
-            const dataContainer = document.getElementById('data-container');
-
-            // Iterate through the rows and create HTML elements for each row
-            rows.forEach(row => {
-                const [imageUrl, countdownDate, imageLink, countdownText] = row;
-                // Create a new row element
-                const rowElement = document.createElement('div');
-                rowElement.classList.add('col-12', 'col-md-6');
-
-                // Create an anchor element for the image
-                const anchorElement = document.createElement('a');
-                anchorElement.href = imageLink;
-
-                // Create an image element
-                const imageElement = document.createElement('img');
-                imageElement.src = imageUrl;
-                imageElement.classList.add('img-fluid');
-
-                // Create a span element for the countdown text
-                const countdownElement = document.createElement('span');
-                countdownElement.classList.add('countdown');
-
-
-                // Calculate the remaining time until the countdownDate
-                const targetDate = new Date(countdownDate);
+                // คำนวณเวลาที่เหลือ
+                const targetDate = new Date(row[1]);
                 const now = new Date();
                 const timeRemaining = targetDate - now;
 
-                if (timeRemaining > 0) {
-                    const days = Math.floor(timeRemaining / (1000 * 60 * 60 * 24));
-                    const hours = Math.floor((timeRemaining % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-                    const minutes = Math.floor((timeRemaining % (1000 * 60 * 60)) / (1000 * 60));
-                    const seconds = Math.floor((timeRemaining % (1000 * 60)) / 1000);
-
-                    countdownElement.textContent = `เหลือเวลาอีก: ${days}วัน ${hours}:${minutes}:${seconds}`;
-
-                    // Update the countdown every second
-                    setInterval(() => {
-                        const now = new Date();
-                        const timeRemaining = targetDate - now;
-
-                        if (timeRemaining <= 0) {
-                            countdownElement.textContent = 'หมดระยะเวลากิจกรรม';
-                        } else {
-                            const days = Math.floor(timeRemaining / (1000 * 60 * 60 * 24));
-                            const hours = Math.floor((timeRemaining % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-                            const minutes = Math.floor((timeRemaining % (1000 * 60 * 60)) / (1000 * 60));
-                            const seconds = Math.floor((timeRemaining % (1000 * 60)) / 1000);
-
-                            countdownElement.textContent = `เหลือเวลาอีก: ${days}วัน ${hours}:${minutes}:${seconds}`;
-                        }
-                    }, 1000); // Update every second
+                const countdownElement = document.querySelector(`#countdown-${i}`);
+                if (timeRemaining >= 0) {
+                    // แสดงเวลาที่เหลือในรูปแบบวัน ชั่วโมง นาที วินาที
+                    countdownElement.textContent = `เหลือเวลาอีก: ${formatCountdown(timeRemaining)}`;
                 } else {
-                    countdownElement.textContent = 'หมดระยะเวลากิจกรรม';
+                    // แสดงข้อความ "หมดระยะเวลากิจกรรม"
+                    countdownElement.textContent = "หมดระยะเวลากิจกรรม";
                 }
-
-                // Append the elements to the row
-                anchorElement.appendChild(imageElement);
-                rowElement.appendChild(anchorElement);
-                rowElement.appendChild(countdownElement);
-
-                // Append the row to the data container
-                dataContainer.appendChild(rowElement);
-            });
+            }
         }
 
+        // ดึงข้อมูลเริ่มต้นจาก Google Sheets API
+        let data = null;
 
+        fetch(apiUrl)
+            .then(response => response.json())
+            .then(result => {
+                data = result;
+            })
+            .then(() => {
+                // เริ่ม countdown และอัปเดตทุกๆ 1 วินาที
+                setInterval(updateCountdown, 1000);
+
+                // เพิ่ม HTML elements สำหรับแต่ละรายการและ id ที่ต้องการ
+                for (let i = 1; i < data.values.length; i++) {
+                    const row = data.values[i];
+
+                    // สร้าง HTML elements สำหรับแต่ละรายการ
+                    const container = document.createElement("div");
+                    container.className = "col-12 col-md-6";
+
+                    const link = document.createElement("a");
+                    link.href = row[2];
+
+                    const image = document.createElement("img");
+                    image.src = row[0];
+                    image.className = "img-fluid";
+
+                    const countdown = document.createElement("span");
+                    countdown.id = `countdown-${i}`;
+                    countdown.className = "countdown";
+
+                    // เพิ่ม HTML elements ลงใน container
+                    link.appendChild(image);
+                    container.appendChild(link);
+                    container.appendChild(countdown);
+
+                    // เพิ่ม container ลงใน data-container
+                    document.getElementById("data-container").appendChild(container);
+                }
+            })
+            .catch(error => {
+                console.error("เกิดข้อผิดพลาดในการดึงข้อมูล:", error);
+            });
+
+
+
+
+
+
+
+
+        // const apiUrl = 'https://sheets.googleapis.com/v4/spreadsheets/18QyrPXp8r4LB-XiZTr87m9czLLWhOVI0vDxc3GayRWQ/values/YG?key=AIzaSyBbwdKwFzggFoK-77DbSyRK4I8LjpN2VBc';
+        // const cacheKey = 'cachedData';
+        // const cacheTimeout = 5 * 60 * 1000; // 5 minutes in milliseconds
+
+        // // Check if cached data exists and if it's still valid
+        // const cachedData = JSON.parse(localStorage.getItem(cacheKey));
+        // if (cachedData && (Date.now() - cachedData.timestamp) < cacheTimeout) {
+        //     displayData(cachedData.data);
+        // } else {
+        //     fetchData();
+        // }
+
+        // function fetchData() {
+        //     fetch(apiUrl)
+        //         .then(response => response.json())
+        //         .then(data => {
+        //             // Cache the new data
+        //             const cachedData = {
+        //                 data,
+        //                 timestamp: Date.now()
+        //             };
+        //             localStorage.setItem(cacheKey, JSON.stringify(cachedData));
+
+        //             // Display the data
+        //             displayData(data);
+        //         })
+        //         .catch(error => {
+        //             console.error('Error fetching data:', error);
+        //         });
+        // }
+
+        // function displayData(data) {
+        //     const [header, ...rows] = data.values;
+        //     console.log(rows);
+        //     // Get the container where data will be inserted
+        //     const dataContainer = document.getElementById('data-container');
+
+        //     // Iterate through the rows and create HTML elements for each row
+        //     rows.forEach(row => {
+        //         const [imageUrl, countdownDate, imageLink, countdownText] = row;
+        //         // Create a new row element
+        //         const rowElement = document.createElement('div');
+        //         rowElement.classList.add('col-12', 'col-md-6');
+
+        //         // Create an anchor element for the image
+        //         const anchorElement = document.createElement('a');
+        //         anchorElement.href = imageLink;
+
+        //         // Create an image element
+        //         const imageElement = document.createElement('img');
+        //         imageElement.src = imageUrl;
+        //         imageElement.classList.add('img-fluid');
+
+        //         // Create a span element for the countdown text
+        //         const countdownElement = document.createElement('span');
+        //         countdownElement.classList.add('countdown');
+
+
+        //         // Calculate the remaining time until the countdownDate
+        //         const targetDate = new Date(countdownDate);
+        //         const now = new Date();
+        //         const timeRemaining = targetDate - now;
+
+        //         if (timeRemaining > 0) {
+        //             const days = Math.floor(timeRemaining / (1000 * 60 * 60 * 24));
+        //             const hours = Math.floor((timeRemaining % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+        //             const minutes = Math.floor((timeRemaining % (1000 * 60 * 60)) / (1000 * 60));
+        //             const seconds = Math.floor((timeRemaining % (1000 * 60)) / 1000);
+
+        //             countdownElement.textContent = `เหลือเวลาอีก: ${days}วัน ${hours}:${minutes}:${seconds}`;
+
+        //             // Update the countdown every second
+        //             setInterval(() => {
+        //                 const now = new Date();
+        //                 const timeRemaining = targetDate - now;
+
+        //                 if (timeRemaining <= 0) {
+        //                     countdownElement.textContent = 'หมดระยะเวลากิจกรรม';
+        //                 } else {
+        //                     const days = Math.floor(timeRemaining / (1000 * 60 * 60 * 24));
+        //                     const hours = Math.floor((timeRemaining % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+        //                     const minutes = Math.floor((timeRemaining % (1000 * 60 * 60)) / (1000 * 60));
+        //                     const seconds = Math.floor((timeRemaining % (1000 * 60)) / 1000);
+
+        //                     countdownElement.textContent = `เหลือเวลาอีก: ${days}วัน ${hours}:${minutes}:${seconds}`;
+        //                 }
+        //             }, 1000); // Update every second
+        //         } else {
+        //             countdownElement.textContent = 'หมดระยะเวลากิจกรรม';
+        //         }
+
+        //         // Append the elements to the row
+        //         anchorElement.appendChild(imageElement);
+        //         rowElement.appendChild(anchorElement);
+        //         rowElement.appendChild(countdownElement);
+
+        //         // Append the row to the data container
+        //         dataContainer.appendChild(rowElement);
+        //     });
+        // }
 
     </script>
 </body>
