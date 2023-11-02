@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>สร้างและแชร์ภาพ</title>
+    <script>
+        window.fbAsyncInit = function () {
+            FB.init({
+                appId: '356414281897104',
+                autoLogAppEvents: true,
+                xfbml: true,
+                version: 'v10.0'
+            });
+        };
+
+        (function (d, s, id) {
+            var js, fjs = d.getElementsByTagName(s)[0];
+            if (d.getElementById(id)) return;
+            js = d.createElement(s); js.id = id;
+            js.src = "https://connect.facebook.net/th_TH/sdk.js";
+            fjs.parentNode.insertBefore(js, fjs);
+        }(document, 'script', 'facebook-jssdk'));
+    </script>
+
+</head>
+
+<body>
+    <div id="image-container">
+        <!-- ตำแหน่งภาพที่สร้างขึ้นจะปรากฎที่นี่ -->
+    </div>
+    <div id="description">
+        <!-- คำอธิบายของภาพจะปรากฎที่นี่ -->
+    </div>
+    <button id="share-button">แชร์บน Facebook</button>
+
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+    <script>
+        // your-script.js
+        $(document).ready(function () {
+            // ใช้รูปภาพที่คุณระบุ
+            var randomImages = [
+                "https://yulgang.playpark.com/th-th/wp-content/uploads/2022/03/YG-summer-1-1200x628-1.jpg",
+                "https://yulgang.playpark.com/th-th/wp-content/uploads/2022/03/YG-summer-2-1200x628-1.jpg"
+            ];
+       
+            // เลือกภาพสุ่ม
+            var randomImage = randomImages[Math.floor(Math.random() * randomImages.length)];
+            console.log(randomImage);
+            // สร้างคำอธิบายสำหรับภาพ (สามารถปรับแต่งตามความต้องการ)
+            var randomDescriptions = [
+                "Yulgang PC จัดเต็มกิจกรรมตลอดเดือนเมษายน เข้าร่วมกิจกรรมรับไอเทมฟรี! คลิก",
+                // "Yulgang PC จัดเตมกิจกรรมตลอดเดือนเมษายน"
+            ];
+
+            var randomDescription = randomDescriptions[Math.floor(Math.random() * randomDescriptions.length)];
+          
+            console.log(randomDescription);
+            // แสดงภาพและคำอธิบายบนเว็บไซต์
+            $("#image-container").html("<img src='" + randomImage + "'>");
+            $("#description").text(randomDescription);
+
+            // กำหนดคำอธิบายและ URL สำหรับการแชร์บน Facebook
+            var shareDescription = randomDescription;
+            var shareURL = "https://yulgang.playpark.com/th-th/random-share/";
+
+            // คลิกปุม "แชร์บน Facebook"
+            $("#share-button").click(function () {
+                // ใช้ API ของ Facebook ในการแชร์
+                FB.ui({
+                    method: 'share',
+                    href: shareURL,
+                    quote: shareDescription
+                });
+            });
+        });
+
+
+    </script>
+</body>
+
+</html>
