@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Your Webpage</title>
+</head>
+<body>
+
+<div id="ppth-topbar-2024-placeholder">This is the first div</div>
+<div id="ppth-topbar-2024-placeholder2">This is the second div</div>
+
+<script>
+  // Get the current URL
+  var currentUrl = window.location.href;
+
+  // Check if the URL starts with the specified prefix
+  if (currentUrl.startsWith("https://teraclassic.playpark.com/id-id/")) {
+    // Show the first div if the condition is met
+    document.getElementById("ppth-topbar-2024-placeholder").style.display = "block";
+    
+    // Show the second div if the condition is met
+    document.getElementById("ppth-topbar-2024-placeholder2").style.display = "block";
+  } else {
+    // Hide the first div if the condition is not met
+    document.getElementById("ppth-topbar-2024-placeholder").style.display = "none";
+    
+    // Hide the second div if the condition is not met
+    document.getElementById("ppth-topbar-2024-placeholder2").style.display = "none";
+  }
+</script>
+
+</body>
+</html>
