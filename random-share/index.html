@@ -1,82 +1,179 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 
 <head>
-    <title>สร้างและแชร์ภาพ</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        .tab {
+            display: none;
+        }
+
+        .subtab {
+            display: none;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 10px;
+        }
+
+        th,
+        td {
+            border: 1px solid #ddd;
+            padding: 8px;
+            text-align: left;
+        }
+
+        th {
+            background-color: #f2f2f2;
+        }
+    </style>
     <script>
-        window.fbAsyncInit = function () {
-            FB.init({
-                appId: '356414281897104',
-                autoLogAppEvents: true,
-                xfbml: true,
-                version: 'v10.0'
-            });
+        const weaponclassMap = {
+            1: { name: 'ดาบ', image: 'https://yulgang.playpark.com/th-th/img-theme/hallofframe/profile-blademan-yulgang.png' },
+            2: { name: 'กระบี่', image: 'https://yulgang.playpark.com/th-th/img-theme/hallofframe/profile-fencer-yulgang.png' },
+            3: { name: 'ทวน', image: 'https://yulgang.playpark.com/th-th/img-theme/hallofframe/profile-fencer-yulgang.png' },
+            4: { name: 'ธนู', image: 'https://yulgang.playpark.com/th-th/img-theme/hallofframe/profile-fencer-yulgang.png' },
+            5: { name: 'หมอ', image: 'https://yulgang.playpark.com/th-th/img-theme/hallofframe/profile-fencer-yulgang.png' },
+            6: { name: 'นินจา', image: 'https://yulgang.playpark.com/th-th/img-theme/hallofframe/profile-fencer-yulgang.png' },
+            7: { name: 'พิณ', image: 'https://yulgang.playpark.com/th-th/img-theme/hallofframe/profile-fencer-yulgang.png' },
+            8: { name: 'ฮันกวางสู้', image: 'https://yulgang.playpark.com/th-th/img-theme/hallofframe/profile-fencer-yulgang.png' },
+            9: { name: 'ฮาริน', image: 'https://yulgang.playpark.com/th-th/img-theme/hallofframe/profile-fencer-yulgang.png' },
+            10: { name: 'นักสู้', image: 'https://yulgang.playpark.com/th-th/img-theme/hallofframe/profile-fencer-yulgang.png' },
+            11: { name: 'แมยูจิน', image: 'https://yulgang.playpark.com/th-th/img-theme/hallofframe/profile-fencer-yulgang.png' },
+            12: { name: 'โนโฮ', image: 'https://yulgang.playpark.com/th-th/img-theme/hallofframe/profile-fencer-yulgang.png' },
+            13: { name: 'มิโกะ', image: 'https://yulgang.playpark.com/th-th/img-theme/hallofframe/profile-fencer-yulgang.png' }
         };
 
-        (function (d, s, id) {
-            var js, fjs = d.getElementsByTagName(s)[0];
-            if (d.getElementById(id)) return;
-            js = d.createElement(s); js.id = id;
-            js.src = "https://connect.facebook.net/th_TH/sdk.js";
-            fjs.parentNode.insertBefore(js, fjs);
-        }(document, 'script', 'facebook-jssdk'));
-    </script>
+        const jeongsaMap = {
+            1: 'ธรรมะ',
+            2: 'อธรรม'
+        };
 
+        function setInitialTab() {
+            openTab('tab1');
+            openSubTab('subtab1'); // เรียกใช้ openSubTab สำหรับ subtab1
+            loadData('subtab1'); // เรียกใช้ loadData สำหรับ subtab1
+        }
+
+        window.onload = setInitialTab;
+
+        function openTab(tabName) {
+            var i, tabContent, tabLinks;
+
+            tabContent = document.getElementsByClassName("tab");
+            for (i = 0; i < tabContent.length; i++) {
+                tabContent[i].style.display = "none";
+            }
+
+            tabLinks = document.getElementsByClassName("tab-link");
+            for (i = 0; i < tabLinks.length; i++) {
+                tabLinks[i].classList.remove("active");
+            }
+
+            document.getElementById(tabName).style.display = "block";
+            document.getElementById(tabName + "-link").classList.add("active");
+        }
+
+        function openSubTab(subtabName) {
+            var i, subtabContent, subtabLinks;
+
+            subtabContent = document.getElementsByClassName("subtab");
+            for (i = 0; i < subtabContent.length; i++) {
+                subtabContent[i].style.display = "none";
+            }
+
+            subtabLinks = document.getElementsByClassName("subtab-link");
+            for (i = 0; i < subtabLinks.length; i++) {
+                subtabLinks[i].classList.remove("active");
+            }
+
+            document.getElementById(subtabName).style.display = "block";
+            document.getElementById(subtabName + "-link").classList.add("active");
+        }
+
+        function loadData(subtabName) {
+            var apiUrl;
+
+            // เลือก API URL ตาม subtab
+            if (subtabName === 'subtab1') {
+                apiUrl = 'https://secure2.playpark.com/YulgangJsonAPI/API.aspx?server=all&career=all';
+            } else if (subtabName === 'subtab2') {
+                apiUrl = 'https://secure2.playpark.com/YulgangJsonAPI/API.aspx?server=1&career=do';
+            } else if (subtabName === 'subtab3') {
+                // เพิ่มเงื่อนไขตามความต้องการ
+            }
+
+            fetch(apiUrl)
+                .then(response => response.json())
+                .then(data => {
+                    displayData(subtabName, data);
+                })
+                .catch(error => console.error('Error fetching data:', error));
+        }
+
+        function displayData(subtabName, apiData) {
+            var content = '<table>';
+            content += '<tr><th>Level</th><th>Charname</th><th>Guildname</th><th>Weaponclass</th><th>Jeongsa</th><th>Server</th></tr>';
+            apiData.result.Table.forEach(item => {
+                content += `<tr>`;
+                content += `<td>${item.level}</td>`;
+                content += `<td>${item.charname}</td>`;
+                content += `<td>${item.guildname}</td>`;
+                content += `<td>${weaponclassMap[item.weaponclass].name}<br><img src="${weaponclassMap[item.weaponclass].image}" alt="${weaponclassMap[item.weaponclass].name}" style="max-width: 100px;"></td>`;
+                content += `<td>${jeongsaMap[item.jeongsa]}</td>`;
+                content += `<td>${item.server}</td>`;
+                content += `</tr>`;
+            });
+            content += '</table>';
+
+            document.getElementById(subtabName).innerHTML = content;
+        }
+
+    </script>
 </head>
 
 <body>
-    <div id="image-container">
-        <!-- ตำแหน่งภาพที่สร้างขึ้นจะปรากฎที่นี่ -->
+
+    <div>
+        <button class="tab-link" onclick="openTab('tab1')" id="tab1-link">Tab 1</button>
+        <button class="tab-link" onclick="openTab('tab2')" id="tab2-link">Tab 2</button>
+        <button class="tab-link" onclick="openTab('tab3')" id="tab3-link">Tab 3</button>
     </div>
-    <div id="description">
-        <!-- คำอธิบายของภาพจะปรากฎที่นี่ -->
+
+    <div id="tab1" class="tab">
+        <!-- ใส่ subtab และเรียกใช้ openSubTab เพื่อแสดง subtab1 เป็นค่าเริ่มต้น -->
+        <button class="subtab-link" onclick="openSubTab('subtab1')" id="subtab1-link">Subtab 1</button>
+        <button class="subtab-link" onclick="openSubTab('subtab2')" id="subtab2-link">Subtab 2</button>
+        <button class="subtab-link" onclick="openSubTab('subtab3')" id="subtab3-link">Subtab 3</button>
+
+        <div id="subtab1" class="subtab">
+            <!-- ใส่ข้อมูลที่ถูกดึงมาจาก API ที่นี่ -->
+        </div>
+
+        <div id="subtab2" class="subtab">
+            <!-- ใส่ข้อมูลที่ถูกดึงมาจาก API ที่นี่ -->
+            subtab2
+        </div>
+
+        <div id="subtab3" class="subtab">
+            <!-- ใส่ข้อมูลที่ถูกดึงมาจาก API ที่นี่ -->
+            subtab3
+        </div>
     </div>
-    <button id="share-button">แชร์บน Facebook</button>
 
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <div id="tab2" class="tab">
+        <!-- ใส่ข้อมูลที่ถูกดึงมาจาก API ที่นี่ -->
+        tab2
+    </div>
 
-    <script>
-        // your-script.js
-        $(document).ready(function () {
-            // ใช้รูปภาพที่คุณระบุ
-            var randomImages = [
-                "https://yulgang.playpark.com/th-th/wp-content/uploads/2022/03/YG-summer-1-1200x628-1.jpg",
-                "https://yulgang.playpark.com/th-th/wp-content/uploads/2022/03/YG-summer-2-1200x628-1.jpg"
-            ];
-       
-            // เลือกภาพสุ่ม
-            var randomImage = randomImages[Math.floor(Math.random() * randomImages.length)];
-            console.log(randomImage);
-            // สร้างคำอธิบายสำหรับภาพ (สามารถปรับแต่งตามความต้องการ)
-            var randomDescriptions = [
-                "Yulgang PC จัดเต็มกิจกรรมตลอดเดือนเมษายน เข้าร่วมกิจกรรมรับไอเทมฟรี! คลิก",
-                // "Yulgang PC จัดเตมกิจกรรมตลอดเดือนเมษายน"
-            ];
+    <div id="tab3" class="tab">
+        <!-- ใส่ข้อมูลที่ถูกดึงมาจาก API ที่นี่ -->
+        tab3
+    </div>
 
-            var randomDescription = randomDescriptions[Math.floor(Math.random() * randomDescriptions.length)];
-          
-            console.log(randomDescription);
-            // แสดงภาพและคำอธิบายบนเว็บไซต์
-            $("#image-container").html("<img src='" + randomImage + "'>");
-            $("#description").text(randomDescription);
-
-            // กำหนดคำอธิบายและ URL สำหรับการแชร์บน Facebook
-            var shareDescription = randomDescription;
-            var shareURL = "https://yulgang.playpark.com/th-th/random-share/";
-
-            // คลิกปุม "แชร์บน Facebook"
-            $("#share-button").click(function () {
-                // ใช้ API ของ Facebook ในการแชร์
-                FB.ui({
-                    method: 'share',
-                    href: shareURL,
-                    quote: shareDescription
-                });
-            });
-        });
-
-
-    </script>
 </body>
 
 </html>
