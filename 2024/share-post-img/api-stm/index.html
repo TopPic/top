@@ -1,3 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/css/bootstrap.min.css">
+    <title>API Data Table</title>
+</head>
+<body>
+
+<div class="container mt-5">
+    <h2>API Data Table</h2>
+    <div class="table-responsive">
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th>Rank Update</th>
+                    <th>Ranking</th>
+                    <th>Role Name</th>
+                    <th>Server Name</th>
+                    <th>Guild Name</th>
+                    <th>Start CP</th>
+                    <th>Current CP</th>
+                    <th>Growth CP</th>
+                </tr>
+            </thead>
+            <tbody id="apiDataTableBody"></tbody>
+        </table>
+    </div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.bundle.min.js"></script>
 <script>
     // Fetch data from the API
     fetch('http://203.144.137.46/RankingAPI/RankingBoardAPI.ashx?EventID=1')
@@ -24,12 +56,15 @@
                     <td>${entry.role_name}</td>
                     <td>${entry.server_name}</td>
                     <td>${entry.guild_name}</td>
-                    <td>${entry.start_cp}</td>
-                    <td>${entry.current_cp}</td>
-                    <td>${entry.grouwth_cp}</td>
+                    <td>${entry.start_cp.toLocaleString()}</td>
+                    <td>${entry.current_cp.toLocaleString()}</td>
+                    <td>${entry.grouwth_cp.toLocaleString()}</td>
                 `;
                 dataTableBody.appendChild(row);
             });
         })
         .catch(error => console.error('Error fetching data:', error));
 </script>
+
+</body>
+</html>
