@@ -1,0 +1,201 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <title>Title</title>
+    <!-- Required meta tags -->
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+
+    <!-- Bootstrap CSS v5.2.1 -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://ikm.playpark.com/th-th/ranking-ikm/css/playpark.custom.css" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Kanit:wght@400;500;700&display=swap" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@600&display=swap" />
+    <link rel="stylesheet" href="https://ikm.playpark.com/th-th/ranking-ikm/css/index.css" />
+</head>
+
+<body>
+
+
+
+
+
+    <div class="ikm-ranking-main-site-custom ikm-top-100-wp">
+        <div class="frame-parent">
+            <div class="frame-group">
+                <div class="frame-container">
+                    <div class="frame-child"></div>
+                    <div class="frame-item"></div>
+                </div>
+                <img class="image-44-icon" alt=""
+                    src="https://ikm.playpark.com/th-th/ranking-ikm/images/image-44@2x.png" />
+                <div class="frame-container">
+                    <div class="frame-item"></div>
+                    <div class="frame-div"></div>
+                </div>
+            </div>
+            <div class="frame-wrapper gold">
+                <div class="frame-parent1 flex-column flex-md-row position-relative">
+                    <div class="gif-effext"></div>
+                    <!-- <img src="public/cd41fd78dd87222449795c6f85fc9b9d.gif" class="gif-effext" alt=""> -->
+                    <div class="image-41-wrapper">
+                        <img class=" img-fluid icon-top-rank" alt=""
+                            src="https://ikm.playpark.com/th-th/ranking-ikm/images/image-41@2x.png" />
+                    </div>
+                    <div class="card-ranking-parent">
+                        <div class="api-counter d-none">10</div>
+                        <b class="card-ranking api-chaname">...</b>
+                        <div class="card-ranking-sub-detail-parent">
+                            <div class="card-ranking api-guildname">...</div>
+                            <div class="card-ranking">:</div>
+                            <div class="card-ranking api-servername">...</div>
+                        </div>
+                        <div class="group-parent">
+                            <img class="group-icon" alt=""
+                                src="https://ikm.playpark.com/th-th/ranking-ikm/images/group.svg" />
+                            <b class="card-ranking api-score">...</b>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="frame-wrapper1">
+                <div class="frame-parent2" id="style-2">
+                    <div class="frame-parent3  flex-column flex-md-row silver">
+                        <div class="image-42-wrapper">
+                            <img class="img-fluid icon-top-rank" alt=""
+                                src="https://ikm.playpark.com/th-th/ranking-ikm/images/image-42@2x.png" />
+                        </div>
+                        <div class="card-ranking-group">
+                            <div class="api-counter d-none">10</div>
+                            <b class="card-ranking api-chaname">...</b>
+                            <div class="xxxxxx-group">
+                                <div class="card-ranking api-guildname">...</div>
+                                <div class="div2">:</div>
+                                <div class="card-ranking api-servername">...</div>
+                            </div>
+                            <div class="group-group">
+                                <img class="group-icon" alt=""
+                                    src="https://ikm.playpark.com/th-th/ranking-ikm/images/group1.svg" />
+                                <b class="card-ranking api-score">...</b>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="frame-parent4  flex-column flex-md-row bronze">
+                        <div class="image-43-wrapper">
+                            <img class="img-fluid icon-top-rank" alt=""
+                                src="https://ikm.playpark.com/th-th/ranking-ikm/images/image-43@2x.png" />
+                        </div>
+                        <div class="card-ranking-container">
+                            <div class="api-counter d-none">10</div>
+                            <b class="card-ranking api-chaname">...</b>
+                            <div class="ranking-container">
+                                <div class="card-ranking api-guildname">...</div>
+                                <div class="div2">:</div>
+                                <div class="card-ranking api-servername">...</div>
+                            </div>
+                            <div class="group-container">
+                                <img class="group-icon" alt=""
+                                    src="https://ikm.playpark.com/th-th/ranking-ikm/images/group2.svg" />
+                                <b class="card-ranking api-score">...</b>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="frame-parent5">
+
+
+
+                    </div>
+                </div>
+            </div>
+            <div class="parent5 flex-column flex-md-row">
+                <div class="div20">ข้อมูลการจัดอันดับจะอัปเดตทุกวัน เวลาประมาน 12.00 น.</div>
+                <!-- <a href="https://ikm.playpark.com/th-th/ikm-ranking/" class="parent6">
+              <div class="div20">100 อันดับแรก</div>
+              <img class="vector-icon" alt="" src="https://ikm.playpark.com/th-th/ranking-ikm/images/vector.svg" />
+            </a> -->
+            </div>
+        </div>
+    </div>
+    <script src="https://code.jquery.com/jquery-3.6.3.min.js"></script>
+    <!-- Bootstrap JavaScript Libraries -->
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js"></script>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.min.js"></script>
+
+    <script>
+        $(document).ready(function () {
+            // API URL
+            var apiUrl = 'https://secure2.playpark.com/RankingEvent/RankingAPI.ashx?GameID=346';
+
+            // Fetch data from the API
+            $.getJSON(apiUrl, function (data) {
+                if (data.code === 0) {
+                    // Populate Rank 1 data
+                    var rank1Data = data.data[0];
+                    $('.frame-parent1 .card-ranking.api-chaname').text(rank1Data.role_name || 'นิรนาม'); // Use 'นิรนาม' if empty
+                    $('.frame-parent1 .card-ranking.api-guildname').text(rank1Data.guild_name || 'ไม่มีพันธมิตร'); // Use 'ไม่มีพันธมิตร' if empty
+                    $('.frame-parent1 .card-ranking.api-servername').text(rank1Data.server_name);
+                    $('.frame-parent1 .card-ranking.api-score').text(rank1Data.combat_point.toLocaleString()); // Add commas
+
+                    // Populate Rank 2 data
+                    var rank2Data = data.data[1];
+                    $('.frame-parent3 .card-ranking.api-chaname').text(rank2Data.role_name || 'นิรนาม'); // Use 'นิรนาม' if empty
+                    $('.frame-parent3 .card-ranking.api-guildname').text(rank2Data.guild_name || 'ไม่มีพันธมิตร'); // Use 'ไม่มีพันธมิตร' if empty
+                    $('.frame-parent3 .card-ranking.api-servername').text(rank2Data.server_name);
+                    $('.frame-parent3 .card-ranking.api-score').text(rank2Data.combat_point.toLocaleString()); // Add commas
+
+                    // Populate Rank 3 data
+                    var rank3Data = data.data[2];
+                    $('.frame-parent4 .card-ranking.api-chaname').text(rank3Data.role_name || 'นิรนาม'); // Use 'นิรนาม' if empty
+                    $('.frame-parent4 .card-ranking.api-guildname').text(rank3Data.guild_name || 'ไม่มีพันธมิตร'); // Use 'ไม่มีพันธมิตร' if empty
+                    $('.frame-parent4 .card-ranking.api-servername').text(rank3Data.server_name);
+                    $('.frame-parent4 .card-ranking.api-score').text(rank3Data.combat_point.toLocaleString()); // Add commas
+
+                    // Populate Ranks 4 to 10 data
+                    for (var i = 3; i < data.data.length && i < 10; i++) {
+                        var rankData = data.data[i];
+                        var $parent = $('<div class="parent">');
+                        $parent.append('<div class="div6">' + (i + 1) + '</div>');
+                        $parent.append('<div class="xjgpkz api-chaname">' + (rankData.role_name || 'นิรนาม') + '</div>'); // Use 'นิรนาม' if empty
+                        $parent.append('<div class="order-of-destiny api-guildname">' + (rankData.guild_name || 'ไม่มีพันธมิตร') + '</div>'); // Use 'ไม่มีพันธมิตร' if empty
+                        $parent.append('<div class="celestial-realm api-servername">' + rankData.server_name + '</div>');
+                        $parent.append('<div class="div7 api-score">' + rankData.combat_point.toLocaleString() + '</div>'); // Add commas
+
+                        // Append the parent div to the container
+                        $('.frame-parent5').append($parent);
+                    }
+                } else {
+                    console.error('Failed to fetch data from the API.');
+                }
+            });
+        });
+        // $(document).ready(function () {
+        //     // Make an API request
+        //     $.get('https://sheets.googleapis.com/v4/spreadsheets/1AUhOH1heJFXgiJbQNaVVDJ364tsqipI6z1hXbtcBfCM/values/Sheet1!A2:Z1000?key=AIzaSyBbwdKwFzggFoK-77DbSyRK4I8LjpN2VBc', function (data) {
+        //         // Parse the JSON response
+        //         var values = data.values;
+
+        //         // Loop through the data and update HTML elements
+        //         for (var i = 0; i < values.length; i++) {
+        //             var index = values[i][0];
+        //             var chaname = values[i][1];
+        //             var guildname = values[i][7];
+        //             var servername = values[i][6];
+        //             var score = parseFloat(values[i][5]); // Parse score as a float
+        //             score = score.toLocaleString(); // Format score with commas
+
+
+        //             // Update HTML elements using jQuery
+        //             $('.api-counter:eq(' + i + ')').text(index);
+        //             $('.api-chaname:eq(' + i + ')').text(chaname);
+        //             $('.api-guildname:eq(' + i + ')').text(guildname);
+        //             $('.api-servername:eq(' + i + ')').text(servername);
+        //             $('.api-score:eq(' + i + ')').text(score);
+        //         }
+        //     });
+        // });
+    </script>
+</body>
+
+</html>
