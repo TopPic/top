@@ -18,8 +18,7 @@
 <body>
 
 
-
-
+<div class="container">
 
     <div class="ikm-ranking-main-site-custom ikm-top-100-wp">
         <div class="frame-parent">
@@ -47,8 +46,8 @@
                         <div class="api-counter d-none">10</div>
                         <b class="card-ranking api-chaname">...</b>
                         <div class="card-ranking-sub-detail-parent">
-                            <div class="card-ranking api-guildname">...</div>
-                            <div class="card-ranking">:</div>
+                            <!-- <div class="card-ranking api-guildname">...</div> -->
+                            <div class="card-ranking"></div>
                             <div class="card-ranking api-servername">...</div>
                         </div>
                         <div class="group-parent">
@@ -70,8 +69,8 @@
                             <div class="api-counter d-none">10</div>
                             <b class="card-ranking api-chaname">...</b>
                             <div class="xxxxxx-group">
-                                <div class="card-ranking api-guildname">...</div>
-                                <div class="div2">:</div>
+                                <!-- <div class="card-ranking api-guildname">...</div> -->
+                                <div class="div2"></div>
                                 <div class="card-ranking api-servername">...</div>
                             </div>
                             <div class="group-group">
@@ -90,8 +89,8 @@
                             <div class="api-counter d-none">10</div>
                             <b class="card-ranking api-chaname">...</b>
                             <div class="ranking-container">
-                                <div class="card-ranking api-guildname">...</div>
-                                <div class="div2">:</div>
+                                <!-- <div class="card-ranking api-guildname">...</div> -->
+                                <div class="div2"></div>
                                 <div class="card-ranking api-servername">...</div>
                             </div>
                             <div class="group-container">
@@ -117,6 +116,13 @@
             </div>
         </div>
     </div>
+
+
+
+</div>
+
+
+    
     <script src="https://code.jquery.com/jquery-3.6.3.min.js"></script>
     <!-- Bootstrap JavaScript Libraries -->
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js"></script>
@@ -134,21 +140,21 @@
                     // Populate Rank 1 data
                     var rank1Data = data.data[0];
                     $('.frame-parent1 .card-ranking.api-chaname').text(rank1Data.role_name || 'นิรนาม'); // Use 'นิรนาม' if empty
-                    $('.frame-parent1 .card-ranking.api-guildname').text(rank1Data.guild_name || 'ไม่มีพันธมิตร'); // Use 'ไม่มีพันธมิตร' if empty
+                    // $('.frame-parent1 .card-ranking.api-guildname').text(rank1Data.guild_name || 'ไม่มีพันธมิตร'); // Use 'ไม่มีพันธมิตร' if empty
                     $('.frame-parent1 .card-ranking.api-servername').text(rank1Data.server_name);
                     $('.frame-parent1 .card-ranking.api-score').text(rank1Data.combat_point.toLocaleString()); // Add commas
 
                     // Populate Rank 2 data
                     var rank2Data = data.data[1];
                     $('.frame-parent3 .card-ranking.api-chaname').text(rank2Data.role_name || 'นิรนาม'); // Use 'นิรนาม' if empty
-                    $('.frame-parent3 .card-ranking.api-guildname').text(rank2Data.guild_name || 'ไม่มีพันธมิตร'); // Use 'ไม่มีพันธมิตร' if empty
+                    // $('.frame-parent3 .card-ranking.api-guildname').text(rank2Data.guild_name || 'ไม่มีพันธมิตร'); // Use 'ไม่มีพันธมิตร' if empty
                     $('.frame-parent3 .card-ranking.api-servername').text(rank2Data.server_name);
                     $('.frame-parent3 .card-ranking.api-score').text(rank2Data.combat_point.toLocaleString()); // Add commas
 
                     // Populate Rank 3 data
                     var rank3Data = data.data[2];
                     $('.frame-parent4 .card-ranking.api-chaname').text(rank3Data.role_name || 'นิรนาม'); // Use 'นิรนาม' if empty
-                    $('.frame-parent4 .card-ranking.api-guildname').text(rank3Data.guild_name || 'ไม่มีพันธมิตร'); // Use 'ไม่มีพันธมิตร' if empty
+                    // $('.frame-parent4 .card-ranking.api-guildname').text(rank3Data.guild_name || 'ไม่มีพันธมิตร'); // Use 'ไม่มีพันธมิตร' if empty
                     $('.frame-parent4 .card-ranking.api-servername').text(rank3Data.server_name);
                     $('.frame-parent4 .card-ranking.api-score').text(rank3Data.combat_point.toLocaleString()); // Add commas
 
@@ -158,7 +164,7 @@
                         var $parent = $('<div class="parent">');
                         $parent.append('<div class="div6">' + (i + 1) + '</div>');
                         $parent.append('<div class="xjgpkz api-chaname">' + (rankData.role_name || 'นิรนาม') + '</div>'); // Use 'นิรนาม' if empty
-                        $parent.append('<div class="order-of-destiny api-guildname">' + (rankData.guild_name || 'ไม่มีพันธมิตร') + '</div>'); // Use 'ไม่มีพันธมิตร' if empty
+                        // $parent.append('<div class="order-of-destiny api-guildname">' + (rankData.guild_name || 'ไม่มีพันธมิตร') + '</div>'); // Use 'ไม่มีพันธมิตร' if empty
                         $parent.append('<div class="celestial-realm api-servername">' + rankData.server_name + '</div>');
                         $parent.append('<div class="div7 api-score">' + rankData.combat_point.toLocaleString() + '</div>'); // Add commas
 
