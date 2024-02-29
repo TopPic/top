@@ -1,0 +1,261 @@
+:root {
+  /* fonts */
+  --3k-top-100-font-kanit: Kanit;
+
+  /* font sizes */
+  --3k-top-100-font-size-base: 16px;
+  --3k-top-100-font-size-3xs: 10px;
+  --3k-top-100-font-size-xs: 12px;
+  --3k-top-100-font-size-5xl: 24px;
+  --3k-top-100-font-size-29xl: 48px;
+
+  /* Colors */
+  --3k-top-100-color-darksalmon: #b17a52;
+  --3k-top-100-color-sandybrown: #fac062;
+
+  /* Gaps */
+  --3k-top-100-gap-18xl: 37px;
+  --3k-top-100-gap-mini: 15px;
+  --3k-top-100-gap-11xs: 2px;
+  --3k-top-100-gap-7xs: 6px;
+
+  /* Paddings */
+  --3k-top-100-padding-xs: 7px;
+  --3k-top-100-padding-8xl: 27px;
+}
+
+
+.ikm-top-100-wp .div,
+.ikm-top-100-wp .div1,
+.ikm-top-100-wp .xxxxxxxxxx {
+  position: relative;
+  line-height: 99%;
+  text-transform: uppercase;
+  font-weight: 500;
+  /* width: 160px; */
+  text-wrap: nowrap;
+  /* text-wrap: nowrap; */
+}
+
+.ikm-top-100-wp .xxxxxxxxxx {
+  align-self: center;
+  width: 100%;
+}
+
+.ikm-top-100-wp .div1 {
+  font-size: var(--3k-top-100-font-size-xs);
+}
+
+.ikm-top-100-wp .xxxxxx-parent {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: flex-start;
+  gap: var(--3k-top-100-gap-7xs);
+}
+
+.ikm-top-100-wp .div3 {
+  position: relative;
+  font-size: var(--3k-top-100-font-size-base);
+  line-height: 99%;
+  text-transform: uppercase;
+  font-weight: 500;
+}
+
+.ikm-top-100-wp .frame-group,
+.ikm-top-100-wp .group {
+  display: flex;
+  align-items: center;
+}
+
+.ikm-top-100-wp .group {
+  flex-direction: column;
+  justify-content: flex-start;
+  gap: var(--3k-top-100-gap-11xs);
+  font-size: var(--3k-top-100-font-size-3xs);
+}
+
+.ikm-top-100-wp .frame-group {
+  align-self: stretch;
+  flex-direction: row;
+  justify-content: space-between;
+  font-size: var(--3k-top-100-font-size-base);
+}
+
+.ikm-top-100-wp .xxxxxxxxxx-parent {
+  flex: 1;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: var(--3k-top-100-gap-mini);
+  font-size: 16px;
+}
+
+.ikm-top-100-wp .frame-parent,
+.ikm-top-100-wp .parent,
+.ikm-top-100-wp .xxxxxxxxxx-parent {
+  display: flex;
+  justify-content: flex-start;
+  align-content: center;
+}
+
+.ikm-top-100-wp .parent {
+  border-bottom: 1px solid #04355e;
+  box-sizing: border-box;
+  /* width: 100%; */
+  flex-direction: row;
+  padding: var(--3k-top-100-padding-xs) var(--3k-top-100-padding-8xl);
+  align-items: center;
+  gap: var(--3k-top-100-gap-18xl);
+  /* background-color: #170d0e; */
+  font-size: 12px;
+  color: #e0f1ff;
+  font-family: var(--3k-top-100-font-kanit);
+}
+
+.ikm-top-100-wp .head-table {
+  background-color: #170d0e00;
+  color: #A45C5C !important;
+  font-family: Kanit;
+  font-size: 12px !important;
+}
+
+.ikm-top-100-wp .head-table * {
+  color: #A45C5C !important;
+  font-family: Kanit;
+  font-size: 12px !important;
+}
+
+.ikm-top-100-wp .frame-parent {
+  position: relative;
+  /* background-color: #170d0e; */
+  width: 100%;
+  flex-direction: column;
+  align-items: flex-start;
+  text-align: left;
+  /* font-size: var(--3k-top-100-font-size-29xl); */
+  /* color: var(--3k-top-100-color-sandybrown); */
+  /* font-family: var(--3k-top-100-font-kanit); */
+}
+
+.ikm-top-100-wp .empty {
+  opacity: 1;
+}
+
+.ikm-top-100-wp .top-100-server-name {
+  width: 140px;
+}
+
+.ikm-top-100-wp .group {
+  width: 130px;
+}
+
+.ikm-top-100-wp .top-100-guild-name {
+  width: 160px;
+  /**********************************************************/
+  /******************** Media Query  ************************/
+  /**********************************************************/
+}
+
+@media (min-width: 1200px) {
+  .ikm-top-100-wp .parent * {
+    font-size: 16px;
+  }
+
+  .ikm-top-100-wp .top-100-counter {
+    width: 10px;
+  }
+}
+
+@media (min-width: 992px) and (max-width: 1199px) {
+  .ikm-top-100-wp .parent * {
+    font-size: 16px;
+  }
+
+  .ikm-top-100-wp .top-100-counter {
+    width: 10px;
+  }
+}
+
+@media (min-width: 768px) and (max-width: 991px) {
+
+
+  .ikm-top-100-wp .top-100-counter {
+    width: 10px;
+  }
+
+}
+
+@media (max-width: 767px) {
+
+  .ikm-ranking-main-site-custom .celestial-realm,
+  .ikm-ranking-main-site-custom .div7 {
+    min-width: 80px;
+  }
+  .ikm-top-100-wp .div, .ikm-top-100-wp .div1{
+    width: 160px;
+}
+.ikm-top-100-wp .xxxxxxxxxx {
+  width: 943px;
+}
+  :root {
+    --3k-top-100-font-kanit: Kanit;
+    --3k-top-100-font-size-base: 16px;
+    --3k-top-100-font-size-3xs: 10px;
+    --3k-top-100-font-size-xs: 12px;
+    --3k-top-100-font-size-5xl: 24px;
+    --3k-top-100-font-size-29xl: 48px;
+    --3k-top-100-color-darksalmon: #b17a52;
+    --3k-top-100-color-sandybrown: #fac062;
+    --3k-top-100-gap-18xl: 0px;
+    --3k-top-100-gap-mini: 15px;
+    --3k-top-100-gap-11xs: 0px;
+    --3k-top-100-gap-7xs: 6px;
+    --3k-top-100-padding-xs: 7px;
+    --3k-top-100-padding-8xl: 7px;
+  }
+
+  /* :root {
+    --ssm-pre-theme-font-kanit: Kanit;
+    --ssm-pre-theme-font-size-lg: 12px;
+    --ssm-pre-theme-font-size-base: 12px;
+    --ssm-pre-theme-font-size-xl: 12px;
+    --ssm-pre-theme-font-size-sm: 14px;
+    --ssm-pre-theme-font-size-smi: 13px;
+    --ssm-pre-theme-font-size-mid: 14px;
+    --ssm-pre-theme-color-white: #fff;
+    --ssm-pre-theme-color-lemonchiffon: #fff3c9;
+    --ssm-pre-theme-color-firebrick-100: #aa0b0b;
+    --ssm-pre-theme-color-khaki: #fddf84;
+    --ssm-pre-theme-color-maroon: #7b0505;
+    --ssm-pre-theme-gap-7xl: 26px;
+    --ssm-pre-theme-gap-mid: 17px;
+    --ssm-pre-theme-gap-3xs: 10px;
+    --ssm-pre-theme-gap-sm: 14px;
+    --ssm-pre-theme-gap-base: 16px;
+    --ssm-pre-theme-gap-6xs: 7px;
+    --ssm-pre-theme-gap-18xl: 37px;
+    --ssm-pre-theme-gap-7xs: 6px;
+    --ssm-pre-theme-gap-xs: 12px;
+    --ssm-pre-theme-gap-10xs: 3px;
+    --ssm-pre-theme-padding-xl: 16px;
+    --ssm-pre-theme-padding-13xl: 20px;
+    --ssm-pre-theme-padding-5xl: 24px;
+    --ssm-pre-theme-padding-9xs: 4px;
+    --ssm-pre-theme-padding-3xs: 10px;
+    --ssm-pre-theme-br-12xs: 1px;
+  } */
+
+
+}
+
+@media (min-width: 576px) and (max-width: 767px) {
+  .ikm-top-100-wp .top-100-counter {
+    width: 40px;
+  }
+}
+
+@media (max-width: 575px) {
+  .ikm-top-100-wp .top-100-counter {
+    width: 40px;
+  }
+}
