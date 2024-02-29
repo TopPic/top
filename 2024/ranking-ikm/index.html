@@ -159,7 +159,7 @@
                     $('.frame-parent4 .card-ranking.api-score').text(rank3Data.combat_point.toLocaleString()); // Add commas
 
                     // Populate Ranks 4 to 10 data
-                    for (var i = 3; i < data.data.length && i < 10; i++) {
+                    for (var i = 3; i < data.data.length && i < 30; i++) {
                         var rankData = data.data[i];
                         var $parent = $('<div class="parent">');
                         $parent.append('<div class="div6">' + (i + 1) + '</div>');
