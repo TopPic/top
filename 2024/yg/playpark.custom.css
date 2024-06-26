@@ -1,36 +1,75 @@
-/* .nav-tabs .nav-link{
-	color: #111217;
-    background-color: #fdae1d;
-    font-weight: bold;
-    border: 2px solid #fdae1d;
-    display: inline-table;
-} */
-
-/* .server-yg,
-.nav-tabs .nav-link.active,
-.nav-link {
-    color: #111217 !important;
-    background-color: #fdae1d !important;
-    font-weight: bold !important;
-    border: 2px solid #fdae1d;
-} */
-
- .server-yg {
-    color: #858ba2 !important;
-    background-color: #2f323c !important;
-    font-weight: bold !important;
+.hall-of-frame-yg {
+    border: 2px solid #2d303d;
+    padding: 40px 30px;
+    background-size: cover;
+    background-color: #111217;
+    position: relative;
+    color: #ffffff;
+    font-weight: 300;
 }
-/*
+
+.hall-of-frame-yg::after {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 99%;
+    height: 99%;
+    padding: 10px;
+    content: '';
+    transform: translate(-50%, -50.2%);
+    pointer-events: none;
+    border: 40px solid #2d303d;
+    border-image: url(https://yulgang.playpark.com/th-th/img-theme/border-inner-yulgang.png) 40 stretch;
+}
+
+.server-yg {
+    color: #858ba2 !important;
+    background-color: #111217 !important;
+    font-weight: bold !important;
+    border: 2px solid #2f323c;
+    border-radius: 5px;
+}
+
 .server-yg.active {
     color: #111217 !important;
     background-color: #fdae1d !important;
     font-weight: bold !important;
     border: 2px solid #fdae1d;
+    /* border-radius: 5px; */
 }
-*/
-.nav-pills .nav-link {
-    border-radius: 0;
-    margin: 5px;
-    /* padding: 5px; */
-} 
 
+.nav-pills .nav-link {
+    /* border-radius: 0; */
+    margin: 5px;
+}
+
+.nav-justified .nav-item .nav-link {
+    width: 90%;
+}
+
+#mainTabContent .nav-tabs {
+    border: 0;
+    margin: 1rem 0 1rem 0;
+}
+
+.teb-server-yg {
+    display: flex;
+    justify-content: center;
+}
+
+.icon-class {
+    padding: 0 !important;
+    margin: 5px;
+    border: 2px solid #2f323c !important;
+    border-radius: 0 !important;
+}
+
+.icon-class.active {
+    color: #111217;
+    border: 2px solid #fdae1d !important;
+    border-radius: 0;
+}
+
+table td {
+    border: 0 !important;
+}

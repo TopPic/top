@@ -9,67 +9,85 @@
     <link rel="stylesheet" href="playpark.custom.css">
 </head>
 <body>
-    <div class="theme-topbar-box w-100 fixed-top ff-kn">
-        <div class="container mt-5">
-            <div class="row">
-                <div class="col-12">
-                    <!-- Nav tabs -->
-                    <ul class="nav nav-justified nav-pills mb-3" id="mainTab" role="tablist">
-                        <li class="nav-item">
-                            <button class="nav-link active server-yg" id="home-tab" data-bs-toggle="tab" data-bs-target="#home" type="button" role="tab" aria-controls="home" aria-selected="true">ราชันย์กระบี่</button>
-                        </li>
-                        <li class="nav-item">
-                            <button class="nav-link server-yg" id="profile-tab" data-bs-toggle="tab" data-bs-target="#profile" type="button" role="tab" aria-controls="profile" aria-selected="false">สวรรค์ทลายปฐพี</button>
-                        </li>
-                        <li class="nav-item">
-                            <button class="nav-link server-yg" id="contact-tab" data-bs-toggle="tab" data-bs-target="#contact" type="button" role="tab" aria-controls="contact" aria-selected="false">ฮอนบัล</button>
-                        </li>
-                    </ul>
+    <div class="row">
+        <div class="col-6">
+
+
+
+            <div class="hall-of-frame-yg w-100 ff-kn">
+                <div class="container mt-5">
+                    <div class="row">
+                        <div class="col-12">
+                            <!-- Nav tabs -->
+                            <ul class="nav nav-justified nav-pills mb-3" id="mainTab" role="tablist">
+                                <li class="nav-item d-flex justify-content-center">
+                                    <button class="nav-link active server-yg" id="home-tab" data-bs-toggle="tab" data-bs-target="#home" type="button" role="tab" aria-controls="home" aria-selected="true">ราชันย์กระบี่</button>
+                                </li>
+                                <li class="nav-item d-flex justify-content-center">
+                                    <button class="nav-link server-yg" id="profile-tab" data-bs-toggle="tab" data-bs-target="#profile" type="button" role="tab" aria-controls="profile" aria-selected="false">สวรรค์ทลายปฐพี</button>
+                                </li>
+                                <li class="nav-item d-flex justify-content-center">
+                                    <button class="nav-link server-yg" id="contact-tab" data-bs-toggle="tab" data-bs-target="#contact" type="button" role="tab" aria-controls="contact" aria-selected="false">ฮอนบัล</button>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                  
+                
+                    <!-- Tab panes -->
+                    <div class="tab-content" id="mainTabContent">
+                        <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
+                            <!-- <p>ราชันย์กระบี่ content...</p> -->
+                            <!-- Nested Nav tabs -->
+                            <ul class="nav nav-tabs d-flex justify-content-center" id="homeNestedTab" role="tablist">
+                                <!-- Dynamically generated sub-tabs will be added here -->
+                            </ul>
+                
+                            <!-- Nested Tab panes -->
+                            <div class="tab-content" id="homeNestedTabContent">
+                                <!-- Dynamically generated tab contents will be added here -->
+                            </div>
+                        </div>
+                        <div class="tab-pane fade" id="profile" role="tabpanel" aria-labelledby="profile-tab">
+                            <!-- <p>สวรรค์ทลายปฐพี content...</p> -->
+                            <!-- Nested Nav tabs -->
+                            <ul class="nav nav-tabs mt-3 d-flex justify-content-center" id="profileNestedTab" role="tablist">
+                                <!-- Dynamically generated sub-tabs will be added here -->
+                            </ul>
+                
+                            <!-- Nested Tab panes -->
+                            <div class="tab-content" id="profileNestedTabContent">
+                                <!-- Dynamically generated tab contents will be added here -->
+                            </div>
+                        </div>
+                        <div class="tab-pane fade" id="contact" role="tabpanel" aria-labelledby="contact-tab">
+                            <!-- <p>ฮอนบัล content...</p> -->
+                            <!-- Nested Nav tabs -->
+                            <ul class="nav nav-tabs mt-3 d-flex justify-content-center" id="contactNestedTab" role="tablist">
+                                <!-- Dynamically generated sub-tabs will be added here -->
+                            </ul>
+                
+                            <!-- Nested Tab panes -->
+                            <div class="tab-content" id="contactNestedTabContent">
+                                <!-- Dynamically generated tab contents will be added here -->
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
-          
-        
-            <!-- Tab panes -->
-            <div class="tab-content" id="mainTabContent">
-                <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
-                    <!-- <p>ราชันย์กระบี่ content...</p> -->
-                    <!-- Nested Nav tabs -->
-                    <ul class="nav nav-tabs mt-3 d-flex justify-content-center" id="homeNestedTab" role="tablist">
-                        <!-- Dynamically generated sub-tabs will be added here -->
-                    </ul>
-        
-                    <!-- Nested Tab panes -->
-                    <div class="tab-content" id="homeNestedTabContent">
-                        <!-- Dynamically generated tab contents will be added here -->
-                    </div>
-                </div>
-                <div class="tab-pane fade" id="profile" role="tabpanel" aria-labelledby="profile-tab">
-                    <!-- <p>สวรรค์ทลายปฐพี content...</p> -->
-                    <!-- Nested Nav tabs -->
-                    <ul class="nav nav-tabs mt-3" id="profileNestedTab" role="tablist">
-                        <!-- Dynamically generated sub-tabs will be added here -->
-                    </ul>
-        
-                    <!-- Nested Tab panes -->
-                    <div class="tab-content" id="profileNestedTabContent">
-                        <!-- Dynamically generated tab contents will be added here -->
-                    </div>
-                </div>
-                <div class="tab-pane fade" id="contact" role="tabpanel" aria-labelledby="contact-tab">
-                    <!-- <p>ฮอนบัล content...</p> -->
-                    <!-- Nested Nav tabs -->
-                    <ul class="nav nav-tabs mt-3" id="contactNestedTab" role="tablist">
-                        <!-- Dynamically generated sub-tabs will be added here -->
-                    </ul>
-        
-                    <!-- Nested Tab panes -->
-                    <div class="tab-content" id="contactNestedTabContent">
-                        <!-- Dynamically generated tab contents will be added here -->
-                    </div>
-                </div>
-            </div>
+
+
+
+
+
+
+
+        </div>
+        <div class="col-4">
+
         </div>
     </div>
+ 
 
 
 
@@ -132,7 +150,7 @@
                 tabButton.className = 'nav-item';
                 tabButton.role = 'presentation';
                 tabButton.innerHTML = `
-                    <button class="nav-link img-class ${index === 0 ? 'active' : ''}" id="${tabId}-${careerKey}-tab" data-bs-toggle="tab" data-bs-target="#${tabId}-${careerKey}" type="button" role="tab" aria-controls="${tabId}-${careerKey}" aria-selected="${index === 0}">
+                    <button class="nav-link icon-class ${index === 0 ? 'active' : ''}" id="${tabId}-${careerKey}-tab" data-bs-toggle="tab" data-bs-target="#${tabId}-${careerKey}" type="button" role="tab" aria-controls="${tabId}-${careerKey}" aria-selected="${index === 0}">
                         <img src="${careerImage}" alt="${career}">
                     </button>
                 `;
@@ -146,7 +164,7 @@
                 tabContent.setAttribute('aria-labelledby', `${tabId}-${careerKey}-tab`);
                 tabContent.innerHTML = `
                     <div class="table-responsive">
-                        <table class="table table-bordered">
+                        <table class="table table-dark table-striped text-center">
                             <thead>
                                 <tr>
                                     <th scope="col">อันดับผู้เล่น</th>
@@ -181,7 +199,7 @@
 
                     playerList.forEach((player, index) => {
                         const row = `
-                            <tr>
+                            <tr class="table-border-yg">
                                 <td>${index + 1}</td>
                                 <td>${player.charname}</td>
                                 <td>${player.level}</td>
@@ -246,5 +264,7 @@
         }
     });
 </script>
+
+
 </body>
 </html>
