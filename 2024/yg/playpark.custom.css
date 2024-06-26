@@ -6,9 +6,31 @@
     display: inline-table;
 } */
 
-.server-yg ,.nav-tabs .nav-link.active,.nav-link{
+/* .server-yg,
+.nav-tabs .nav-link.active,
+.nav-link {
+    color: #111217 !important;
+    background-color: #fdae1d !important;
+    font-weight: bold !important;
+    border: 2px solid #fdae1d;
+} */
+
+ .server-yg {
+    color: #858ba2 !important;
+    background-color: #2f323c !important;
+    font-weight: bold !important;
+}
+/*
+.server-yg.active {
     color: #111217 !important;
     background-color: #fdae1d !important;
     font-weight: bold !important;
     border: 2px solid #fdae1d;
 }
+*/
+.nav-pills .nav-link {
+    border-radius: 0;
+    margin: 5px;
+    /* padding: 5px; */
+} 
+

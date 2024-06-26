@@ -11,23 +11,28 @@
 <body>
     <div class="theme-topbar-box w-100 fixed-top ff-kn">
         <div class="container mt-5">
-            <!-- Nav tabs -->
-            <ul class="nav nav-tabs" id="mainTab" role="tablist">
-                <li class="nav-item server-yg" role="presentation">
-                    <button class="nav-link active" id="home-tab" data-bs-toggle="tab" data-bs-target="#home" type="button" role="tab" aria-controls="home" aria-selected="true">ราชันย์กระบี่</button>
-                </li>
-                <li class="nav-item server-yg" role="presentation">
-                    <button class="nav-link" id="profile-tab" data-bs-toggle="tab" data-bs-target="#profile" type="button" role="tab" aria-controls="profile" aria-selected="false">สวรรค์ทลายปฐพี</button>
-                </li>
-                <li class="nav-item server-yg" role="presentation">
-                    <button class="nav-link" id="contact-tab" data-bs-toggle="tab" data-bs-target="#contact" type="button" role="tab" aria-controls="contact" aria-selected="false">ฮอนบัล</button>
-                </li>
-            </ul>
+            <div class="row">
+                <div class="col-12">
+                    <!-- Nav tabs -->
+                    <ul class="nav nav-justified nav-pills mb-3" id="mainTab" role="tablist">
+                        <li class="nav-item">
+                            <button class="nav-link active server-yg" id="home-tab" data-bs-toggle="tab" data-bs-target="#home" type="button" role="tab" aria-controls="home" aria-selected="true">ราชันย์กระบี่</button>
+                        </li>
+                        <li class="nav-item">
+                            <button class="nav-link server-yg" id="profile-tab" data-bs-toggle="tab" data-bs-target="#profile" type="button" role="tab" aria-controls="profile" aria-selected="false">สวรรค์ทลายปฐพี</button>
+                        </li>
+                        <li class="nav-item">
+                            <button class="nav-link server-yg" id="contact-tab" data-bs-toggle="tab" data-bs-target="#contact" type="button" role="tab" aria-controls="contact" aria-selected="false">ฮอนบัล</button>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+          
         
             <!-- Tab panes -->
             <div class="tab-content" id="mainTabContent">
                 <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
-                    <p>ราชันย์กระบี่ content...</p>
+                    <!-- <p>ราชันย์กระบี่ content...</p> -->
                     <!-- Nested Nav tabs -->
                     <ul class="nav nav-tabs mt-3 d-flex justify-content-center" id="homeNestedTab" role="tablist">
                         <!-- Dynamically generated sub-tabs will be added here -->
@@ -39,7 +44,7 @@
                     </div>
                 </div>
                 <div class="tab-pane fade" id="profile" role="tabpanel" aria-labelledby="profile-tab">
-                    <p>สวรรค์ทลายปฐพี content...</p>
+                    <!-- <p>สวรรค์ทลายปฐพี content...</p> -->
                     <!-- Nested Nav tabs -->
                     <ul class="nav nav-tabs mt-3" id="profileNestedTab" role="tablist">
                         <!-- Dynamically generated sub-tabs will be added here -->
@@ -51,7 +56,7 @@
                     </div>
                 </div>
                 <div class="tab-pane fade" id="contact" role="tabpanel" aria-labelledby="contact-tab">
-                    <p>ฮอนบัล content...</p>
+                    <!-- <p>ฮอนบัล content...</p> -->
                     <!-- Nested Nav tabs -->
                     <ul class="nav nav-tabs mt-3" id="contactNestedTab" role="tablist">
                         <!-- Dynamically generated sub-tabs will be added here -->
