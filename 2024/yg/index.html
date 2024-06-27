@@ -21,13 +21,13 @@
                             <!-- Nav tabs -->
                             <ul class="nav nav-justified nav-pills mb-3" id="mainTab" role="tablist">
                                 <li class="nav-item d-flex justify-content-center">
-                                    <button class="nav-link active server-yg" id="home-tab" data-bs-toggle="tab" data-bs-target="#home" type="button" role="tab" aria-controls="home" aria-selected="true">ราชันย์กระบี่</button>
+                                    <button class="nav-link active server-yg" id="yg-hallofframe-server1" data-bs-toggle="tab" data-bs-target="#server1" type="button" role="tab" aria-controls="server1" aria-selected="true">ราชันย์กระบี่</button>
                                 </li>
                                 <li class="nav-item d-flex justify-content-center">
-                                    <button class="nav-link server-yg" id="profile-tab" data-bs-toggle="tab" data-bs-target="#profile" type="button" role="tab" aria-controls="profile" aria-selected="false">สวรรค์ทลายปฐพี</button>
+                                    <button class="nav-link server-yg" id="yg-hallofframe-server2" data-bs-toggle="tab" data-bs-target="#server2" type="button" role="tab" aria-controls="server2" aria-selected="false">สวรรค์ทลายปฐพี</button>
                                 </li>
                                 <li class="nav-item d-flex justify-content-center">
-                                    <button class="nav-link server-yg" id="contact-tab" data-bs-toggle="tab" data-bs-target="#contact" type="button" role="tab" aria-controls="contact" aria-selected="false">ฮอนบัล</button>
+                                    <button class="nav-link server-yg" id="yg-hallofframe-server3" data-bs-toggle="tab" data-bs-target="#server3" type="button" role="tab" aria-controls="server3" aria-selected="false">ฮอนบัล</button>
                                 </li>
                             </ul>
                         </div>
@@ -36,39 +36,39 @@
                 
                     <!-- Tab panes -->
                     <div class="tab-content" id="mainTabContent">
-                        <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
+                        <div class="tab-pane fade show active" id="server1" role="tabpanel" aria-labelledby="yg-bg-hallofframe-server1">
                             <!-- <p>ราชันย์กระบี่ content...</p> -->
                             <!-- Nested Nav tabs -->
-                            <ul class="nav nav-tabs d-flex justify-content-center" id="homeNestedTab" role="tablist">
+                            <ul class="nav nav-tabs d-flex justify-content-center" id="server1NestedTab" role="tablist">
                                 <!-- Dynamically generated sub-tabs will be added here -->
                             </ul>
                 
                             <!-- Nested Tab panes -->
-                            <div class="tab-content" id="homeNestedTabContent">
+                            <div class="tab-content" id="server1NestedTabContent">
                                 <!-- Dynamically generated tab contents will be added here -->
                             </div>
                         </div>
-                        <div class="tab-pane fade" id="profile" role="tabpanel" aria-labelledby="profile-tab">
+                        <div class="tab-pane fade" id="server2" role="tabpanel" aria-labelledby="yg-bg-hallofframe-server2">
                             <!-- <p>สวรรค์ทลายปฐพี content...</p> -->
                             <!-- Nested Nav tabs -->
-                            <ul class="nav nav-tabs mt-3 d-flex justify-content-center" id="profileNestedTab" role="tablist">
+                            <ul class="nav nav-tabs mt-3 d-flex justify-content-center" id="server2NestedTab" role="tablist">
                                 <!-- Dynamically generated sub-tabs will be added here -->
                             </ul>
                 
                             <!-- Nested Tab panes -->
-                            <div class="tab-content" id="profileNestedTabContent">
+                            <div class="tab-content" id="server2NestedTabContent">
                                 <!-- Dynamically generated tab contents will be added here -->
                             </div>
                         </div>
-                        <div class="tab-pane fade" id="contact" role="tabpanel" aria-labelledby="contact-tab">
+                        <div class="tab-pane fade" id="server3" role="tabpanel" aria-labelledby="yg-bg-hallofframe-server3">
                             <!-- <p>ฮอนบัล content...</p> -->
                             <!-- Nested Nav tabs -->
-                            <ul class="nav nav-tabs mt-3 d-flex justify-content-center" id="contactNestedTab" role="tablist">
+                            <ul class="nav nav-tabs mt-3 d-flex justify-content-center" id="server3NestedTab" role="tablist">
                                 <!-- Dynamically generated sub-tabs will be added here -->
                             </ul>
                 
                             <!-- Nested Tab panes -->
-                            <div class="tab-content" id="contactNestedTabContent">
+                            <div class="tab-content" id="server3NestedTabContent">
                                 <!-- Dynamically generated tab contents will be added here -->
                             </div>
                         </div>
@@ -131,9 +131,9 @@
         };
 
         const servers = {
-            "home": { id: 1, name: "ราชันย์กระบี่" },
-            "profile": { id: 2, name: "สวรรค์ทลายปฐพี" },
-            "contact": { id: 7, name: "ฮอนบัล" }
+            "server1": { id: 1, name: "ราชันย์กระบี่" },
+            "server2": { id: 2, name: "สวรรค์ทลายปฐพี" },
+            "server3": { id: 7, name: "ฮอนบัล" }
         };
 
         Object.keys(servers).forEach((tabId) => {
