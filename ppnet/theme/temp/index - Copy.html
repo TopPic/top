@@ -1,0 +1,403 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="initial-scale=1, width=device-width" />
+<link rel="stylesheet" href="css/bootstrap.min.css" />
+<link rel="stylesheet" href="css/playpark.custom.css" />
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@splidejs/splide@4.0.7/dist/css/splide.min.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.carousel.min.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.theme.default.min.css">
+<!-- <style>
+.carousel-row {
+	margin: 8px 0;
+}
+</style> -->
+<link rel="stylesheet" href="./index.css" />
+<link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap"
+    />
+<link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Kanit:wght@400;500;700&display=swap"
+    />
+</head>
+<body>
+<div class="frame-paren">
+  <div class="root-containe">
+    <div class="main-container5">
+      <div class="row">
+        <div class="col-12">
+           <div class="owl-carousel mt-3">
+                              <div class="item">
+                                <a href="https://yulgang.playpark.com/th-th/hightlight/eventinsummer0424/" target="_blank"><img src="https://yulgang.playpark.com/th-th/wp-content/uploads/2024/04/chuchoc-May-Ban-2.jpg" ></a>
+                              </div>
+                              <div class="item">
+                                <a href="https://yulgang.playpark.com/th-th/all-news/promotion/special-item-shop-0567" target="_blank"><img src="https://yulgang.playpark.com/th-th/wp-content/uploads/2024/04/YG-%E0%B8%8A%E0%B8%B8%E0%B8%94%E0%B8%84%E0%B8%A5%E0%B8%B8%E0%B8%A1%E0%B9%83%E0%B8%AB%E0%B8%A1%E0%B9%88-May-Ban.jpg" ></a>
+                              </div>
+                              <div class="item">
+                                <a href="https://yulgang.playpark.com/th-th/hightlight/goodness0524/" target="_blank"><img src="https://yulgang.playpark.com/th-th/wp-content/uploads/2024/04/%E0%B8%A2%E0%B8%B2%E0%B9%80%E0%B8%AA%E0%B8%A3%E0%B8%B4%E0%B8%A1%E0%B8%84%E0%B8%A7%E0%B8%B2%E0%B8%A1%E0%B8%94%E0%B8%B5-2-%E0%B9%80%E0%B8%97%E0%B9%88%E0%B8%B2-May-Ban.jpg" ></a>
+                              </div>
+                              <div class="item">
+                                <a href="https://yulgang.playpark.com/th-th/hightlight/eventboss0524/" target="_blank"><img src="https://yulgang.playpark.com/th-th/wp-content/uploads/2024/04/Boss-Kingtor-May67-Ban-2.jpg" ></a>
+                              </div>
+                            </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- <script>
+      var business = document.getElementById("business");
+      if (business) {
+        business.addEventListener("click", function () {
+          var anchor = document.querySelector("[data-scroll-to='contentContainer']");
+          if (anchor) {
+            anchor.scrollIntoView({ block: "start", behavior: "smooth" });
+          }
+        });
+      }
+      
+      var partners = document.getElementById("partners");
+      if (partners) {
+        partners.addEventListener("click", function () {
+          var anchor = document.querySelector(
+            "[data-scroll-to='mainFrameContainer']"
+          );
+          if (anchor) {
+            anchor.scrollIntoView({ block: "start", behavior: "smooth" });
+          }
+        });
+      }
+      
+      var services = document.getElementById("services");
+      if (services) {
+        services.addEventListener("click", function () {
+          var anchor = document.querySelector("[data-scroll-to='mainContainer1']");
+          if (anchor) {
+            anchor.scrollIntoView({ block: "start", behavior: "smooth" });
+          }
+        });
+      }
+      
+      var works = document.getElementById("works");
+      if (works) {
+        works.addEventListener("click", function () {
+          var anchor = document.querySelector("[data-scroll-to='mainContainer']");
+          if (anchor) {
+            anchor.scrollIntoView({ block: "start", behavior: "smooth" });
+          }
+        });
+      }
+      
+      var blog = document.getElementById("blog");
+      if (blog) {
+        blog.addEventListener("click", function () {
+          var anchor = document.querySelector("[data-scroll-to='blogTitleSection']");
+          if (anchor) {
+            anchor.scrollIntoView({ block: "start", behavior: "smooth" });
+          }
+        });
+      }
+      
+      var frameContainer1 = document.getElementById("frameContainer1");
+      if (frameContainer1) {
+        frameContainer1.addEventListener("click", function () {
+          var popup = document.getElementById("frameContainer");
+          if (!popup) return;
+          var popupStyle = popup.style;
+          if (popupStyle) {
+            popupStyle.display = "flex";
+            popupStyle.zIndex = 100;
+            popupStyle.backgroundColor = "rgba(113, 113, 113, 0.3)";
+            popupStyle.alignItems = "center";
+            popupStyle.justifyContent = "center";
+          }
+          popup.setAttribute("closable", "");
+      
+          var onClick =
+            popup.onClick ||
+            function (e) {
+              if (e.target === popup && popup.hasAttribute("closable")) {
+                popupStyle.display = "none";
+              }
+            };
+          popup.addEventListener("click", onClick);
+        });
+      }
+      
+      var frameContainer = document.getElementById("frameContainer");
+      if (frameContainer) {
+        frameContainer.addEventListener("click", function (e) {
+          // Please sync "Root Container" to the project
+        });
+      }
+      
+      var frameContainer1 = document.getElementById("frameContainer1");
+      if (frameContainer1) {
+        frameContainer1.addEventListener("click", function (e) {
+          // Please sync "Root Container" to the project
+        });
+      }
+      
+      var frameContainer2 = document.getElementById("frameContainer2");
+      if (frameContainer2) {
+        frameContainer2.addEventListener("click", function (e) {
+          // Please sync "Root Container" to the project
+        });
+      }
+      
+      var frameContainer3 = document.getElementById("frameContainer3");
+      if (frameContainer3) {
+        frameContainer3.addEventListener("click", function (e) {
+          // Please sync "Root Container" to the project
+        });
+      }
+      
+      var contactSection = document.getElementById("contactSection");
+      if (contactSection) {
+        contactSection.addEventListener("click", function () {
+          var popup = document.getElementById("frameContainer");
+          if (!popup) return;
+          var popupStyle = popup.style;
+          if (popupStyle) {
+            popupStyle.display = "flex";
+            popupStyle.zIndex = 100;
+            popupStyle.backgroundColor = "rgba(113, 113, 113, 0.3)";
+            popupStyle.alignItems = "center";
+            popupStyle.justifyContent = "center";
+          }
+          popup.setAttribute("closable", "");
+      
+          var onClick =
+            popup.onClick ||
+            function (e) {
+              if (e.target === popup && popup.hasAttribute("closable")) {
+                popupStyle.display = "none";
+              }
+            };
+          popup.addEventListener("click", onClick);
+        });
+      }
+      
+      var frameLink1 = document.getElementById("frameLink1");
+      if (frameLink1) {
+        frameLink1.addEventListener("click", function () {
+          var anchor = document.querySelector("[data-scroll-to='sectionContainer']");
+          if (anchor) {
+            anchor.scrollIntoView({ block: "start", behavior: "smooth" });
+          }
+        });
+      }
+      
+      var frameLink9 = document.getElementById("frameLink9");
+      if (frameLink9) {
+        frameLink9.addEventListener("click", function (e) {
+          // Please sync "Frame 62" to the project
+        });
+      }
+      </script> -->
+
+<script src="js/bootstrap.bundle.min.js"></script>
+<script defer src="https://use.fontawesome.com/releases/v6.5.0/js/all.js"></script>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/owl.carousel.min.js"></script>
+<script>
+           	 function resizeText() {
+       const screenWidth = $(window).width();
+       let newSize;
+       
+       if (screenWidth < 1320) {
+         newSize = 16 - (1320 - screenWidth) / 100; // Decrease font size as screen width decreases
+       } else {
+         newSize = 16; // Max font size
+       }
+       
+       // Ensure minimum font size of 10px
+       newSize = Math.max(10, newSize);
+       
+       // Apply the new font size to the entire HTML document
+       $('html').css('font-size', newSize + 'px');
+       }
+       // Function to check if the device is not a PC
+       function isPC() {
+         var userAgentInfo = navigator.userAgent;
+         var agents = ["Android", "iPhone", "SymbianOS", "Windows Phone", "iPad", "iPod"];
+         for (var i = 0; i < agents.length; i++) {
+           if (userAgentInfo.indexOf(agents[i]) > 0) {
+             return false;
+           }
+         }
+         return true;
+       }
+        
+       // Function to check if the screen orientation is horizontal (width > height)
+       function isHorizontal() {
+         return window.innerWidth > window.innerHeight;
+       }
+       function check_screen() {
+         // Check if the device is not a PC (e.g., mobile or tablet)
+         if (true) {
+           // Initial call to set font size based on screen width
+           resizeText();
+           $(".content-container-main").addClass("sdk-active");
+           // Call the resizeText function whenever the window is resized
+         } else {
+           $('html').css('font-size', 16 + 'px');
+           $(".content-container-main").removeClass("sdk-active");
+         }
+       }
+        
+       check_screen()
+       $(window).resize(check_screen);
+     </script>
+<script>
+        let translations = {};
+
+        function fetchTranslations() {
+            $.getJSON('https://cdn.simplelocalize.io/a636ee039a254b3fbda471a1fd6da855/_latest/_index', function(data) {
+                translations = data;
+                const urlParams = new URLSearchParams(window.location.search);
+                const langParam = urlParams.get('lang');
+                const defaultLang = langParam || 'en';
+                changeLanguage(defaultLang); // Default or URL parameter language
+            });
+        }
+
+        function changeLanguage(lang) {
+            $.each(translations[lang], function(key, value) {
+                $('#' + key).text(value);
+            });
+            $('#languageSwitcher').val(lang); // Update the select dropdown
+        }
+
+        $(document).ready(function() {
+            fetchTranslations();
+            $('#languageSwitcher').on('change', function() {
+                changeLanguage(this.value);
+            });
+        });
+    </script>
+<!-- <script src="https://cdn.jsdelivr.net/npm/@splidejs/splide@4.0.7/dist/js/splide.min.js"></script> -->
+<!-- <script src="https://cdn.jsdelivr.net/npm/@splidejs/splide-extension-auto-scroll@0.5.3/dist/js/splide-extension-auto-scroll.min.js"></script> -->
+<!-- <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            //var autoScrollOptions = { AutoScroll: Splide.Extensions.AutoScroll };
+
+            new Splide('#carousel1', {
+                 type   : 'loop',
+  drag   : 'free',
+  focus  : 'center',
+				 autoWidth: true,
+				gap         : 10,
+                autoScroll: {
+                    speed: 1,
+                },
+				// direction: 'rtl',
+				arrows     : false,  // Hide arrows
+      pagination : false,  // Hide pagination dots
+				
+            }).mount(window.splide.Extensions);
+
+            new Splide('#carousel2', {
+                 type   : 'loop',
+  drag   : 'free',
+  focus  : 'center',
+				 autoWidth: true,
+				gap         : 10,
+                autoScroll: {
+                    speed: 1,
+                },
+				 direction: 'rtl',
+				arrows     : false,  // Hide arrows
+      pagination : false,  // Hide pagination dots
+            }).mount(window.splide.Extensions);
+
+            new Splide('#carousel3', {
+                   type   : 'loop',
+  drag   : 'free',
+  focus  : 'center',
+				 autoWidth: true,
+				gap         : 10,
+                autoScroll: {
+                    speed: 1,
+                },
+				// direction: 'rtl',
+				arrows     : false,  // Hide arrows
+      pagination : false,  // Hide pagination dots
+            }).mount(window.splide.Extensions);
+        });
+    </script> -->
+<!-- <script>
+ document.addEventListener('DOMContentLoaded', function () {
+  var mainCarouselSettings = {
+    type       : 'fade',
+    heightRatio: 0.5,
+	    //fixedWidth  : 800,
+    pagination : false,
+    arrows     : false,
+    cover      : true,
+  }
+
+  var thumbnailCarouselSettings = {
+    fixedWidth  : 150,
+    fixedHeight : 80,
+    isNavigation: true,
+    gap         : 10,
+    focus       : 'center',
+    pagination  : false,
+    cover       : true,
+    breakpoints : {
+      600: {
+        fixedWidth : 66,
+        fixedHeight: 40,
+      },
+    },
+  }
+
+  const carousels = [1, 2, 3, 4, 5, 6, 7, 8];
+  carousels.forEach(function(i) {
+    var mainCarousel = new Splide(`#main-carousel-${i}`, mainCarouselSettings);
+    var thumbnailCarousel = new Splide(`#thumbnail-carousel-${i}`, thumbnailCarouselSettings);
+
+    mainCarousel.sync(thumbnailCarousel).mount();
+    thumbnailCarousel.mount();
+
+    mainCarousel.on('move', function () {
+      var videos = document.querySelectorAll(`#main-carousel-${i} video`);
+      videos.forEach(function (video) {
+        video.pause();
+      });
+    });
+
+    mainCarousel.on('active', function (slide) {
+      var activeSlide = slide.slide;
+      var video = activeSlide.querySelector('video');
+      if (video) {
+        video.play();
+      }
+    });
+  });
+});
+
+</script> -->
+
+<script>
+  $(document).ready(function(){
+    $(".owl-carousel").owlCarousel({
+     			items: 1, // Number of items per page
+                //loop: true, // Enable infinite loop
+                autoplay: true, // Auto-play the carousel
+                autoplayTimeout: 3000, // Set autoplay interval (in milliseconds)
+                autoplayHoverPause: true, // Pause autoplay on hover
+                //loop: false,
+				margin : 10,
+                //dots: true,
+                
+    });
+  });
+</script>
+</body>
+</html>
