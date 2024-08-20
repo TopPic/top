@@ -1,3 +1,32 @@
+
+/* Media Query for screens with a max width of 768px */
+@media (max-width: 768px) {
+    .vc_tta-tabs-container::before {
+        display: none;
+    }
+
+    .nav-link>img {
+        min-width: 100px !important;
+    }
+
+    .nav-tabs-yg {
+        overflow-x: scroll;
+        white-space: nowrap;
+        flex-wrap: nowrap !important;
+        -webkit-overflow-scrolling: touch; /* Smooth scrolling on iOS */
+        scrollbar-width: none; /* For Firefox */
+        overflow-y: hidden;  /* ป้องกันการเลื่อนในแนวตั้ง */
+    }
+    
+    /* .nav-tabs-yg::-webkit-scrollbar {
+        display: none;
+    } */
+    .nav-tabs-yg {
+        -ms-overflow-style: none;  /* สำหรับ IE และ Edge */
+        scrollbar-width: none;  /* สำหรับ Firefox */
+    }
+}
+
 .hall-of-frame-yg {
     border: 2px solid #2d303d;
     padding: 40px 30px;

@@ -45,15 +45,8 @@
                                     <!-- Tab panes -->
                                     <div class="tab-content" id="mainTabContent">
                                         <!-- <div class="tab-pane fade show active" id="server1" role="tabpanel" aria-labelledby="yg-bg-hallofframe-server1">
-                                           
-                                            <ul class="nav nav-tabs d-flex justify-content-center" id="server1NestedTab" role="tablist">
-                                                
-                                            </ul>
-                                
-                                           
-                                            <div class="tab-content" id="server1NestedTabContent">
-                                                
-                                            </div>
+                                            <ul class="nav nav-tabs d-flex justify-content-center" id="server1NestedTab" role="tablist"> </ul>
+                                            <div class="tab-content" id="server1NestedTabContent"> </div>
                                         </div> -->
                                         <div class="tab-pane fade show active" id="server2" role="tabpanel" aria-labelledby="yg-bg-hallofframe-server2">
                                             <!-- <p>พยัคฆ์สวรรค์ราชันเทวะ content...</p> -->
@@ -61,7 +54,6 @@
                                             <ul class="nav nav-tabs nav-tabs-yg mt-3 d-flex justify-content-center" id="server2NestedTab" role="tablist">
                                                 <!-- Dynamically generated sub-tabs will be added here -->
                                             </ul>
-                                
                                             <!-- Nested Tab panes -->
                                             <div class="tab-content" id="server2NestedTabContent">
                                                 <!-- Dynamically generated tab contents will be added here -->
@@ -73,7 +65,6 @@
                                             <ul class="nav nav-tabs nav-tabs-yg mt-3 d-flex justify-content-center" id="server3NestedTab" role="tablist">
                                                 <!-- Dynamically generated sub-tabs will be added here -->
                                             </ul>
-                                
                                             <!-- Nested Tab panes -->
                                             <div class="tab-content" id="server3NestedTabContent">
                                                 <!-- Dynamically generated tab contents will be added here -->
@@ -82,6 +73,7 @@
                                     </div>
                                 </div>
                             </div>
+
 
 
 
@@ -155,7 +147,7 @@
                 tabButton.role = 'presentation';
                 tabButton.innerHTML = `
                     <button class="nav-link icon-class ${index === 0 ? 'active' : ''}" id="${tabId}-${careerKey}-tab" data-bs-toggle="tab" data-bs-target="#${tabId}-${careerKey}" type="button" role="tab" aria-controls="${tabId}-${careerKey}" aria-selected="${index === 0}">
-                        <img src="${careerImage}" alt="${career}">
+                       <img src="${careerImage}" class="career-image" alt="${career}">
                     </button>
                 `;
                 nestedTab.appendChild(tabButton);
