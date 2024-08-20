@@ -73,3 +73,49 @@
 table td {
     border: 0 !important;
 }
+
+/*new hall */
+/*.table tr td{*/
+/*text-align: center;*/
+/*}*/
+li.nav-item2 {
+    margin-left: 0 !important;
+}
+
+.td-trending-now-post:first-child {
+    padding-top: 10px;
+}
+
+div#tdi_22 {
+    background: #111217;
+    padding: 10px;
+}
+
+.td-trending-now-title {
+    background: #f7a615 !important;
+    color: #000000;
+    font-size: 20px !important;
+    font-weight: 600 !important;
+    padding: 5px 25px;
+}
+
+.td-main-page-wrap .td-container>.td-pb-row:first-child .td_block_trending_now:first-child,
+.td-main-page-wrap .tdc-row:first-child .wpb_wrapper .td_block_trending_now:first-child,
+.td-main-page-wrap .tdc_zone .tdc-row:first-of-type .wpb_wrapper .td_block_trending_now:first-child,
+.td-main-page-wrap .tdc-row:first-of-type .tdc-element:first-of-type .td_block_trending_now:first-child,
+.td-main-page-wrap .tdc-row-composer:first-child .wpb_wrapper .td_block_trending_now:first-child,
+.td-main-page-wrap .tdc-row-composer:first-of-type .tdc-element:first-of-type .td_block_trending_now:first-child {
+    background: #383f55 !important;
+    padding: 4px !important;
+}
+
+/*.countdown {*/
+/*      display: block;*/
+/*      width: 100%;*/
+/*      color: #ffffff;*/
+/*      background-color: #383f55;*/
+/*      padding: 10px 15px;*/
+/*      font-size: 14px;*/
+/*      text-align: center;*/
+/*      margin-bottom: 10px;*/
+/*  }*/
