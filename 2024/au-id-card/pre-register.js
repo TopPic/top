@@ -46,13 +46,17 @@ function submitForm() {
             } else {
                 Swal.fire({
                     title: "ลงทะเบียนสำเร็จ",
-                    text: "",
+                    text: "That thing is still around?",
                     icon: "success"
                 }).then((result) => {
                     if (result.isConfirmed) {
-                        window.location.reload(); // Reload the page
+                        // เคลียร์ค่าที่กรอกในฟอร์ม
+                        document.getElementById('idCard').value = '';
+                        // หากต้องการเคลียร์ฟอร์มทั้งหมด
+                        document.getElementById('au-id-card').reset(); // แทน 'formId' ด้วย ID ของฟอร์ม
                     }
                 });
+                
             }
         })
         .catch(error => {
