@@ -1,0 +1,29 @@
+body {
+    font-family: "Kanit", sans-serif;
+    font-style: normal;
+}
+
+.bg-exit {
+    background: url("https://yulgang.playpark.com/th-th/img-theme/bg-content-yulgang.png") center / cover no-repeat;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.title-exit {
+    text-transform: uppercase;
+    text-align: center;
+    color: #fff;
+    font-weight: 600;
+}
+
+a {
+    text-decoration: none;
+}
+
+.banner-exit p {
+    background-color: #383f55;
+    color: #fff;
+    font-weight: 400;
+}
