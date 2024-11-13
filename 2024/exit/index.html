@@ -10,29 +10,72 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&family=Kanit:wght@400;600&display=swap"
         rel="stylesheet">
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
     <link rel="stylesheet" href="style.css">
 </head>
 
 <body>
     <div class="bg-exit">
-        <div class="container-xxl p-5">
-            <img src="https://placehold.co/400x125/png" alt="" class="invisible img-fluid">
-            <h1 class="title-exit">Highlight</h1>
-            <div class="row mt-4 row-gap-3 d-flex align-items-center banner-exit" id="posts-container">
+          <nav class="navbar navbar-expand-lg bg-nav-exit">
+            <div class="container">
+                <a href=""><img src="https://yulgang.playpark.com/th-th/20th-anniversary/images/Yulgang-logo.png" width="60%" class="img-fluid" alt=""></a>
+              <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+              </button>
+              <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
+                <ul class="navbar-nav">
+                  <li class="nav-item">
+                    <a class="nav-link text-white" href="https://yulgang.playpark.com/th-th/" target="_blank">หน้าหลัก</a>
+                  </li>
+                  <li class="nav-item">
+                    <a class="nav-link text-white" href="https://secure3.playpark.com/refill/RefillCenterSystem/Game/LoginChannel?gameServiceId=8" target="_blank">เติมเงิน</a>
+                  </li>
+                  <li class="nav-item">
+                    <a class="nav-link text-white" href="https://yulgang.playpark.com/th-th/game-guide/introduction/cash-item-shop-yg-2017/" target="_blank">ร้านค้า</a>
+                  </li>
+                  <li class="nav-item">
+                    <a class="nav-link text-white" href="https://yulgang.playpark.com/th-th/game-guide/game-guide-item-code-2017/" target="_blank">Item Code</a>
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </nav>
+        <div class="container">
+            <!-- <img src="https://placehold.co/400x125/png" alt="" class="invisible img-fluid"> -->
+            <h1 class="title-exit mt-5">Highlight</h1>
+            <div class="row mt-5 row-gap-3 d-flex align-items-center banner-exit" id="posts-container">
                 <h4 id="loading-text" class="text-center w-100 text-white">Loading...</h4>
                 <!-- <div class="col-md-4 col-6">
                     <a href=""><img src="https://placehold.co/1200x628/png" class="img-fluid" alt="">
                         <p class="read-more-exit text-center">อ่านเพิ่มเติม</p>
                     </a>
                 </div> -->
-
-
             </div>
-            <img src="https://placehold.co/400x125/png" alt="" class="invisible img-fluid">
-            <img src="https://media-web.playpark.com/ci-game/pc/footer_wp_ci_yg.png" class="img-fluid" alt="">
-            <p class="text-center text-white">
-                ©2005. MGAME Corp. All rights reserved. ©2017 Asphere Innovations Public Company Limited. All Rights Reserved
-            </p>
+        </div>
+        <div class="container mt-4">
+            <div class="row pt-5">
+                <div class="col-md-6 col-12 justify-content-start">
+                    <!-- <img src="https://placehold.co/400x125/png" alt="" class="invisible img-fluid"> -->
+                    <img src="https://media-web.playpark.com/ci-game/pc/footer_wp_ci_yg.png" class="img-fluid" alt="">
+                    <p class="text-white footer-exit">
+                        ©2005. MGAME Corp. All rights reserved. ©2017 Asphere Innovations Public Company Limited. All Rights
+                        Reserved
+                    </p>
+                </div>
+                <div class="col-md-6 col-12">
+                   <ul class="d-flex list-unstyled justify-content-center justify-content-md-end">
+                    <li class="nav-item px-2">
+                        <a class="nav-link text-white" href="https://www.facebook.com/PlayPark.Yulgang.TH" target="_blank"><i class="bi bi-facebook h1"></i></a>
+                      </li>
+                      <li class="nav-item px-2">
+                        <a class="nav-link text-white" href="https://www.facebook.com/groups/633204573718114/" target="_blank"><i class="bi bi-people-fill h1"></i></a>
+                      </li>
+                      <li class="nav-item px-2">
+                        <a class="nav-link text-white" href="https://discord.com/invite/Rk48a7KBHr" target="_blank"><i class="bi bi-discord h1"></i></a>
+                      </li>
+                   </ul>
+                </div>
+            </div>
         </div>
     </div>
 
@@ -61,7 +104,7 @@
                         : 'https://placehold.co/1200x628/png';
 
                     const postElement = document.createElement('div');
-                    postElement.className = 'col-md-4 col-6';
+                    postElement.className = 'col-md-4 col-12';
                     postElement.innerHTML = `
                         <a href="${post.link}" target="_blank">
                             <img src="${featuredImage}" class="img-fluid" alt="${post.title.rendered}" id="news-exit-page-${idCounter}">

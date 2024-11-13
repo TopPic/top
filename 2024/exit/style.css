@@ -6,9 +6,9 @@ body {
 .bg-exit {
     background: url("https://yulgang.playpark.com/th-th/img-theme/bg-content-yulgang.png") center / cover no-repeat;
     width: 100%;
-    display: flex;
+    /* display: flex;
     justify-content: center;
-    align-items: center;
+    align-items: center; */
 }
 
 .title-exit {
@@ -26,4 +26,15 @@ a {
     background-color: #383f55;
     color: #fff;
     font-weight: 400;
+    font-size: 1rem;
+}
+.bg-nav-exit{
+    background-image: url(https://yulgang.playpark.com/th-th/img-theme/bg-top-menu-yulgang.png);
+    background-repeat: repeat;
+    background-size: auto;
+    border-bottom: 4px solid #ff9512 
+}
+
+.footer-exit{
+    font-size: 1rem;
 }
