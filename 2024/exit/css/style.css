@@ -32,6 +32,7 @@ a {
     flex-wrap: nowrap;
     justify-content: center;
     align-items: center;
+    padding: 0 5px;
 }
 
 .bg-nav-exit {
@@ -47,4 +48,19 @@ a {
 
 .menu-exit {
     font-size: 1.15rem;
+}
+
+.topup-exit {
+    background-color: #fff;
+    border-radius: 20px;
+    text-align: center;
+    padding: 0 40px !important;
+}
+
+.text-topup-exit {
+    color: #000;
+}
+
+.navbar-nav .nav-item {
+    padding: 0 5px;
 }

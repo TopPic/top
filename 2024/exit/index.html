@@ -12,7 +12,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&family=Kanit:wght@400;600&display=swap"
         rel="stylesheet">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
-    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/style.css?v=1">
     <meta name="robots" content="noindex,nofollow">
     <!-- Google Tag Manager -->
     <script>(function (w, d, s, l, i) {
@@ -45,13 +45,16 @@
                     <a class="nav-link text-white menu-exit" href="https://yulgang.playpark.com/" target="_blank" id="exit-page-home">หน้าหลัก</a>
                   </li>
                   <li class="nav-item">
-                    <a class="nav-link text-white menu-exit" href="https://secure3.playpark.com/refill/RefillCenterSystem/Game/LoginChannel?gameServiceId=8" target="_blank" id="exit-page-topup">เติมเงิน</a>
-                  </li>
-                  <li class="nav-item">
                     <a class="nav-link text-white menu-exit" href="https://yulgang.playpark.com/th-th/game-guide/introduction/cash-item-shop-yg-2017/" target="_blank" id="exit-page-shop">ร้านค้า</a>
                   </li>
                   <li class="nav-item">
                     <a class="nav-link text-white menu-exit" href="https://yulgang.playpark.com/th-th/game-guide/game-guide-item-code-2017/" target="_blank" id="exit-page-item-code">Item Code</a>
+                  </li>
+                  <li class="nav-item">
+                    <a class="nav-link text-white menu-exit" href="https://www.playpark.com/th-th/yulgang-download/thankyou-yulgang-full-client/" target="_blank" id="exit-page-download">ดาวน์โหลด</a>
+                  </li>
+                  <li class="nav-item topup-exit">
+                    <a class="nav-link text-topup-exit  menu-exit" href="https://secure3.playpark.com/refill/RefillCenterSystem/Game/LoginChannel?gameServiceId=8" target="_blank" id="exit-page-topup">เติมเงิน</a>
                   </li>
                 </ul>
               </div>
@@ -131,7 +134,7 @@
                         : 'https://yulgang.playpark.com/th-th/wp-content/uploads/2024/11/yg-share.png';
 
                     const postElement = document.createElement('div');
-                    postElement.className = 'col-md-4 col-12';
+                    postElement.className = 'col-md-4 col-12 news-exit';
                     postElement.innerHTML = `
                         <a href="${post.link}" target="_blank">
                             <img src="${featuredImage}" class="img-fluid" alt="${post.title.rendered}" id="exit-page-news-${idCounter}">
