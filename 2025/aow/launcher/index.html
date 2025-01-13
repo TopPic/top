@@ -10,6 +10,7 @@
             height: 150px;
             position: relative;
             margin: auto;
+            margin-left: 0; /* Align to the left */
         }
         .slides {
             display: none;
@@ -22,8 +23,8 @@
         }
         .dot {
             cursor: pointer;
-            height: 15px;
-            width: 15px;
+            height: 10px;
+            width: 10px;
             margin: 0 2px;
             background-color: #bbb;
             border-radius: 50%;
@@ -58,7 +59,7 @@
         showSlides(slideIndex);
         setInterval(function() {
             plusSlides(1);
-        }, 2000); // Change slide every 9 seconds
+        }, 9000); // Change slide every 9 seconds
 
         function plusSlides(n) {
             showSlides(slideIndex += n);
