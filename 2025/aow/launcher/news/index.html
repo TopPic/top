@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="X-UA-Compatible" content="IE=8">
+    <style>
+        .tab-container {
+            width: 350px;
+            height: 150px;
+        }
+        .tabs {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+            display: flex;
+        }
+        .tabs li {
+            flex: 1;
+            text-align: center;
+            background: #ccc;
+            cursor: pointer;
+            padding: 10px;
+        }
+        .tabs li.active {
+            background: #999;
+        }
+        .tab-content {
+            display: none;
+            padding: 10px;
+            border: 1px solid #ccc;
+            height: 100px;
+        }
+        .tab-content.active {
+            display: block;
+        }
+    </style>
+</head>
+<body>
+    <div class="tab-container">
+        <ul class="tabs">
+            <li class="active" onclick="showTab(0)">Tab 1</li>
+            <li onclick="showTab(1)">Tab 2</li>
+            <li onclick="showTab(2)">Tab 3</li>
+            <li onclick="showTab(3)">Tab 4</li>
+            <li onclick="addTab()">+</li>
+        </ul>
+        <div class="tab-content active">Content 1</div>
+        <div class="tab-content">Content 2</div>
+        <div class="tab-content">Content 3</div>
+        <div class="tab-content">Content 4</div>
+    </div>
+    <script>
+        function showTab(index) {
+            var tabs = document.querySelectorAll('.tabs li');
+            var contents = document.querySelectorAll('.tab-content');
+            for (var i = 0; i < contents.length; i++) {
+                tabs[i].className = '';
+                contents[i].className = 'tab-content';
+            }
+            tabs[index].className = 'active';
+            contents[index].className = 'tab-content active';
+        }
+        
+        function addTab() {
+            alert('Add new tab functionality not implemented yet.');
+        }
+    </script>
+</body>
+</html>
