@@ -25,12 +25,25 @@
         }
         .tab-content {
             display: none;
-            padding: 10px;
-            border: 1px solid #ccc;
+            padding: 20px;
+            /* border: 1px solid #ccc; */
             height: 100px;
+            margin: 0;
+            background-color: #999;
         }
         .tab-content.active {
             display: block;
+        }
+        .tab-content li {
+          list-style-type: circle;
+        }
+        .tab-content li a {
+            display: block;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            color: #000;
+            text-decoration: none;
         }
     </style>
 </head>
@@ -43,10 +56,18 @@
             <li onclick="showTab(3)">Tab 4</li>
             <li onclick="addTab()">+</li>
         </ul>
-        <div class="tab-content active">Content 1</div>
-        <div class="tab-content">Content 2</div>
-        <div class="tab-content">Content 3</div>
-        <div class="tab-content">Content 4</div>
+        <ul class="tab-content active" id="tab-content-1">
+            <!-- Content will be populated by JavaScript -->
+        </ul>
+        <ul class="tab-content" id="tab-content-2">
+            <!-- Content will be populated by JavaScript -->
+        </ul>
+        <ul class="tab-content" id="tab-content-3">
+            <!-- Content will be populated by JavaScript -->
+        </ul>
+        <ul class="tab-content" id="tab-content-4">
+            <!-- Content will be populated by JavaScript -->
+        </ul>
     </div>
     <script>
         function showTab(index) {
@@ -63,6 +84,35 @@
         function addTab() {
             alert('Add new tab functionality not implemented yet.');
         }
+
+        function fetchNews() {
+            function fetchData(url, callback) {
+                var xhr = new XMLHttpRequest();
+                xhr.open('GET', url, true);
+                xhr.onreadystatechange = function () {
+                    if (xhr.readyState === 4 && xhr.status === 200) {
+                        callback(JSON.parse(xhr.responseText));
+                    }
+                };
+                xhr.send();
+            }
+
+            fetchData('https://melojam.playpark.com/wp-json/wp/v2/posts?categories=182', function(data1) {
+                var tabContent1 = document.getElementById('tab-content-1');
+                tabContent1.innerHTML = data1.slice(0, 5).map(function(post) {
+                    return '<li><a href="' + post.link + '">' + post.title.rendered + '</a></li>';
+                }).join('');
+            });
+
+            fetchData('https://melojam.playpark.com/wp-json/wp/v2/posts?categories=128', function(data2) {
+                var tabContent2 = document.getElementById('tab-content-2');
+                tabContent2.innerHTML = data2.slice(0, 5).map(function(post) {
+                    return '<li><a href="' + post.link + '">' + post.title.rendered + '</a></li>';
+                }).join('');
+            });
+        }
+
+        fetchNews();
     </script>
 </body>
 </html>
