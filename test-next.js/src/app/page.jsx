@@ -14,20 +14,20 @@ export default function Home() {
         {/* row games */}
         <div className="grid gap-10 p-5">
           <div className="grid grid-cols-2 gap-5 sm:grid-cols-3 lg:grid-cols-6">
-            <a className="hover:scale-95 duration-300" href="#"><img className="w-full" src="https://media-web.playpark.com/poster-games/pc/au.png" alt="game1" /><p className="font-bold text-center">Audtion</p></a>
-            <a className="hover:scale-95 duration-300" href="#"><img className="w-full" src="https://media-web.playpark.com/poster-games/pc/es.png" alt="game2" /><p className="font-bold text-center">Elsword</p></a>
-            <a className="hover:scale-95 duration-300" href="#"><img className="w-full" src="https://media-web.playpark.com/poster-games/pc/yg.png" alt="game13" /><p className="font-bold text-center">yg</p></a>
-            <a className="hover:scale-95 duration-300" href="#"><img className="w-full" src="https://media-web.playpark.com/poster-games-playmall/FLYFFUNIVERSE.jpg" alt="game14" /><p className="font-bold text-center">FLYFFUNIVERSE</p></a>
-            <a className="hover:scale-95 duration-300" href="#"><img className="w-full" src="https://media-web.playpark.com/poster-games/pc/gcc.jpg" alt="game15" /><p className="font-bold text-center">gcc</p></a>
-            <a className="hover:scale-95 duration-300" href="#"><img className="w-full" src="https://media-web.playpark.com/poster-games/pc/rakion.png" alt="game16" /><p className="font-bold text-center">rakion</p></a>
+            <a className="hover:scale-95 duration-300" href="#"><img className="w-full" src="/image/pc/au.png" alt="game1" /><p className="font-bold text-center">Audtion</p></a>
+            <a className="hover:scale-95 duration-300" href="#"><img className="w-full" src="/image/pc/es.png" alt="game2" /><p className="font-bold text-center">Elsword</p></a>
+            <a className="hover:scale-95 duration-300" href="#"><img className="w-full" src="/image/pc/yg.png" alt="game13" /><p className="font-bold text-center">yg</p></a>
+            <a className="hover:scale-95 duration-300" href="#"><img className="w-full" src="/image/pc/air.png" alt="game14" /><p className="font-bold text-center">air</p></a>
+            <a className="hover:scale-95 duration-300" href="#"><img className="w-full" src="/image/pc/gcc.jpg" alt="game15" /><p className="font-bold text-center">gcc</p></a>
+            <a className="hover:scale-95 duration-300" href="#"><img className="w-full" src="/image/pc/rakion.png" alt="game16" /><p className="font-bold text-center">rakion</p></a>
           </div>
           <div className="grid grid-cols-2 gap-5 sm:grid-cols-3 lg:grid-cols-6">
-            <a className="hover:scale-95 duration-300" href="#"><img className="w-full" src="https://media-web.playpark.com/poster-games/mobile/ssa.jpg" alt="game17" /><p className="font-bold text-center">ssa</p></a>
-            <a className="hover:scale-95 duration-300" href="#"><img className="w-full" src="https://media-web.playpark.com/poster-games/mobile/stm.jpg" alt="game18" /><p className="font-bold text-center">stm</p></a>
-            <a className="hover:scale-95 duration-300" href="#"><img className="w-full" src="https://media-web.playpark.com/poster-games/mobile/ikm.png" alt="game19" /><p className="font-bold text-center">ikm</p></a>
-            <a className="hover:scale-95 duration-300" href="#"><img className="w-full" src="https://media-web.playpark.com/poster-games/mobile/bm.png" alt="game110" /><p className="font-bold text-center">bm</p></a>
-            <a className="hover:scale-95 duration-300" href="#"><img className="w-full" src="https://media-web.playpark.com/poster-games/mobile/sb.jpg" alt="game11" /><p className="font-bold text-center">sb</p></a>
-            <a className="hover:scale-95 duration-300" href="#"><img className="w-full" src="https://media-web.playpark.com/poster-games/mobile/ryg.jpg" alt="game12" /><p className="font-bold text-center">ryg</p></a>
+            <a className="hover:scale-95 duration-300" href="#"><img className="w-full" src="/image/mobile/ssa.jpg" alt="game17" /><p className="font-bold text-center">ssa</p></a>
+            <a className="hover:scale-95 duration-300" href="#"><img className="w-full" src="/image/mobile/stm.jpg" alt="game18" /><p className="font-bold text-center">stm</p></a>
+            <a className="hover:scale-95 duration-300" href="#"><img className="w-full" src="/image/mobile/ikm.png" alt="game19" /><p className="font-bold text-center">ikm</p></a>
+            <a className="hover:scale-95 duration-300" href="#"><img className="w-full" src="/image/mobile/bm.png" alt="game110" /><p className="font-bold text-center">bm</p></a>
+            <a className="hover:scale-95 duration-300" href="#"><img className="w-full" src="/image/mobile/sb.jpg" alt="game11" /><p className="font-bold text-center">sb</p></a>
+            <a className="hover:scale-95 duration-300" href="#"><img className="w-full" src="/image/mobile/ryg.jpg" alt="game12" /><p className="font-bold text-center">ryg</p></a>
           </div>
         </div>
         {/* row topup */}
@@ -42,7 +42,7 @@ export default function Home() {
               <div className="grid grid-cols-1 gap-5 items-start sm:grid-cols-2">
                 {/* รูปภาพ */}
                 <div className="flex justify-center">
-                  <img className="w-1/2" src="https://playmallguide.playpark.com/th-th/images/375acash.jpg" alt="Logo" />
+                  <img className="w-1/2" src="/image/375acash.jpg" alt="Logo" />
                 </div>
                 {/* ข้อความและปุ่ม */}
                 <div className="flex flex-col items-start justify-center gap-3">
@@ -67,7 +67,7 @@ export default function Home() {
               <div className="grid grid-cols-1 gap-5 items-start sm:grid-cols-2">
                 {/* รูปภาพ */}
                 <div className="flex justify-center">
-                  <img className="w-1/2" src="https://playmallguide.playpark.com/th-th/images/true-money-wallet.jpg" alt="Logo" />
+                  <img className="w-1/2" src="/image/true-money-wallet.jpg" alt="Logo" />
                 </div>
                 {/* ข้อความและปุ่ม */}
                 <div className="flex flex-col items-start justify-center gap-3">
@@ -96,7 +96,7 @@ export default function Home() {
               <div className="grid grid-cols-1 gap-5 items-start sm:grid-cols-2">
                 {/* รูปภาพ */}
                 <div className="flex justify-center">
-                  <img className="w-1/2" src="https://playmallguide.playpark.com/th-th/images/credit-logo.jpg" alt="Logo" />
+                  <img className="w-1/2" src="/image/credit-logo.jpg" alt="Logo" />
                 </div>
                 {/* ข้อความและปุ่ม */}
                 <div className="flex flex-col items-start justify-center gap-3">
@@ -123,7 +123,7 @@ export default function Home() {
               <div className="grid grid-cols-1 gap-5 items-start sm:grid-cols-2">
                 {/* รูปภาพ */}
                 <div className="flex justify-center">
-                  <img className="w-1/2" src="https://playmallguide.playpark.com/th-th/images/Linepay-logo.jpg" alt="Logo" />
+                  <img className="w-1/2" src="/image/Linepay-logo.jpg" alt="Logo" />
                 </div>
                 {/* ข้อความและปุ่ม */}
                 <div className="flex flex-col items-start justify-center gap-3">
@@ -152,7 +152,7 @@ export default function Home() {
               <div className="grid grid-cols-1 gap-5 items-start sm:grid-cols-2">
                 {/* รูปภาพ */}
                 <div className="flex justify-center">
-                  <img className="w-1/2" src="https://playmallguide.playpark.com/th-th/images/qr-payment.jpg" alt="Logo" />
+                  <img className="w-1/2" src="/image/qr-payment.jpg" alt="Logo" />
                 </div>
                 {/* ข้อความและปุ่ม */}
                 <div className="flex flex-col items-start justify-center gap-3">
@@ -179,7 +179,7 @@ export default function Home() {
               <div className="grid grid-cols-1 gap-5 items-start sm:grid-cols-2">
                 {/* รูปภาพ */}
                 <div className="flex justify-center">
-                  <img className="w-1/2" src="https://playmallguide.playpark.com/th-th/images/kplus.jpg" alt="Logo" />
+                  <img className="w-1/2" src="/image/kplus.jpg" alt="Logo" />
                 </div>
                 {/* ข้อความและปุ่ม */}
                 <div className="flex flex-col items-start justify-center gap-3">

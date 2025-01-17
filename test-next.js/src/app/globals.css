@@ -4,7 +4,7 @@
 
 
 .background-image {
-  background-image: url('https://playmallguide.playpark.com/th-th/images/it-bg.jpg');
+  background-image: url('/image/it-bg.jpg');
   background-size: cover;
   background-position: center;
   /* height: 100vh; */

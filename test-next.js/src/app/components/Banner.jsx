@@ -9,7 +9,7 @@ function Banner() {
                 <div className='container mx-auto'>
                     <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-2">
                         <div className="p-5">
-                            <img className='w-full' src="https://playmallguide.playpark.com/th-th/images/icon-left.png" alt="" />
+                            <img className='w-full' src="/image/icon-left.png" alt="" />
                         </div>
                         <div className="text-white flex flex-col justify-center p-5 text-center">
                             <h1 className='text-4xl py-3'>"เติมเงินง่าย ช็อปได้ทุกเกม"</h1>

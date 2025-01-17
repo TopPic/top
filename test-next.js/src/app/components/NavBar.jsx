@@ -16,7 +16,7 @@ function NavBar() {
 
                     {/* Logo */}
                     <Link href="/">
-                        <img className='w-full' src="https://playmallguide.playpark.com/th-th/images/logo.png" alt="logo" />
+                        <img className='w-full' src="/image/logo.png" alt="logo" />
                     </Link>
                     <div className='hidden md:flex space-x-4'>
                         <Link href="/" className='px-5 hover:text-blue-400'>Home</Link>
