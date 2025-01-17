@@ -1,12 +1,12 @@
 import React from 'react'
+import ApiTable from '../components/api-table'
+function Playmall() {
 
- function Playmall() {
-    
 
     return (
         <>
-            <h1>Playmall</h1>
-            <p>This is playmall page</p>
+
+            <ApiTable />
         </>
     )
 }
