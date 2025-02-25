@@ -70,21 +70,21 @@
 
                 if (result.data.length > 0) {
                     tableBody.innerHTML = result.data.map(player => {
-                        const { rank, icon } = getRankIcon(player.current_cp || 0);
+                        const { rank, icon } = getRankIcon(player.current_cp || 0, player.ranking || 999);
 
                         return `
-                            <tr>
-                                <td>${player.ranking || '-'}</td>
-                                <td>${player.role_name || '-'}</td>
-                                <td>${player.server_name || '-'}</td>
-                                <td>${player.guild_name || '-'}</td>
-                                <td>${player.start_cp || '0'}</td>
-                                <td>${player.current_cp || '0'}</td>
-                                <td>${player.grouwth_cp || '0'}</td>
-                                <td>${rank}</td>
-                                <td><img src="icons/${icon}" alt="${rank}" width="50"></td>
-                            </tr>
-                        `;
+                    <tr>
+                        <td>${player.ranking || '-'}</td>
+                        <td>${player.role_name || '-'}</td>
+                        <td>${player.server_name || '-'}</td>
+                        <td>${player.guild_name || '-'}</td>
+                        <td>${player.start_cp || '0'}</td>
+                        <td>${player.current_cp || '0'}</td>
+                        <td>${player.grouwth_cp || '0'}</td>
+                        <td>${rank}</td>
+                        <td><img src="icons/${icon}" alt="${rank}" width="50"></td>
+                    </tr>
+                `;
                     }).join('');
                 } else {
                     tableBody.innerHTML = "<tr><td colspan='9'>ไม่มีข้อมูล</td></tr>";
@@ -94,6 +94,7 @@
                 tableBody.innerHTML = "<tr><td colspan='9'>เกิดข้อผิดพลาดในการโหลดข้อมูล</td></tr>";
             }
         }
+
 
         fetchRanking();
     </script>
