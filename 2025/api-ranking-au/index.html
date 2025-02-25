@@ -10,15 +10,15 @@
     <div class="container mt-4">
         <h2 class="mb-4">Test Rank Mode</h2>
         <div class="table-responsive">
-            <table class="table table-bordered table-striped ">
-                <thead class="">
+            <table class="table table-bordered table-striped">
+                <thead>
                     <tr>
                         <th>อันดับ</th>
                         <th>ชื่อ</th>
                         <th>กิลด์</th>
-                        <th>CP เริ่มต้น</th>
                         <th>CP ปัจจุบัน</th>
-                        <th>การเติบโต CP</th>
+                        <th>แรงค์</th>
+                        <th>ไอคอน</th>
                     </tr>
                 </thead>
                 <tbody id="rankingTableBody">
@@ -27,37 +27,66 @@
             </table>
         </div>
     </div>
+
     <script>
+        // ฟังก์ชันแมป current_cp เป็นไฟล์ไอคอน
+        function getRankIcon(current_cp) {
+            if (current_cp > 3500) return { rank: "SuperStar", icon: "SuperStar.png" };
+            if (current_cp > 3000) return { rank: "Master", icon: "Master.png" };
+            if (current_cp >= 2800) return { rank: "Diamond 3", icon: "Diamond_02.png" };
+            if (current_cp >= 2600) return { rank: "Diamond 2", icon: "Diamond_01.png" };
+            if (current_cp >= 2400) return { rank: "Diamond 1", icon: "Diamond_00.png" };
+            if (current_cp >= 2200) return { rank: "Platinum 3", icon: "Platinum_02.png" };
+            if (current_cp >= 2000) return { rank: "Platinum 2", icon: "Platinum_01.png" };
+            if (current_cp >= 1800) return { rank: "Platinum 1", icon: "Platinum_00.png" };
+            if (current_cp >= 1600) return { rank: "Gold 3", icon: "Gold_02.png" };
+            if (current_cp >= 1400) return { rank: "Gold 2", icon: "Gold_01.png" };
+            if (current_cp >= 1200) return { rank: "Gold 1", icon: "Gold_00.png" };
+            if (current_cp >= 1000) return { rank: "Silver 3", icon: "Silver_02.png" };
+            if (current_cp >= 800) return { rank: "Silver 2", icon: "Silver_01.png" };
+            if (current_cp >= 600) return { rank: "Silver 1", icon: "Silver_00.png" };
+            if (current_cp >= 400) return { rank: "Bronze 3", icon: "Bronze_02.png" };
+            if (current_cp >= 200) return { rank: "Bronze 2", icon: "Bronze_01.png" };
+            return { rank: "Bronze 1", icon: "Bronze_00.png" };
+        }
+
         async function fetchRanking() {
+            const tableBody = document.getElementById("rankingTableBody");
             try {
                 const response = await fetch('https://secure2.playpark.com/RankingEvent/RankingBoardAPI.ashx?EventID=3');
                 const result = await response.json();
-                const tableBody = document.getElementById("rankingTableBody");
-                
-                if (result.data && result.data.length > 0) {
-                    tableBody.innerHTML = "";
-                    result.data.forEach(player => {
-                        const row = `<tr>
-                            <td>${player.ranking}</td>
-                            <td>${player.role_name}</td>
-                            <td>${player.guild_name || '-'}</td>
-                            <td>${player.start_cp}</td>
-                            <td>${player.current_cp}</td>
-                            <td>${player.grouwth_cp}</td>
-                        </tr>`;
-                        tableBody.innerHTML += row;
-                    });
+
+                if (!result || !Array.isArray(result.data)) {
+                    throw new Error("รูปแบบข้อมูลไม่ถูกต้อง");
+                }
+
+                if (result.data.length > 0) {
+                    tableBody.innerHTML = result.data.map(player => {
+                        const { rank, icon } = getRankIcon(player.current_cp || 0);
+
+                        return `
+                            <tr>
+                                <td>${player.ranking || '-'}</td>
+                                <td>${player.role_name || '-'}</td>
+                                <td>${player.guild_name || '-'}</td>
+                                <td>${player.current_cp || '0'}</td>
+                                <td>${rank}</td>
+                                <td><img src="icons/${icon}" alt="${rank}" width="50"></td>
+                            </tr>
+                        `;
+                    }).join('');
                 } else {
                     tableBody.innerHTML = "<tr><td colspan='6'>ไม่มีข้อมูล</td></tr>";
                 }
             } catch (error) {
                 console.error("Error fetching data:", error);
-                document.getElementById("rankingTableBody").innerHTML = "<tr><td colspan='6'>เกิดข้อผิดพลาดในการโหลดข้อมูล</td></tr>";
+                tableBody.innerHTML = "<tr><td colspan='6'>เกิดข้อผิดพลาดในการโหลดข้อมูล</td></tr>";
             }
         }
 
         fetchRanking();
     </script>
+
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>
