@@ -18,7 +18,7 @@
                     <tr>
                         <th></th>
                         <th>อันดับ</th>
-                        <th>Rank</th> 
+                        <th>Rank</th>
                         <th>ชื่อตัวละคร</th>
                         <th>FAM</th>
                         <th>MMR</th>
@@ -60,9 +60,15 @@
 
         // ฟังก์ชันแมปค่า rank_update ไปเป็นรูปเครื่องหมาย
         function getRankStatusImage(rank_update) {
-            if (rank_update === 1) return "https://placehold.co/30/FFFFFF/000000?text=-"; // อันดับลดลง
-            if (rank_update === 2) return "https://placehold.co/30/FFFFFF/000000?text=%2B"; // อันดับเพิ่มขึ้น
-            return "https://placehold.co/30/FFFFFF/000000?text=%3D"; // อันดับเท่าเดิม
+            rank_update = parseInt(rank_update, 10); // แปลงเป็นตัวเลข
+
+            if (rank_update === 2) {
+                return "https://placehold.co/30/FFFFFF/000000?text=%2B"; // อันดับเพิ่มขึ้น
+            } else if (rank_update === 1) {
+                return "https://placehold.co/30/FFFFFF/000000?text=-"; // อันดับลดลง
+            } else {
+                return "https://placehold.co/30/FFFFFF/000000?text=%3D"; // อันดับเท่าเดิม
+            }
         }
 
         async function fetchRanking() {
