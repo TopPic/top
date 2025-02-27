@@ -8,27 +8,25 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
 </head>
 
-<body class="text-center">
+<body class="bg-dark text-white text-center">
     <div class="container mt-4">
-        <h2 class="mb-4">Test Rank Mode</h2>
+        <h2 class="mb-4 text-white">Test Rank Mode</h2>
+        <p class="text-warning">***สำหรับตรวจสอบความถูกต้องของข้อมูลเท่านั้น</p>
         <div class="table-responsive">
-            <table class="table table-bordered table-striped">
+            <table class="table table-dark table-striped text-center">
                 <thead>
                     <tr>
+                        <th></th>
                         <th>อันดับ</th>
-                        <th>ชื่อ</th>
-                        <th>เซิร์ฟเวอร์</th>
-                        <th>กิลด์</th>
-                        <th>CP เริ่มต้น</th>
-                        <th>CP ปัจจุบัน</th>
-                        <th>การเติบโต CP</th>
-                        <th>แรงค์</th>
-                        <th>ไอคอน</th>
+                        <th>Rank</th> 
+                        <th>ชื่อตัวละคร</th>
+                        <th>FAM</th>
+                        <th>MMR</th>
                     </tr>
                 </thead>
                 <tbody id="rankingTableBody">
                     <tr>
-                        <td colspan="9">กำลังโหลดข้อมูล...</td>
+                        <td colspan="6">กำลังโหลดข้อมูล...</td>
                     </tr>
                 </tbody>
             </table>
@@ -36,8 +34,11 @@
     </div>
 
     <script>
-        // ฟังก์ชันแมปค่า current_cp ไปเป็นไอคอนแรงค์
+        // ฟังก์ชันแมปค่า current_cp ไปเป็นไอคอนและ Rank
         function getRankIcon(current_cp, ranking) {
+            current_cp = parseInt(current_cp, 10) || 0;
+            ranking = parseInt(ranking, 10) || 999;
+
             if (current_cp > 3500 && ranking <= 100) return { rank: "SuperStar", icon: "SuperStar.png" };
             if (current_cp > 3000) return { rank: "Master", icon: "Master.png" };
             if (current_cp >= 2800) return { rank: "Diamond 3", icon: "Diamond_02.png" };
@@ -57,11 +58,19 @@
             return { rank: "Bronze 1", icon: "Bronze_00.png" };
         }
 
+        // ฟังก์ชันแมปค่า rank_update ไปเป็นรูปเครื่องหมาย
+        function getRankStatusImage(rank_update) {
+            if (rank_update === 1) return "https://placehold.co/30/FFFFFF/000000?text=-"; // อันดับลดลง
+            if (rank_update === 2) return "https://placehold.co/30/FFFFFF/000000?text=%2B"; // อันดับเพิ่มขึ้น
+            return "https://placehold.co/30/FFFFFF/000000?text=%3D"; // อันดับเท่าเดิม
+        }
 
         async function fetchRanking() {
             const tableBody = document.getElementById("rankingTableBody");
             try {
                 const response = await fetch('https://secure2.playpark.com/RankingEvent/RankingBoardAPI.ashx?EventID=3');
+                if (!response.ok) throw new Error(`HTTP error! Status: ${response.status}`);
+
                 const result = await response.json();
 
                 if (!result || !Array.isArray(result.data)) {
@@ -70,33 +79,34 @@
 
                 if (result.data.length > 0) {
                     tableBody.innerHTML = result.data.map(player => {
-                        const { rank, icon } = getRankIcon(player.current_cp || 0, player.ranking || 999);
+                        const { rank, icon } = getRankIcon(player.current_cp, player.ranking);
+                        const statusImage = getRankStatusImage(player.rank_update);
 
                         return `
-                    <tr>
-                        <td>${player.ranking || '-'}</td>
-                        <td>${player.role_name || '-'}</td>
-                        <td>${player.server_name || '-'}</td>
-                        <td>${player.guild_name || '-'}</td>
-                        <td>${player.start_cp || '0'}</td>
-                        <td>${player.current_cp || '0'}</td>
-                        <td>${player.grouwth_cp || '0'}</td>
-                        <td>${rank}</td>
-                        <td><img src="icons/${icon}" alt="${rank}" width="50"></td>
-                    </tr>
-                `;
+                            <tr>
+                                <td><img src="${statusImage}" alt="Rank Update" width="30"></td>
+                                <td>${player.ranking || '-'}</td>
+                                <td><img src="icons/${icon}" alt="${rank}" width="40"> ${rank}</td> <!-- รวมไอคอนกับชื่อ Rank -->
+                                <td>${player.role_name || '-'}</td>
+                                <td>${player.guild_name || '-'}</td>
+                                <td>${player.current_cp || '0'}</td>
+                            </tr>
+                        `;
                     }).join('');
                 } else {
-                    tableBody.innerHTML = "<tr><td colspan='9'>ไม่มีข้อมูล</td></tr>";
+                    tableBody.innerHTML = "<tr><td colspan='6'>ไม่มีข้อมูล</td></tr>";
                 }
             } catch (error) {
                 console.error("Error fetching data:", error);
-                tableBody.innerHTML = "<tr><td colspan='9'>เกิดข้อผิดพลาดในการโหลดข้อมูล</td></tr>";
+                tableBody.innerHTML = "<tr><td colspan='6'>เกิดข้อผิดพลาดในการโหลดข้อมูล</td></tr>";
             }
         }
 
-
+        // โหลดข้อมูลทันทีเมื่อหน้าเว็บโหลดเสร็จ
         fetchRanking();
+
+        // อัปเดตข้อมูลอัตโนมัติทุก 30 วินาที
+        setInterval(fetchRanking, 30000);
     </script>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
