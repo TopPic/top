@@ -1,0 +1,66 @@
+body {
+    font-family: "Kanit", sans-serif;
+}
+
+.open-video {
+    position: absolute;
+    right: 20px;
+    /* top: 50%; */
+    transform: translateY(-50%);
+    /* จัดให้ตรงกลางแนวตั้ง */
+    cursor: pointer;
+    width: 44px;
+    bottom: -4px;
+}
+
+.block-hrm {
+    background-color: rgb(246, 246, 248) !important;
+    position: relative;
+    border-radius: 52px;
+    padding: 20px;
+    min-height: 480px;
+}
+
+.block-hrm span {
+    color: #f05b2f;
+    font-weight: 500;
+    font-size: 24px;
+
+}
+
+.card-hrm {
+    overflow: hidden;
+    white-space: nowrap;
+}
+
+.card-hrm {
+    overflow: hidden;
+    white-space: nowrap;
+}
+
+.scroll-left {
+    display: flex;
+    gap: 16px;
+    width: max-content;
+    animation: scroll-left 40s linear infinite;
+}
+
+/* ทำให้ภาพเลื่อนต่อเนื่องจริง ๆ */
+@keyframes scroll-left {
+    from {
+        transform: translateX(0);
+    }
+
+    to {
+        transform: translateX(-50%);
+    }
+}
+
+.responsive-video {
+    width: 100%;
+    height: auto;
+    max-width: 500px;
+    /* จำกัดความกว้างสูงสุด */
+    display: block;
+    margin: 0 auto;
+}

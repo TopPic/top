@@ -8,242 +8,202 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
 
     <!-- Bootstrap CSS v5.2.1 -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"
-        integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous" />
-    <!-- Swiper CSS -->
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Kanit:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap"
+        rel="stylesheet">
 
-
-
-
-
-
-    <style>
-        .open-video {
-            position: absolute;
-            right: 20px;
-            /* top: 50%; */
-            transform: translateY(-50%);
-            /* จัดให้ตรงกลางแนวตั้ง */
-            cursor: pointer;
-            width: 44px;
-            bottom: -4px;
-        }
-
-        .block-hrm {
-            background-color: rgb(246, 246, 248) !important;
-            position: relative;
-            border-radius: 52px;
-            padding: 20px;
-            min-height: 474px;
-        }
-
-        .swiper {
-            width: 100%;
-            padding: 10px 0;
-            background-color: transparent !important;
-        }
-
-        .swiper-slide {
-            width: 300px;
-            /* ขนาดของสไลด์แต่ละอัน */
-            height: 200px;
-        }
-
-        .swiper-slide img {
-            width: 100%;
-            height: auto;
-            /* border-radius: 10px; */
-        }
-
-        /* ลบเส้นขอบของ Swiper */
-        .swiper,
-        .swiper-slide {
-            border: none;
-            /* ไม่มีเส้นขอบ */
-            outline: none;
-            /* ลบเส้นขอบที่อาจเกิดจาก focus */
-            box-shadow: none;
-            /* ลบเงาที่อาจดูเหมือนขอบ */
-        }
-
-        /* ลบขอบของรูปภาพ */
-        .swiper-slide img {
-            border: none;
-            outline: none;
-            box-shadow: none;
-        }
-
-        .swiper-slide img {
-            width: 200px;
-            height: 189px;
-            /* object-fit: cover; */
-            /* ควบคุมรูปภาพให้ครอบคลุมขนาดที่กำหนด */
-        }
-
-        .swiper-slide {
-            margin-right: 15px;
-            /* ปรับระยะห่างระหว่างสไลด์ */
-        }
-
-        .swiper-slide img {
-            width: 200px;
-            height: 189px;
-            /* object-fit: cover; */
-        }
-    </style>
+ <link rel="stylesheet" href="css/style.css">
 </head>
 
 <body class="m-5">
 
-    <main></main>
+    <div class="container">
 
-    <div class="row">
-        <div class="col-12 col-sm-6">
-            <div class="block-hrm">
-                <img src="http://localhost/gofive-2/wp-content/uploads/2025/03/icon-Hrm.png" class="img-fluid" alt="">
-                <span>HRM & Payroll</span>
-                <p>หมดปัญหาด้านการจัดการข้อมูลและเอกสารพนักงาน พร้อมการคำนวณเงินเดือนแบบอัตโนมัติ กำหนดสิทธิ์
-                    เข้าถึงข้อมูลได้ตามจริง</p>
+        <div class="row mb-5 g-3">
+            <!-- คอลัมน์ที่ 1 -->
+            <div class="col-12 col-sm-6">
+                <div class="block-hrm">
+                    <img src="images/Icon/icon-Hrm.svg" class="img-fluid" alt="">
+                    <span>HRM & Payroll</span>
+                    <p class="pt-3">หมดปัญหาด้านการจัดการข้อมูลและเอกสารพนักงาน พร้อมการคำนวณเงินเดือนแบบอัตโนมัติ
+                        กำหนดสิทธิ์เข้าถึงข้อมูลได้ตามจริง</p>
 
-                <!-- Swiper Slider -->
-                <div class="card swiper mb-5">
-                    <div class="swiper-wrapper">
-                        <div class="swiper-slide"><img src="https://placehold.co/200x189.png" alt=""></div>
-                        <div class="swiper-slide"><img src="https://placehold.co/200x189.png" alt=""></div>
-                        <div class="swiper-slide"><img src="https://placehold.co/200x189.png" alt=""></div>
-                        <div class="swiper-slide"><img src="https://placehold.co/200x189.png" alt=""></div>
+                    <div class="card-hrm">
+                        <div class="scroll-left">
+                            <div class="image-container">
+                                <img src="images/Card/1.png" class="img-fluid" alt="">
+                                <img src="images/Card/2.png" class="img-fluid" alt="">
+                                <img src="images/Card/3.png" class="img-fluid" alt="">
+                                <img src="images/Card/4.png" class="img-fluid" alt="">
+                                <img src="images/Card/5.png" class="img-fluid" alt="">
+                                <img src="images/Card/6.png" class="img-fluid" alt="">
+                                <img src="images/Card/7.png" class="img-fluid" alt="">
+                            </div>
+                            <div class="image-container">
+                                <img src="images/Card/1.png" class="img-fluid" alt="">
+                                <img src="images/Card/2.png" class="img-fluid" alt="">
+                                <img src="images/Card/3.png" class="img-fluid" alt="">
+                                <img src="images/Card/4.png" class="img-fluid" alt="">
+                                <img src="images/Card/5.png" class="img-fluid" alt="">
+                                <img src="images/Card/6.png" class="img-fluid" alt="">
+                                <img src="images/Card/7.png" class="img-fluid" alt="">
+                            </div>
+                        </div>
                     </div>
+
+                    <img src="images/play.png" class="img-fluid open-video play-vdo" alt="">
                 </div>
-
-                <img src="http://localhost/gofive-2/wp-content/uploads/2025/03/1-play_circle_60dp_E3E3E3_FILL0_wght400_GRAD0_opsz48.png"
-                    class="img-fluid open-video play-vdo" alt="">
             </div>
 
-        </div>
-        <div class="col-12 col-md-6">
-            <div class="block-hrm">
-                <img src="http://localhost/gofive-2/wp-content/uploads/2025/03/icon-Hrm.png" class="img-fluid" alt="">
-                <span>HRM & Payroll</span>
-                <p>หมดปัญหาด้านการจัดการข้อมูลและเอกสารพนักงาน พร้อมการคำนวณเงินเดือนแบบอัตโนมัติ กำหนดสิทธิ์
-                    เข้าถึงข้อมูลได้ตามจริง</p>
-                <video autoplay muted width="500" height="220" class="mx-auto d-block">
-                    <source src="https://www.empeo.com/wp-content/uploads/2024/12/Attendance-F6F6F8.mp4#t=0.1"
-                        type="video/mp4">
-                </video>
-                <img src="http://localhost/gofive-2/wp-content/uploads/2025/03/1-play_circle_60dp_E3E3E3_FILL0_wght400_GRAD0_opsz48.png"
-                    class="img-fluid open-video play-vdo" alt="">
+            <!-- คอลัมน์ที่ 2 -->
+            <div class="col-12 col-sm-6">
+                <div class="block-hrm">
+                    <img src="images/Icon/icon-Hrm.svg" class="img-fluid" alt="">
+                    <span>HRM & Payroll</span>
+                    <p class="pt-3">หมดปัญหาด้านการจัดการข้อมูลและเอกสารพนักงาน พร้อมการคำนวณเงินเดือนแบบอัตโนมัติ
+                        กำหนดสิทธิ์เข้าถึงข้อมูลได้ตามจริง</p>
+
+                    <!-- Video Responsive -->
+                    <video autoplay loop muted class="responsive-video">
+                        <source src="https://www.empeo.com/wp-content/uploads/2024/12/Attendance-F6F6F8.mp4"
+                            type="video/mp4">
+                    </video>
+
+                    <img src="images/play.png" class="img-fluid open-video play-vdo" alt="">
+                </div>
             </div>
         </div>
+
+        <div class="row mb-5 g-3">
+            <!-- คอลัมน์ที่ 1 -->
+            <div class="col-12 col-sm-6">
+                <div class="block-hrm">
+                    <img src="images/Icon/icon-Ess.svg" class="img-fluid" alt="">
+                    <span>Leave & ESS</span>
+                    <p class="pt-3">เชื่อมต่อถึงกันทุกระบบ ขอลาง่าย ขอเอกสารได้รวดเร็ว
+                        เพิ่มความสะดวกลดภาระที่ไม่จำเป็นต่อพนักงาน</p>
+
+                    <img src="images/kpi and okr.png" class="img-fluid" alt="">
+
+                    <img src="images/play.png" class="img-fluid open-video play-vdo" alt="">
+                </div>
+            </div>
+
+            <!-- คอลัมน์ที่ 2 -->
+            <div class="col-12 col-sm-6">
+                <div class="block-hrm">
+                    <img src="images/Icon/icon-kpi-okr.svg" class="img-fluid" alt="">
+                    <span> KPI & OKR</span>
+                    <p class="pt-3">มุ่งสู่ความสำเร็จผ่านการตั้งเป้าหมายกำหนดตัวชี้วัด อัปเดตความคืบหน้า
+                        อย่างเป็นระบบผ่าน Goals Management</p>
+
+                    <img src="images/kpi and okr.png" class="img-fluid" alt="">
+
+                    <img src="images/play.png" class="img-fluid open-video play-vdo" alt="">
+                </div>
+            </div>
+        </div>
+        <div class="row mb-5 g-3">
+            <!-- คอลัมน์ที่ 1 -->
+            <div class="col-12 col-sm-6">
+                <div class="block-hrm">
+                    <img src="images/Icon/icon-pms.svg" class="img-fluid" alt="">
+                    <span>Performance Management</span>
+                    <p class="pt-3"> Performance Management
+                        เข้าใจพนักงานแบบครอบคลุมด้วยการประเมิน 360 องศา แสดงทุกข้อมูล ที่สำคัญพร้อม Calibration
+                        การปรับเงินเดือน หรือการเติบโตในองค์กร</p>
+
+                    <img src="images/Performance Management.png" class="img-fluid" alt="">
+
+                    <img src="images/play.png" class="img-fluid open-video play-vdo" alt="">
+                </div>
+            </div>
+
+            <!-- คอลัมน์ที่ 2 -->
+            <div class="col-12 col-sm-6">
+                <div class="block-hrm">
+                    <img src="images/Icon/icon-recruit.svg" class="img-fluid" alt="">
+                    <span>Smart Recruitment</span>
+                    <p class="pt-3">หมดปัญหาด้านการจัดการข้อมูลและเอกสารพนักงาน พร้อมการคำนวณเงินเดือนแบบอัตโนมัติ
+                        กำหนดสิทธิ์เข้าถึงข้อมูลได้ตามจริง</p>
+
+                    <img src="images/recruitment-overview-visual.png" class="img-fluid" alt="">
+
+                    <img src="images/play.png" class="img-fluid open-video play-vdo" alt="">
+                </div>
+            </div>
+        </div>
+
+
+        <div class="row mb-5 g-3">
+            <!-- คอลัมน์ที่ 1 -->
+            <div class="col-12 col-sm-6">
+                <div class="services">
+                    <img src="images/Icon/icon-pms.svg" class="img-fluid" alt="">
+                    <span>Performance Management</span>
+                    <p class="pt-3"> Performance Management
+                        เข้าใจพนักงานแบบครอบคลุมด้วยการประเมิน 360 องศา แสดงทุกข้อมูล ที่สำคัญพร้อม Calibration
+                        การปรับเงินเดือน หรือการเติบโตในองค์กร</p>
+
+                    <img src="images/Performance Management.png" class="img-fluid" alt="">
+
+                    <img src="images/play.png" class="img-fluid open-video play-vdo" alt="">
+                </div>
+            </div>
+
+            <!-- คอลัมน์ที่ 2 -->
+            <div class="col-12 col-sm-6">
+                <div class="services">
+                    <img src="images/Icon/icon-recruit.svg" class="img-fluid" alt="">
+                    <span>Smart Recruitment</span>
+                    <p class="pt-3">หมดปัญหาด้านการจัดการข้อมูลและเอกสารพนักงาน พร้อมการคำนวณเงินเดือนแบบอัตโนมัติ
+                        กำหนดสิทธิ์เข้าถึงข้อมูลได้ตามจริง</p>
+
+                    <img src="images/recruitment-overview-visual.png" class="img-fluid" alt="">
+
+                    <img src="images/play.png" class="img-fluid open-video play-vdo" alt="">
+                </div>
+            </div>
+        </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
     </div>
 
 
-    <div class="row">
-        <div class="col-12 col-sm-6">
-            <div class="block-hrm">
-                <img src="http://localhost/gofive-2/wp-content/uploads/2025/03/icon-Hrm.png" class="img-fluid" alt="">
-                <span>HRM & Payroll</span>
-                <p>หมดปัญหาด้านการจัดการข้อมูลและเอกสารพนักงาน พร้อมการคำนวณเงินเดือนแบบอัตโนมัติ กำหนดสิทธิ์
-                    เข้าถึงข้อมูลได้ตามจริง</p>
-
-                <!-- Swiper Slider -->
-                <div class="card swiper mb-5">
-                    <div class="swiper-wrapper">
-                        <div class="swiper-slide"><img src="https://placehold.co/200x189.png" alt=""></div>
-                        <div class="swiper-slide"><img src="https://placehold.co/200x189.png" alt=""></div>
-                        <div class="swiper-slide"><img src="https://placehold.co/200x189.png" alt=""></div>
-                        <div class="swiper-slide"><img src="https://placehold.co/200x189.png" alt=""></div>
-                    </div>
-                </div>
-
-                <img src="http://localhost/gofive-2/wp-content/uploads/2025/03/1-play_circle_60dp_E3E3E3_FILL0_wght400_GRAD0_opsz48.png"
-                    class="img-fluid open-video play-vdo" alt="">
-            </div>
-
-        </div>
-        <div class="col-12 col-md-6">
-            <div class="block-hrm">
-                <img src="http://localhost/gofive-2/wp-content/uploads/2025/03/icon-Hrm.png" class="img-fluid" alt="">
-                <span>HRM & Payroll</span>
-                <p>หมดปัญหาด้านการจัดการข้อมูลและเอกสารพนักงาน พร้อมการคำนวณเงินเดือนแบบอัตโนมัติ กำหนดสิทธิ์
-                    เข้าถึงข้อมูลได้ตามจริง</p>
-                <video autoplay muted width="500" height="220" class="mx-auto d-block">
-                    <source src="https://www.empeo.com/wp-content/uploads/2024/12/Attendance-F6F6F8.mp4#t=0.1"
-                        type="video/mp4">
-                </video>
-                <img src="http://localhost/gofive-2/wp-content/uploads/2025/03/1-play_circle_60dp_E3E3E3_FILL0_wght400_GRAD0_opsz48.png"
-                    class="img-fluid open-video play-vdo" alt="">
-            </div>
-        </div>
-    </div>
 
 
-    <div class="row">
-        <div class="col-12 col-sm-6">
-            <div class="block-hrm">
-                <img src="http://localhost/gofive-2/wp-content/uploads/2025/03/icon-Hrm.png" class="img-fluid" alt="">
-                <span>HRM & Payroll</span>
-                <p>หมดปัญหาด้านการจัดการข้อมูลและเอกสารพนักงาน พร้อมการคำนวณเงินเดือนแบบอัตโนมัติ กำหนดสิทธิ์
-                    เข้าถึงข้อมูลได้ตามจริง</p>
 
-                <!-- Swiper Slider -->
-                <div class="card swiper mb-5">
-                    <div class="swiper-wrapper">
-                        <div class="swiper-slide"><img src="https://placehold.co/200x189.png" alt=""></div>
-                        <div class="swiper-slide"><img src="https://placehold.co/200x189.png" alt=""></div>
-                        <div class="swiper-slide"><img src="https://placehold.co/200x189.png" alt=""></div>
-                        <div class="swiper-slide"><img src="https://placehold.co/200x189.png" alt=""></div>
-                    </div>
-                </div>
 
-                <img src="http://localhost/gofive-2/wp-content/uploads/2025/03/1-play_circle_60dp_E3E3E3_FILL0_wght400_GRAD0_opsz48.png"
-                    class="img-fluid open-video play-vdo" alt="">
-            </div>
-
-        </div>
-        <div class="col-12 col-md-6">
-            <div class="block-hrm">
-                <img src="http://localhost/gofive-2/wp-content/uploads/2025/03/icon-Hrm.png" class="img-fluid" alt="">
-                <span>HRM & Payroll</span>
-                <p>หมดปัญหาด้านการจัดการข้อมูลและเอกสารพนักงาน พร้อมการคำนวณเงินเดือนแบบอัตโนมัติ กำหนดสิทธิ์
-                    เข้าถึงข้อมูลได้ตามจริง</p>
-                <video autoplay muted width="500" height="220" class="mx-auto d-block">
-                    <source src="https://www.empeo.com/wp-content/uploads/2024/12/Attendance-F6F6F8.mp4#t=0.1"
-                        type="video/mp4">
-                </video>
-                <img src="http://localhost/gofive-2/wp-content/uploads/2025/03/1-play_circle_60dp_E3E3E3_FILL0_wght400_GRAD0_opsz48.png"
-                    class="img-fluid open-video play-vdo" alt="">
-            </div>
-        </div>
-    </div>
-
-    <script src="https://code.jquery.com/jquery-3.7.1.min.js"
-        integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
     <!-- Bootstrap JavaScript Libraries -->
-    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js"
-        integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r"
-        crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js"></script>
 
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.min.js"
-        integrity="sha384-BBtl+eGJRgqQAUMxJ7pMwbEyER4l1g+O15P+16Ep7Q9Q+zqX6gSbd85u4mG4QzX+"
-        crossorigin="anonymous"></script>
-    <!-- Swiper JS -->
-    <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
-    <script>
-        document.addEventListener("DOMContentLoaded", function () {
-            var swiper = new Swiper(".swiper", {
-                slidesPerView: "auto", // แสดงหลายสไลด์พร้อมกัน
-                spaceBetween: 10, // ระยะห่างระหว่างสไลด์
-                freeMode: true, // เปิดใช้งาน Free Mode
-                autoplay: {
-                    delay: 0, // เลื่อนตลอดเวลา
-                    disableOnInteraction: false, // ไม่หยุดเมื่อผู้ใช้สัมผัส
-                },
-                speed: 9000, // ความเร็วในการเลื่อน (ms)
-                loop: true, // วนซ้ำไปเรื่อยๆ
-            });
-        });
-    </script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.min.js"></script>
+
 
 
 </body>
