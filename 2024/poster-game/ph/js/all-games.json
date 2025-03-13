@@ -1,0 +1,169 @@
+{
+    "games": [
+        {
+            "name": "Rakion SEA",
+            "type": "PC",
+            "genre": "Action RPG",
+            "image": "https://www.playpark.com/en-ph/wp-content/uploads/2024/09/rakion_dl_thumb.jpg",
+            "status": "hot",
+            "description": "Rakion focuses on intense sword on sword battles with RPG style characters and settings, along with the strategic battle plans to provide the ultimate battle experience.",
+            "links": {
+                "playID": {
+                    "url": "https://register.playpark.net/register/",
+                    "tooltip": "Play with PlayID Account"
+                },
+                "website": "https://rakionsea.playpark.com/",
+                "download": "https://www.playpark.com/en-ph/rakion-download/"
+            },
+            "priority": 1
+        },
+        {
+            "name": "Perfect World",
+            "type": "PC",
+            "genre": "MMORPG",
+            "image": "https://www.playpark.com/en-ph/wp-content/uploads/2024/11/pp_pwes_bannerimg.jpg",
+            "status": "",
+            "description": "Customize, craft, quest, date, and duel your way to destiny. Shape the realm into YOUR Perfect World.",
+            "links": {
+                "playID": {
+                    "url": "https://register.playpark.net/register/",
+                    "tooltip": "Play with PlayID Account"
+                },
+                "website": "https://perfectworld-ph.playpark.com/",
+                "download": "https://www.playpark.com/en-ph/perfect-world-download/"
+            },
+            "priority": ""
+        },
+        {
+            "name": "Audition Next Level",
+            "type": "PC",
+            "genre": "Casual",
+            "image": "https://www.playpark.com/en-ph/wp-content/uploads/2021/01/gamepage.jpg",
+            "status": "hot",
+            "description": "Feel the music all the way to your fingertips and groove to the hippest tunes in the hottest fashion trends in the No. 1 online rhythm game in Southeast Asia.",
+            "links": {
+                "playID": {
+                    "url": "https://register.playpark.net/register/",
+                    "tooltip": "Play with PlayID Account"
+                },
+                "website": "https://audition.playpark.com/en-ph/",
+                "download": "https://www.playpark.com/en-ph/audition-download/"
+            },
+            "priority": 1
+        },
+        {
+            "name": "Flyff Online",
+            "type": "PC",
+            "genre": "MMORPG",
+            "image": "https://www.playpark.com/en-ph/wp-content/uploads/2023/12/PP_2023_FF-Page-Banner.jpg",
+            "status": "",
+            "description": "Flyff is a colorful MMORPG where you can explore, fight monsters, and fly through the skies using brooms or wings. Dive into quests and join a vibrant community for an immersive gaming experience.",
+            "links": {
+                "playID": {
+                    "url": "https://register.playpark.net/register/",
+                    "tooltip": "Play with PlayID Account"
+                },
+                "website": "https://flyffu.playpark.com/",
+                "download": "https://universe.flyff.com/"
+            },
+            "priority": ""
+        },
+        {
+            "name": "Grand Chase Classic",
+            "type": "PC",
+            "genre": "Action RPG",
+            "image": "https://www.playpark.com/en-ph/wp-content/uploads/2024/01/gcc_ppgamebanner.jpg",
+            "status": "",
+            "description": "GrandChase beckons adventurers to an anime-inspired realm! Craft your hero, gear up, and defend Aernas in this thrilling action-RPG.",
+            "links": {
+                "playID": {
+                    "url": "https://register.playpark.net/register/",
+                    "tooltip": "Play with PlayID Account"
+                },
+                "website": "https://gcc.playpark.com/",
+                "download": "https://www.playpark.com/en-ph/grand-chase-classic-download/"
+            },
+            "priority": ""
+        },
+        {
+            "name": "Granado Espada Mobile",
+            "type": "Mobile",
+            "genre": "MMORPG",
+            "image": "https://media-web.playpark.com/poster-games/mobile/gem.png",
+            "status": "hot",
+            "description": "Granado Espada M brings the beloved classic MMORPG to your fingertips, offering a rich blend of strategic combat.",
+            "links": {
+                "playID": {
+                    "url": "https://register.playpark.net/register/",
+                    "tooltip": "Play with PlayID Account"
+                },
+                "website": "https://gem.playpark.com/",
+                "download": "https://gem.playpark.com/"
+            },
+            "priority": ""
+        },
+        {
+            "name": "MeloJam",
+            "type": "Mobile",
+            "genre": "Rhythm",
+            "image": "https://www.playpark.com/en-ph/wp-content/uploads/2024/06/Melojam_GameBanner.png",
+            "status": "new",
+            "description": "Gather up your Bandmates and play your preferred instrument as you start your journey to stardom in this newest rhythm game for Mobile.",
+            "links": {
+                "playID": {
+                    "url": "https://register.playpark.net/register/",
+                    "tooltip": "Play with PlayID Account"
+                },
+                "website": "https://melojam.playpark.com/en-sea/",
+                "download": "https://melojam.playpark.com/en-sea/"
+            },
+            "priority": ""
+        },
+        {
+            "name": "Immortal Kingdoms",
+            "type": "Mobile",
+            "genre": "MMORPG",
+            "image": "https://www.playpark.com/en-ph/wp-content/uploads/2024/04/IKM-Game-Banner.png",
+            "status": "hot",
+            "description": "Immortal Kingdoms is an MMORPG for Mobile Published by PlayPark. Gather your allies, Strengthen your character and Battle the Immortals!",
+            "links": {
+                "playID": {
+                    "url": "https://register.playpark.net/register/",
+                    "tooltip": "Play with PlayID Account"
+                },
+                "website": "https://ikm-sea.playpark.com/en-sea/"
+            },
+            "priority": ""
+        },
+        {
+            "name": "Club Audition Mobile",
+            "type": "Mobile",
+            "genre": "Casual",
+            "image": "https://www.playpark.com/en-ph/wp-content/uploads/2023/07/CAM_-_PPGameBanner.jpg",
+            "status": "",
+            "description": "The popular dance and rhythm game has arrived on your mobile devices!",
+            "links": {
+                "playID": {
+                    "url": "https://register.playpark.net/register/",
+                    "tooltip": "Play with PlayID Account"
+                },
+                "website": "https://clubaudition.playpark.com/en-sea/",
+                "download": "https://bit.ly/DownloadClubAuditionM"
+            },
+            "priority": ""
+        },
+        {
+            "name": "TSX by Astronize",
+            "type": "Play & Earn",
+            "genre": "Turn-based RPG",
+            "image": "https://www.playpark.com/en-ph/wp-content/uploads/2024/04/tsx_gameicon.png",
+            "status": "astronize",
+            "description": "Level up your gaming experience! Transition from TS Online Mobile to the timeless Play & Earn mobile game, a thrilling turn-based RPG adventure!",
+            "links": {
+               
+                "website": "https://tsx.astronize.com/"
+            },
+            "priority": ""
+        }
+    ]
+}

@@ -1,0 +1,203 @@
+{
+    "games": [
+        {
+            "name": "Audition",
+            "type": "PC",
+            "genre": "CASUAL",
+            "image": "https://media-web.playpark.com/poster-games/pc/au.png",
+            "status": "hot",
+            "description": "เกมแดนซ์ออนไลน์สุดฮิตอันดับ 1 ของเมืองไทย เต้นมันส์กับเพลงโปรดจากศิลปินดังได้ตลอด 24 ชั่วโมง",
+            "links": {
+                "playID": {
+                    "url": "https://register.playpark.net/register/",
+                    "tooltip": "Play with PlayID Account"
+                },
+                "website": "https://audition.playpark.com/",
+                "download": "https://www.playpark.com/th-th/audition-download/"
+            },
+            "priority": 1
+        },
+        {
+            "name": "Rakion SEA",
+            "type": "PC",
+            "genre": "Action RPG",
+            "image": "https://media-web.playpark.com/poster-games/pc/rakion.png",
+            "status": "hot",
+            "description": "Rakion เน้นการต่อสู้ดาบกับดาบที่มันส์หยด ด้วยตัวละครและฉากสไตล์ RPG พร้อมกับแผนการต่อสู้เชิงกลยุทธ์ที่เจ๋งที่สุด เพื่อมอบประสบการณ์การต่อสู้สุดระห่ำให้คุณ!",
+            "links": {
+                "playID": {
+                    "url": "https://register.playpark.net/register/",
+                    "tooltip": "Play with PlayID Account"
+                },
+                "website": "https://rakionsea.playpark.com/",
+                "download": "https://www.playpark.com/th-th/rakion-download/"
+            },
+            "priority": ""
+        },
+        {
+            "name": "Yulgang",
+            "type": "PC",
+            "genre": "MMORPG",
+            "image": "https://media-web.playpark.com/poster-games/pc/yg.png",
+            "status": "hot",
+            "description": "ยุทธภพครบสลึง จากการ์ตูนดัง สู่เกม MMORPG ยอดฮิต กว่า 7 ล้านไอดี",
+            "links": {
+                "playID": {
+                    "url": "https://register.playpark.net/register/",
+                    "tooltip": "Play with PlayID Account"
+                },
+                "website": "https://yulgang.playpark.com/",
+                "download": "https://www.playpark.com/th-th/yulgang-download/"
+            },
+            "priority": 1
+        },
+        {
+            "name": "ELSWORD",
+            "type": "PC",
+            "genre": "MMORPG",
+            "image": "https://media-web.playpark.com/poster-games/pc/es.png",
+            "status": "",
+            "description": "เกม Stylish Action Online ที่นิยมหลายประเทศทั่วโลก ได้รับการยกย่องว่าเป็นเกมที่มันส์ที่สุด",
+            "links": {
+                "playID": {
+                    "url": "https://register.playpark.net/register/",
+                    "tooltip": "Play with PlayID Account"
+                },
+                "website": "https://elsword.playpark.com/",
+                "download": "https://www.playpark.com/th-th/elsword-download/"
+            },
+            "priority": ""
+        },
+        {
+            "name": "Flyff Online",
+            "type": "PC",
+            "genre": "MMORPG",
+            "image": "https://media-web.playpark.com/poster-games/pc/flyff-u.jpg",
+            "status": "",
+            "description": "Flyff is a colorful MMORPG where you can explore, fight monsters, and fly through the skies using brooms or wings. Dive into quests and join a vibrant community for an immersive gaming experience. One FUN universe, On any device.",
+            "links": {
+                "playID": {
+                    "url": "https://register.playpark.net/register/",
+                    "tooltip": "Play with PlayID Account"
+                },
+                "website": "https://flyffu.playpark.com/",
+                "download": "https://universe.flyff.com/"
+            },
+            "priority": ""
+        },
+        {
+            "name": "Grand Chase Classic",
+            "type": "PC",
+            "genre": "MMORPG",
+            "image": "https://media-web.playpark.com/poster-games/pc/gcc.jpg",
+            "status": "",
+            "description": "GrandChase beckons adventurers to an anime-inspired realm! Craft your hero, gear up, and defend Aernas in this thrilling action-RPG. Solo dungeons or daring raids with friends, it's an epic quest for glory!",
+            "links": {
+                "playID": {
+                    "url": "https://register.playpark.net/register/",
+                    "tooltip": "Play with PlayID Account"
+                },
+                "website": "https://gcc.playpark.com/",
+                "download": "https://www.playpark.com/th-th/grand-chase-classic-download/"
+            },
+            "priority": ""
+        },
+        {
+            "name": "MeloJam",
+            "type": "Mobile",
+            "genre": "CASUAL",
+            "image": "https://media-web.playpark.com/poster-games/mobile/mj.png",
+            "status": "hot",
+            "description": "ที่สุดของเกมดนตรีที่ใครๆก็ต้องแจม ฟอร์มวงโลดแล่นไปในโลกแห่งดนตรี กับเพลงฮิตติดชาร์ตกว่า 100 เพลง มันส์ครบทุกแนว MELOJAM มันส์ทุก BEAT กรี๊ดทุก MELODY เพราะดนตรีเป็นได้ทุกสิ่ง",
+            "links": {
+                "playID": {
+                    "url": "https://register.playpark.net/register/",
+                    "tooltip": "Play with PlayID Account"
+                },
+                "website": "https://melojam.playpark.com/",
+                "download": "https://melojam.playpark.com/"
+            },
+            "priority": ""
+        },
+        {
+            "name": "Real Yulgang Mobile",
+            "type": "Mobile",
+            "genre": "MMORPG",
+            "image": "https://media-web.playpark.com/poster-games/mobile/ryg.jpg",
+            "status": "hot",
+            "description": "Real Yulgang Mobile ครบเครื่องทั้งภาพและเสียง ลิขสิทธิ์แท้จากเวอร์ชั่น PC ฉบับดั้งเดิมโดย MGAME สู่เกมมือถือ สนุกไร้ขีดจำกัด สานฝันวันวานตำนานเกม Yulgangs",
+            "links": {
+                "playID": {
+                    "url": "https://register.playpark.net/register/",
+                    "tooltip": "Play with PlayID Account"
+                },
+                "website": "https://realyulgang.playpark.com/",
+                "download": "https://rym.playpark.com/th-th/playparkhome"
+            },
+            "priority": ""
+        },
+        {
+            "name": "Immortal Kingdoms",
+            "type": "Mobile",
+            "genre": "MMORPG",
+            "image": "https://media-web.playpark.com/poster-games/mobile/ikm.png",
+            "status": "",
+            "description": "สุดยอดเกมมือถือฟอร์มยักษ์แห่งปี การันตียืนหนึ่งในหลายประเทศ อุบัติความมันส์แล้ววันนี้",
+            "links": {
+                "playID": {
+                    "url": "https://register.playpark.net/register/",
+                    "tooltip": "Play with PlayID Account"
+                },
+                "website": "https://ikm.playpark.com/",
+                "download": "https://www.playpark.com/th-th/IKMHOME"
+            },
+            "priority": ""
+        },
+        {
+            "name": "Samkok Tactics M",
+            "type": "Mobile",
+            "genre": "Tactics-RPG",
+            "image": "https://media-web.playpark.com/poster-games/mobile/stm.jpg",
+            "status": "",
+            "description": "สุดยอดเกมสามก๊กแห่งปีที่ทุกคนรอคอย จัดเต็มด้วยภาพกราฟิกสุดอลังการ วางแผนกลยุทธ์แม่ทัพหลักในตำนานแห่งสามก๊ก มาครบทั้ง โจโฉ, เล่าปี, ซุนกวน, ลิโป้, ตั๋งโต๊ะ, และอื่น ๆ อีกมากมาย",
+            "links": {
+                "playID": {
+                    "url": "https://register.playpark.net/register/",
+                    "tooltip": "Play with PlayID Account"
+                },
+                "website": "https://samkoktactics.playpark.com/",
+                "download": "https://www.playpark.com/th-th/STMHOME"
+            },
+            "priority": ""
+        },
+        {
+            "name": "Super Samkok Awakening",
+            "type": "Mobile",
+            "genre": "Idle RPG",
+            "image": "https://media-web.playpark.com/poster-games/mobile/ssa.jpg",
+            "status": "",
+            "description": "พบกับเหล่าขุนพลจ๊กก๊กได้ใน Super Samkok Awakening เกมมือถือ สามก๊ก ในรูปแบบ Idle RPG",
+            "links": {
+                "playID": {
+                    "url": "https://register.playpark.net/register/",
+                    "tooltip": "Play with PlayID Account"
+                },
+                "website": "https://supersamkok.playpark.com/",
+                "download": "https://supersamkok.onelink.me/cPfb/IHOBT"
+            },
+            "priority": ""
+        },
+        {
+            "name": "TSX by Astronize",
+            "type": "Play & Earn",
+            "genre": "Turn-based RPG",
+            "image": "https://www.playpark.com/en-ph/wp-content/uploads/2024/04/tsx_gameicon.png",
+            "status": "astronize",
+            "description": "เกมมือถือ Play & Earn แนว Turn-based RPG อัปเกรดจากจักรวาล TS Online Mobile สุดคลาสสิก",
+            "links": {
+                "website": "https://tsx.astronize.com/"
+            },
+            "priority": ""
+        }
+    ]
+}
