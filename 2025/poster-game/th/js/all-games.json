@@ -171,23 +171,6 @@
             "priority": ""
         },
         {
-            "name": "Super Samkok Awakening",
-            "type": "Mobile",
-            "genre": "Idle RPG",
-            "image": "https://media-web.playpark.com/poster-games/mobile/ssa.jpg",
-            "status": "",
-            "description": "พบกับเหล่าขุนพลจ๊กก๊กได้ใน Super Samkok Awakening เกมมือถือ สามก๊ก ในรูปแบบ Idle RPG",
-            "links": {
-                "playID": {
-                    "url": "https://register.playpark.net/register/",
-                    "tooltip": "Play with PlayID Account"
-                },
-                "website": "https://supersamkok.playpark.com/",
-                "download": "https://supersamkok.onelink.me/cPfb/IHOBT"
-            },
-            "priority": ""
-        },
-        {
             "name": "TSX by Astronize",
             "type": "Play & Earn",
             "genre": "Turn-based RPG",
