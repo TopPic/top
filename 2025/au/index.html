@@ -1,0 +1,873 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Speedy Key - วัดความไวในการกดลูกศร</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Kanit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Kanit', sans-serif;
+            background: linear-gradient(135deg, #8a2be2, #4b0082);
+            min-height: 100vh;
+            overflow-x: hidden;
+        }
+        .arrow {
+            transition: all 0.1s ease;
+        }
+        .arrow:active {
+            transform: scale(0.9);
+        }
+        .arrow.correct {
+            background-color: #4ade80 !important;
+        }
+        .arrow.wrong {
+            background-color: #f87171 !important;
+        }
+        .radar-chart {
+            position: relative;
+            width: 250px;
+            height: 250px;
+            margin: 0 auto;
+        }
+        .radar-chart polygon {
+            fill: rgba(138, 43, 226, 0.6);
+            stroke: #8a2be2;
+            stroke-width: 2;
+        }
+        .radar-axis {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 100%;
+            height: 1px;
+            transform-origin: center left;
+        }
+        .radar-label {
+            position: absolute;
+            transform: translateX(-50%);
+            white-space: nowrap;
+            font-size: 12px;
+            color: white;
+        }
+        .pentagon {
+            clip-path: polygon(50% 0%, 100% 38%, 82% 100%, 18% 100%, 0% 38%);
+        }
+        .countdown-animation {
+            animation: pulse 1s infinite;
+        }
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+            100% { transform: scale(1); }
+        }
+        .confetti {
+            position: absolute;
+            width: 10px;
+            height: 10px;
+            opacity: 0;
+            animation: confetti-fall 3s ease-in-out forwards;
+        }
+        @keyframes confetti-fall {
+            0% { transform: translateY(-100vh) rotate(0deg); opacity: 1; }
+            100% { transform: translateY(100vh) rotate(720deg); opacity: 0; }
+        }
+    </style>
+</head>
+<body class="text-white">
+    <!-- Start Screen -->
+    <div id="start-screen" class="flex flex-col items-center justify-center min-h-screen p-4">
+        <div class="text-center max-w-md mx-auto bg-white/10 backdrop-blur-md p-8 rounded-xl shadow-2xl">
+            <h1 class="text-4xl font-bold mb-2 text-transparent bg-clip-text bg-gradient-to-r from-pink-400 to-yellow-200">Speedy Key</h1>
+            <p class="mb-6 text-lg">วัดความไวในการกดลูกศร</p>
+            <div class="flex justify-center space-x-4 mb-8">
+                <div class="arrow bg-purple-600 w-12 h-12 rounded-lg flex items-center justify-center shadow-lg">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 10l7-7m0 0l7 7m-7-7v18" />
+                    </svg>
+                </div>
+                <div class="arrow bg-purple-600 w-12 h-12 rounded-lg flex items-center justify-center shadow-lg">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 14l-7 7m0 0l-7-7m7 7V3" />
+                    </svg>
+                </div>
+                <div class="arrow bg-purple-600 w-12 h-12 rounded-lg flex items-center justify-center shadow-lg">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7m0 0l7-7m-7 7h18" />
+                    </svg>
+                </div>
+                <div class="arrow bg-purple-600 w-12 h-12 rounded-lg flex items-center justify-center shadow-lg">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3" />
+                    </svg>
+                </div>
+            </div>
+            <p class="mb-6">กดลูกศรให้ถูกต้องและรวดเร็วที่สุดภายใน 1 นาที</p>
+            <button id="start-button" class="bg-gradient-to-r from-pink-500 to-purple-600 hover:from-pink-600 hover:to-purple-700 text-white font-bold py-3 px-8 rounded-full shadow-lg transform transition hover:scale-105 focus:outline-none">
+                เริ่มเกม
+            </button>
+        </div>
+    </div>
+
+    <!-- Game Screen -->
+    <div id="game-screen" class="hidden min-h-screen flex flex-col items-center justify-center p-4">
+        <div class="w-full max-w-2xl mx-auto">
+            <div class="flex justify-between items-center mb-6">
+                <div class="text-xl font-bold">
+                    คะแนน: <span id="score">0</span>
+                </div>
+                <div id="timer" class="text-2xl font-bold bg-white/20 px-4 py-2 rounded-lg">
+                    01:00
+                </div>
+                <div class="text-xl font-bold">
+                    ความแม่นยำ: <span id="accuracy">0</span>%
+                </div>
+            </div>
+            
+            <div id="arrows-container" class="bg-white/10 backdrop-blur-md p-6 rounded-xl shadow-xl mb-6">
+                <div id="arrows-row" class="flex justify-center flex-wrap gap-3">
+                    <!-- Arrows will be generated here -->
+                </div>
+            </div>
+            
+            <div class="text-center">
+                <p class="text-lg mb-2">กดปุ่มลูกศรบนคีย์บอร์ดตามทิศทางที่แสดง</p>
+                <p class="text-sm opacity-75">↑ = ขึ้น, ↓ = ลง, ← = ซ้าย, → = ขวา</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Result Screen -->
+    <div id="result-screen" class="hidden min-h-screen">
+        <div class="container mx-auto px-4 py-8 max-w-4xl">
+            <div class="bg-white/10 backdrop-blur-md rounded-xl shadow-2xl p-6 md:p-8">
+                <h2 class="text-3xl font-bold text-center mb-6 text-transparent bg-clip-text bg-gradient-to-r from-pink-400 to-yellow-200">ผลการทดสอบ Speedy Key</h2>
+                
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                    <div class="space-y-6">
+                        <div class="bg-white/5 rounded-lg p-4">
+                            <h3 class="text-xl font-semibold mb-4 text-center">สถิติการเล่น</h3>
+                            <div class="grid grid-cols-2 gap-4">
+                                <div class="text-center">
+                                    <p class="text-sm opacity-75">จำนวนที่กดทั้งหมด</p>
+                                    <p id="total-keys" class="text-2xl font-bold">0</p>
+                                </div>
+                                <div class="text-center">
+                                    <p class="text-sm opacity-75">จำนวนที่กดถูก</p>
+                                    <p id="correct-keys" class="text-2xl font-bold text-green-400">0</p>
+                                </div>
+                                <div class="text-center">
+                                    <p class="text-sm opacity-75">จำนวนที่กดผิด</p>
+                                    <p id="wrong-keys" class="text-2xl font-bold text-red-400">0</p>
+                                </div>
+                                <div class="text-center">
+                                    <p class="text-sm opacity-75">ความแม่นยำ</p>
+                                    <p id="final-accuracy" class="text-2xl font-bold text-yellow-300">0%</p>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="bg-white/5 rounded-lg p-4">
+                            <h3 class="text-xl font-semibold mb-2 text-center">อายุการเล่นเกม</h3>
+                            <div class="text-center">
+                                <p id="game-age" class="text-4xl font-bold mb-2">0</p>
+                                <p id="generation" class="text-lg font-medium">-</p>
+                            </div>
+                        </div>
+                        
+                        <div class="mt-6 flex flex-wrap justify-center gap-3">
+                            <button id="save-button" class="bg-blue-600 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-lg flex items-center">
+                                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4" />
+                                </svg>
+                                บันทึกภาพ
+                            </button>
+                        </div>
+                        
+                        <button id="play-again" class="w-full bg-gradient-to-r from-pink-500 to-purple-600 hover:from-pink-600 hover:to-purple-700 text-white font-bold py-3 px-6 rounded-full shadow-lg transform transition hover:scale-105 focus:outline-none">
+                            เล่นอีกครั้ง
+                        </button>
+                    </div>
+                    
+                    <div>
+                        <div class="bg-white/5 rounded-lg p-4 h-full flex flex-col items-center justify-center">
+                            <h3 class="text-xl font-semibold mb-6 text-center">ค่าพลัง</h3>
+                            <div class="radar-chart">
+                                <div class="radar-axis" style="transform: rotate(0deg)">
+                                    <div class="radar-label" style="left: 100%; top: -10px;">เด็ก AUDITION</div>
+                                </div>
+                                <div class="radar-axis" style="transform: rotate(72deg)">
+                                    <div class="radar-label" style="left: 100%; top: -10px;">นิ้วปลาหมึก</div>
+                                </div>
+                                <div class="radar-axis" style="transform: rotate(144deg)">
+                                    <div class="radar-label" style="left: 100%; top: -10px;">เน้นทำเวลา</div>
+                                </div>
+                                <div class="radar-axis" style="transform: rotate(216deg)">
+                                    <div class="radar-label" style="left: 100%; top: -10px;">เน้นกดถูก</div>
+                                </div>
+                                <div class="radar-axis" style="transform: rotate(288deg)">
+                                    <div class="radar-label" style="left: 100%; top: -10px;">กดเอาคอนเทนต์</div>
+                                </div>
+                                
+                                <!-- Pentagon background layers -->
+                                <div class="absolute inset-0 flex items-center justify-center">
+                                    <div class="w-[200px] h-[200px] bg-white/5 pentagon"></div>
+                                </div>
+                                <div class="absolute inset-0 flex items-center justify-center">
+                                    <div class="w-[160px] h-[160px] bg-white/5 pentagon"></div>
+                                </div>
+                                <div class="absolute inset-0 flex items-center justify-center">
+                                    <div class="w-[120px] h-[120px] bg-white/5 pentagon"></div>
+                                </div>
+                                <div class="absolute inset-0 flex items-center justify-center">
+                                    <div class="w-[80px] h-[80px] bg-white/5 pentagon"></div>
+                                </div>
+                                <div class="absolute inset-0 flex items-center justify-center">
+                                    <div class="w-[40px] h-[40px] bg-white/5 pentagon"></div>
+                                </div>
+                                
+                                <!-- Actual data polygon -->
+                                <svg class="absolute inset-0" viewBox="0 0 250 250">
+                                    <polygon id="stats-polygon" points="125,25 225,105 195,225 55,225 25,105" />
+                                </svg>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Countdown Overlay -->
+    <div id="countdown-overlay" class="hidden fixed inset-0 bg-black/80 flex items-center justify-center z-50">
+        <div class="text-8xl font-bold countdown-animation">3</div>
+    </div>
+
+    <script>
+        // Game variables
+        let gameActive = false;
+        let currentArrows = [];
+        let score = 0;
+        let correctKeys = 0;
+        let wrongKeys = 0;
+        let timerInterval;
+        let timeLeft = 30; // 30 seconds
+        let currentArrowIndex = 0;
+        
+        // DOM Elements
+        const startScreen = document.getElementById('start-screen');
+        const gameScreen = document.getElementById('game-screen');
+        const resultScreen = document.getElementById('result-screen');
+        const startButton = document.getElementById('start-button');
+        const arrowsRow = document.getElementById('arrows-row');
+        const timerElement = document.getElementById('timer');
+        const scoreElement = document.getElementById('score');
+        const accuracyElement = document.getElementById('accuracy');
+        const countdownOverlay = document.getElementById('countdown-overlay');
+        const playAgainButton = document.getElementById('play-again');
+        const saveButton = document.getElementById('save-button');
+        
+        // Arrow types
+        const arrowTypes = [
+            { direction: 'up', key: 'ArrowUp', svg: '<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 10l7-7m0 0l7 7m-7-7v18" />' },
+            { direction: 'down', key: 'ArrowDown', svg: '<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 14l-7 7m0 0l-7-7m7 7V3" />' },
+            { direction: 'left', key: 'ArrowLeft', svg: '<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7m0 0l7-7m-7 7h18" />' },
+            { direction: 'right', key: 'ArrowRight', svg: '<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3" />' }
+        ];
+        
+        // Start button click event
+        startButton.addEventListener('click', startCountdown);
+        
+        // Play again button click event
+        playAgainButton.addEventListener('click', () => {
+            resultScreen.classList.add('hidden');
+            startScreen.classList.remove('hidden');
+            resetGame();
+        });
+        
+        // Save result as image
+        saveButton.addEventListener('click', saveAsImage);
+        
+        // Start countdown before game begins
+        function startCountdown() {
+            startScreen.classList.add('hidden');
+            countdownOverlay.classList.remove('hidden');
+            
+            let count = 3;
+            countdownOverlay.firstElementChild.textContent = count;
+            
+            const countInterval = setInterval(() => {
+                count--;
+                if (count > 0) {
+                    countdownOverlay.firstElementChild.textContent = count;
+                } else {
+                    clearInterval(countInterval);
+                    countdownOverlay.classList.add('hidden');
+                    startGame();
+                }
+            }, 1000);
+        }
+        
+        // Start the game
+        function startGame() {
+            gameScreen.classList.remove('hidden');
+            gameActive = true;
+            resetGame();
+            generateArrows();
+            startTimer();
+            
+            // Add keyboard event listener
+            document.addEventListener('keydown', handleKeyPress);
+        }
+        
+        // Generate a new row of arrows
+        function generateArrows() {
+            arrowsRow.innerHTML = '';
+            currentArrows = [];
+            currentArrowIndex = 0;
+            
+            // Generate 8 random arrows
+            for (let i = 0; i < 8; i++) {
+                const randomArrow = arrowTypes[Math.floor(Math.random() * arrowTypes.length)];
+                currentArrows.push(randomArrow);
+                
+                const arrowElement = document.createElement('div');
+                arrowElement.className = 'arrow bg-purple-600 w-14 h-14 rounded-lg flex items-center justify-center shadow-lg';
+                arrowElement.innerHTML = `<svg xmlns="http://www.w3.org/2000/svg" class="h-10 w-10" fill="none" viewBox="0 0 24 24" stroke="currentColor">${randomArrow.svg}</svg>`;
+                
+                arrowsRow.appendChild(arrowElement);
+            }
+            
+            // Highlight the first arrow
+            highlightCurrentArrow();
+        }
+        
+        // Highlight the current arrow to press
+        function highlightCurrentArrow() {
+            const arrows = arrowsRow.querySelectorAll('.arrow');
+            arrows.forEach((arrow, index) => {
+                if (index === currentArrowIndex) {
+                    arrow.classList.add('ring-2', 'ring-yellow-300', 'ring-offset-2', 'ring-offset-purple-700');
+                } else {
+                    arrow.classList.remove('ring-2', 'ring-yellow-300', 'ring-offset-2', 'ring-offset-purple-700');
+                }
+            });
+        }
+        
+        // Handle keyboard press
+        function handleKeyPress(event) {
+            if (!gameActive) return;
+            
+            const pressedKey = event.key;
+            const currentArrow = currentArrows[currentArrowIndex];
+            const arrows = arrowsRow.querySelectorAll('.arrow');
+            
+            if (pressedKey === currentArrow.key) {
+                // Correct key press
+                arrows[currentArrowIndex].classList.add('correct');
+                score += 10;
+                correctKeys++;
+            } else if (arrowTypes.some(arrow => arrow.key === pressedKey)) {
+                // Wrong arrow key pressed
+                arrows[currentArrowIndex].classList.add('wrong');
+                wrongKeys++;
+            } else {
+                // Not an arrow key
+                return;
+            }
+            
+            // Update score and accuracy
+            scoreElement.textContent = score;
+            const totalAttempts = correctKeys + wrongKeys;
+            const accuracy = totalAttempts > 0 ? Math.round((correctKeys / totalAttempts) * 100) : 0;
+            accuracyElement.textContent = accuracy;
+            
+            // Move to next arrow
+            currentArrowIndex++;
+            
+            // If all arrows in the row are pressed, generate new arrows
+            if (currentArrowIndex >= currentArrows.length) {
+                setTimeout(() => {
+                    generateArrows();
+                }, 200);
+            } else {
+                highlightCurrentArrow();
+            }
+        }
+        
+        // Start the timer
+        function startTimer() {
+            timerInterval = setInterval(() => {
+                timeLeft--;
+                
+                // Format time as MM:SS
+                const minutes = Math.floor(timeLeft / 60).toString().padStart(2, '0');
+                const seconds = (timeLeft % 60).toString().padStart(2, '0');
+                timerElement.textContent = `${minutes}:${seconds}`;
+                
+                // Last 10 seconds animation
+                if (timeLeft <= 10) {
+                    timerElement.classList.add('text-red-500', 'countdown-animation');
+                }
+                
+                if (timeLeft <= 0) {
+                    endGame();
+                }
+            }, 1000);
+        }
+        
+        // End the game
+        function endGame() {
+            clearInterval(timerInterval);
+            gameActive = false;
+            document.removeEventListener('keydown', handleKeyPress);
+            
+            // Show result screen
+            gameScreen.classList.add('hidden');
+            resultScreen.classList.remove('hidden');
+            
+            // Calculate final stats
+            const totalAttempts = correctKeys + wrongKeys;
+            const accuracy = totalAttempts > 0 ? Math.round((correctKeys / totalAttempts) * 100) : 0;
+            
+            // Update result screen
+            document.getElementById('total-keys').textContent = totalAttempts;
+            document.getElementById('correct-keys').textContent = correctKeys;
+            document.getElementById('wrong-keys').textContent = wrongKeys;
+            document.getElementById('final-accuracy').textContent = `${accuracy}%`;
+            
+            // Calculate game age based on performance
+            const gameAge = calculateGameAge(totalAttempts, accuracy);
+            document.getElementById('game-age').textContent = gameAge;
+            
+            // Determine generation
+            const generation = determineGeneration(gameAge);
+            document.getElementById('generation').textContent = generation;
+            
+            // Update radar chart
+            updateRadarChart(totalAttempts, accuracy);
+            
+            // Create confetti effect
+            createConfetti();
+        }
+        
+        // Calculate game age based on performance
+        function calculateGameAge(totalAttempts, accuracy) {
+            // Base calculation: more attempts and higher accuracy = younger age
+            let baseAge = 50;
+            
+            // Reduce age for more attempts (faster reflexes)
+            if (totalAttempts > 100) baseAge -= 30;
+            else if (totalAttempts > 80) baseAge -= 25;
+            else if (totalAttempts > 60) baseAge -= 20;
+            else if (totalAttempts > 40) baseAge -= 15;
+            else if (totalAttempts > 20) baseAge -= 10;
+            
+            // Reduce age for higher accuracy
+            if (accuracy > 95) baseAge -= 10;
+            else if (accuracy > 90) baseAge -= 8;
+            else if (accuracy > 80) baseAge -= 6;
+            else if (accuracy > 70) baseAge -= 4;
+            else if (accuracy > 60) baseAge -= 2;
+            
+            // Ensure age is within reasonable bounds
+            return Math.max(8, Math.min(baseAge, 80));
+        }
+        
+        // Determine generation based on game age
+        function determineGeneration(age) {
+            if (age < 12) return "Generation Alpha (2010-2024)";
+            if (age < 27) return "Generation Z (1997-2009)";
+            if (age < 42) return "Millennials (1981-1996)";
+            if (age < 57) return "Generation X (1965-1980)";
+            if (age < 77) return "Baby Boomers (1946-1964)";
+            return "Silent Generation (1928-1945)";
+        }
+        
+        // Update radar chart based on performance
+        function updateRadarChart(totalAttempts, accuracy) {
+            // Calculate stats (0-100 scale)
+            const auditionSkill = Math.min(100, totalAttempts * 0.8 + accuracy * 0.2);
+            const octopusFingers = Math.min(100, totalAttempts * 0.7 + accuracy * 0.3);
+            const speedFocus = Math.min(100, totalAttempts);
+            const accuracyFocus = Math.min(100, accuracy);
+            const contentCreator = Math.min(100, (totalAttempts + accuracy) / 2);
+            
+            // Convert stats to coordinates on a pentagon (center at 125,125, radius 100)
+            const points = [
+                `125,${125 - auditionSkill}`, // Top point (Audition)
+                `${125 + octopusFingers * 0.95},${125 - octopusFingers * 0.31}`, // Top right (Octopus)
+                `${125 + speedFocus * 0.59},${125 + speedFocus * 0.81}`, // Bottom right (Speed)
+                `${125 - accuracyFocus * 0.59},${125 + accuracyFocus * 0.81}`, // Bottom left (Accuracy)
+                `${125 - contentCreator * 0.95},${125 - contentCreator * 0.31}` // Top left (Content)
+            ];
+            
+            document.getElementById('stats-polygon').setAttribute('points', points.join(' '));
+        }
+        
+        // Create confetti effect
+        function createConfetti() {
+            const colors = ['#ff0000', '#00ff00', '#0000ff', '#ffff00', '#ff00ff', '#00ffff'];
+            
+            for (let i = 0; i < 100; i++) {
+                const confetti = document.createElement('div');
+                confetti.className = 'confetti';
+                confetti.style.backgroundColor = colors[Math.floor(Math.random() * colors.length)];
+                confetti.style.left = `${Math.random() * 100}%`;
+                confetti.style.animationDelay = `${Math.random() * 3}s`;
+                
+                document.body.appendChild(confetti);
+                
+                // Remove confetti after animation
+                setTimeout(() => {
+                    confetti.remove();
+                }, 3000);
+            }
+        }
+        
+        // Save result as image
+        function saveAsImage() {
+            const resultScreen = document.getElementById('result-screen');
+            if (!resultScreen) return alert('ไม่พบหน้าผลลัพธ์');
+            domtoimage.toPng(resultScreen)
+                .then(function (dataUrl) {
+                    const link = document.createElement('a');
+                    link.download = 'speedy-key-result.png';
+                    link.href = dataUrl;
+                    link.click();
+                })
+                .catch(function (error) {
+                    alert('เกิดข้อผิดพลาดในการบันทึกภาพ');
+                    console.error(error);
+                });
+        }
+        
+        // Reset game variables
+        function resetGame() {
+            score = 0;
+            correctKeys = 0;
+            wrongKeys = 0;
+            timeLeft = 30;
+            timerElement.textContent = '00:30';
+            timerElement.classList.remove('text-red-500', 'countdown-animation');
+            scoreElement.textContent = '0';
+            accuracyElement.textContent = '0';
+        }
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/html2canvas@1.4.1/dist/html2canvas.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/dom-to-image-more@2.9.0/dist/dom-to-image-more.min.js"></script>
+    <script>
+        // Game variables
+        let gameActive = false;
+        let currentArrows = [];
+        let score = 0;
+        let correctKeys = 0;
+        let wrongKeys = 0;
+        let timerInterval;
+        let timeLeft = 30; // 30 seconds
+        let currentArrowIndex = 0;
+        
+        // DOM Elements
+        const startScreen = document.getElementById('start-screen');
+        const gameScreen = document.getElementById('game-screen');
+        const resultScreen = document.getElementById('result-screen');
+        const startButton = document.getElementById('start-button');
+        const arrowsRow = document.getElementById('arrows-row');
+        const timerElement = document.getElementById('timer');
+        const scoreElement = document.getElementById('score');
+        const accuracyElement = document.getElementById('accuracy');
+        const countdownOverlay = document.getElementById('countdown-overlay');
+        const playAgainButton = document.getElementById('play-again');
+        const saveButton = document.getElementById('save-button');
+        
+        // Arrow types
+        const arrowTypes = [
+            { direction: 'up', key: 'ArrowUp', svg: '<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 10l7-7m0 0l7 7m-7-7v18" />' },
+            { direction: 'down', key: 'ArrowDown', svg: '<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 14l-7 7m0 0l-7-7m7 7V3" />' },
+            { direction: 'left', key: 'ArrowLeft', svg: '<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7m0 0l7-7m-7 7h18" />' },
+            { direction: 'right', key: 'ArrowRight', svg: '<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3" />' }
+        ];
+        
+        // Start button click event
+        startButton.addEventListener('click', startCountdown);
+        
+        // Play again button click event
+        playAgainButton.addEventListener('click', () => {
+            resultScreen.classList.add('hidden');
+            startScreen.classList.remove('hidden');
+            resetGame();
+        });
+        
+        // Save result as image
+        saveButton.addEventListener('click', saveAsImage);
+        
+        // Start countdown before game begins
+        function startCountdown() {
+            startScreen.classList.add('hidden');
+            countdownOverlay.classList.remove('hidden');
+            
+            let count = 3;
+            countdownOverlay.firstElementChild.textContent = count;
+            
+            const countInterval = setInterval(() => {
+                count--;
+                if (count > 0) {
+                    countdownOverlay.firstElementChild.textContent = count;
+                } else {
+                    clearInterval(countInterval);
+                    countdownOverlay.classList.add('hidden');
+                    startGame();
+                }
+            }, 1000);
+        }
+        
+        // Start the game
+        function startGame() {
+            gameScreen.classList.remove('hidden');
+            gameActive = true;
+            resetGame();
+            generateArrows();
+            startTimer();
+            
+            // Add keyboard event listener
+            document.addEventListener('keydown', handleKeyPress);
+        }
+        
+        // Generate a new row of arrows
+        function generateArrows() {
+            arrowsRow.innerHTML = '';
+            currentArrows = [];
+            currentArrowIndex = 0;
+            
+            // Generate 8 random arrows
+            for (let i = 0; i < 8; i++) {
+                const randomArrow = arrowTypes[Math.floor(Math.random() * arrowTypes.length)];
+                currentArrows.push(randomArrow);
+                
+                const arrowElement = document.createElement('div');
+                arrowElement.className = 'arrow bg-purple-600 w-14 h-14 rounded-lg flex items-center justify-center shadow-lg';
+                arrowElement.innerHTML = `<svg xmlns="http://www.w3.org/2000/svg" class="h-10 w-10" fill="none" viewBox="0 0 24 24" stroke="currentColor">${randomArrow.svg}</svg>`;
+                
+                arrowsRow.appendChild(arrowElement);
+            }
+            
+            // Highlight the first arrow
+            highlightCurrentArrow();
+        }
+        
+        // Highlight the current arrow to press
+        function highlightCurrentArrow() {
+            const arrows = arrowsRow.querySelectorAll('.arrow');
+            arrows.forEach((arrow, index) => {
+                if (index === currentArrowIndex) {
+                    arrow.classList.add('ring-2', 'ring-yellow-300', 'ring-offset-2', 'ring-offset-purple-700');
+                } else {
+                    arrow.classList.remove('ring-2', 'ring-yellow-300', 'ring-offset-2', 'ring-offset-purple-700');
+                }
+            });
+        }
+        
+        // Handle keyboard press
+        function handleKeyPress(event) {
+            if (!gameActive) return;
+            
+            const pressedKey = event.key;
+            const currentArrow = currentArrows[currentArrowIndex];
+            const arrows = arrowsRow.querySelectorAll('.arrow');
+            
+            if (pressedKey === currentArrow.key) {
+                // Correct key press
+                arrows[currentArrowIndex].classList.add('correct');
+                score += 10;
+                correctKeys++;
+            } else if (arrowTypes.some(arrow => arrow.key === pressedKey)) {
+                // Wrong arrow key pressed
+                arrows[currentArrowIndex].classList.add('wrong');
+                wrongKeys++;
+            } else {
+                // Not an arrow key
+                return;
+            }
+            
+            // Update score and accuracy
+            scoreElement.textContent = score;
+            const totalAttempts = correctKeys + wrongKeys;
+            const accuracy = totalAttempts > 0 ? Math.round((correctKeys / totalAttempts) * 100) : 0;
+            accuracyElement.textContent = accuracy;
+            
+            // Move to next arrow
+            currentArrowIndex++;
+            
+            // If all arrows in the row are pressed, generate new arrows
+            if (currentArrowIndex >= currentArrows.length) {
+                setTimeout(() => {
+                    generateArrows();
+                }, 200);
+            } else {
+                highlightCurrentArrow();
+            }
+        }
+        
+        // Start the timer
+        function startTimer() {
+            timerInterval = setInterval(() => {
+                timeLeft--;
+                
+                // Format time as MM:SS
+                const minutes = Math.floor(timeLeft / 60).toString().padStart(2, '0');
+                const seconds = (timeLeft % 60).toString().padStart(2, '0');
+                timerElement.textContent = `${minutes}:${seconds}`;
+                
+                // Last 10 seconds animation
+                if (timeLeft <= 10) {
+                    timerElement.classList.add('text-red-500', 'countdown-animation');
+                }
+                
+                if (timeLeft <= 0) {
+                    endGame();
+                }
+            }, 1000);
+        }
+        
+        // End the game
+        function endGame() {
+            clearInterval(timerInterval);
+            gameActive = false;
+            document.removeEventListener('keydown', handleKeyPress);
+            
+            // Show result screen
+            gameScreen.classList.add('hidden');
+            resultScreen.classList.remove('hidden');
+            
+            // Calculate final stats
+            const totalAttempts = correctKeys + wrongKeys;
+            const accuracy = totalAttempts > 0 ? Math.round((correctKeys / totalAttempts) * 100) : 0;
+            
+            // Update result screen
+            document.getElementById('total-keys').textContent = totalAttempts;
+            document.getElementById('correct-keys').textContent = correctKeys;
+            document.getElementById('wrong-keys').textContent = wrongKeys;
+            document.getElementById('final-accuracy').textContent = `${accuracy}%`;
+            
+            // Calculate game age based on performance
+            const gameAge = calculateGameAge(totalAttempts, accuracy);
+            document.getElementById('game-age').textContent = gameAge;
+            
+            // Determine generation
+            const generation = determineGeneration(gameAge);
+            document.getElementById('generation').textContent = generation;
+            
+            // Update radar chart
+            updateRadarChart(totalAttempts, accuracy);
+            
+            // Create confetti effect
+            createConfetti();
+        }
+        
+        // Calculate game age based on performance
+        function calculateGameAge(totalAttempts, accuracy) {
+            // Base calculation: more attempts and higher accuracy = younger age
+            let baseAge = 50;
+            
+            // Reduce age for more attempts (faster reflexes)
+            if (totalAttempts > 100) baseAge -= 30;
+            else if (totalAttempts > 80) baseAge -= 25;
+            else if (totalAttempts > 60) baseAge -= 20;
+            else if (totalAttempts > 40) baseAge -= 15;
+            else if (totalAttempts > 20) baseAge -= 10;
+            
+            // Reduce age for higher accuracy
+            if (accuracy > 95) baseAge -= 10;
+            else if (accuracy > 90) baseAge -= 8;
+            else if (accuracy > 80) baseAge -= 6;
+            else if (accuracy > 70) baseAge -= 4;
+            else if (accuracy > 60) baseAge -= 2;
+            
+            // Ensure age is within reasonable bounds
+            return Math.max(8, Math.min(baseAge, 80));
+        }
+        
+        // Determine generation based on game age
+        function determineGeneration(age) {
+            if (age < 12) return "Generation Alpha (2010-2024)";
+            if (age < 27) return "Generation Z (1997-2009)";
+            if (age < 42) return "Millennials (1981-1996)";
+            if (age < 57) return "Generation X (1965-1980)";
+            if (age < 77) return "Baby Boomers (1946-1964)";
+            return "Silent Generation (1928-1945)";
+        }
+        
+        // Update radar chart based on performance
+        function updateRadarChart(totalAttempts, accuracy) {
+            // Calculate stats (0-100 scale)
+            const auditionSkill = Math.min(100, totalAttempts * 0.8 + accuracy * 0.2);
+            const octopusFingers = Math.min(100, totalAttempts * 0.7 + accuracy * 0.3);
+            const speedFocus = Math.min(100, totalAttempts);
+            const accuracyFocus = Math.min(100, accuracy);
+            const contentCreator = Math.min(100, (totalAttempts + accuracy) / 2);
+            
+            // Convert stats to coordinates on a pentagon (center at 125,125, radius 100)
+            const points = [
+                `125,${125 - auditionSkill}`, // Top point (Audition)
+                `${125 + octopusFingers * 0.95},${125 - octopusFingers * 0.31}`, // Top right (Octopus)
+                `${125 + speedFocus * 0.59},${125 + speedFocus * 0.81}`, // Bottom right (Speed)
+                `${125 - accuracyFocus * 0.59},${125 + accuracyFocus * 0.81}`, // Bottom left (Accuracy)
+                `${125 - contentCreator * 0.95},${125 - contentCreator * 0.31}` // Top left (Content)
+            ];
+            
+            document.getElementById('stats-polygon').setAttribute('points', points.join(' '));
+        }
+        
+        // Create confetti effect
+        function createConfetti() {
+            const colors = ['#ff0000', '#00ff00', '#0000ff', '#ffff00', '#ff00ff', '#00ffff'];
+            
+            for (let i = 0; i < 100; i++) {
+                const confetti = document.createElement('div');
+                confetti.className = 'confetti';
+                confetti.style.backgroundColor = colors[Math.floor(Math.random() * colors.length)];
+                confetti.style.left = `${Math.random() * 100}%`;
+                confetti.style.animationDelay = `${Math.random() * 3}s`;
+                
+                document.body.appendChild(confetti);
+                
+                // Remove confetti after animation
+                setTimeout(() => {
+                    confetti.remove();
+                }, 3000);
+            }
+        }
+        
+        // Save result as image
+        function saveAsImage() {
+            const resultScreen = document.getElementById('result-screen');
+            if (!resultScreen) return alert('ไม่พบหน้าผลลัพธ์');
+            domtoimage.toPng(resultScreen)
+                .then(function (dataUrl) {
+                    const link = document.createElement('a');
+                    link.download = 'speedy-key-result.png';
+                    link.href = dataUrl;
+                    link.click();
+                })
+                .catch(function (error) {
+                    alert('เกิดข้อผิดพลาดในการบันทึกภาพ');
+                    console.error(error);
+                });
+        }
+        
+        // Reset game variables
+        function resetGame() {
+            score = 0;
+            correctKeys = 0;
+            wrongKeys = 0;
+            timeLeft = 30;
+            timerElement.textContent = '00:30';
+            timerElement.classList.remove('text-red-500', 'countdown-animation');
+            scoreElement.textContent = '0';
+            accuracyElement.textContent = '0';
+        }
+    </script>
+<script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'94e045b4c1acee25',t:'MTc0OTYzNjE0MC4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script>
+<script src="https://cdn.jsdelivr.net/npm/dom-to-image-more@2.9.0/dist/dom-to-image-more.min.js"></script></body>
+</html>
