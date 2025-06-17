@@ -286,8 +286,24 @@
             resetGame();
         });
         
-        // Save result as image
-        saveButton.addEventListener('click', saveAsImage);
+        // ให้ปุ่มบันทึกภาพทำงานด้วย dom-to-image-more
+        if (saveButton) {
+            saveButton.addEventListener('click', function() {
+                const resultScreen = document.getElementById('result-screen');
+                if (!resultScreen) return alert('ไม่พบหน้าผลลัพธ์');
+                domtoimage.toPng(resultScreen)
+                    .then(function (dataUrl) {
+                        const link = document.createElement('a');
+                        link.download = 'speedy-key-result.png';
+                        link.href = dataUrl;
+                        link.click();
+                    })
+                    .catch(function (error) {
+                        alert('เกิดข้อผิดพลาดในการบันทึกภาพ');
+                        console.error(error);
+                    });
+            });
+        }
         
         // Start countdown before game begins
         function startCountdown() {
@@ -524,21 +540,6 @@
                     confetti.remove();
                 }, 3000);
             }
-        }
-        
-        // Save result as image
-        function saveAsImage() {
-            const resultScreen = document.getElementById('result-screen');
-            if (!resultScreen) return alert('ไม่พบหน้าผลลัพธ์');
-            html2canvas(resultScreen, {
-                backgroundColor: null,
-                useCORS: true
-            }).then(canvas => {
-                const link = document.createElement('a');
-                link.download = 'speedy-key-result.png';
-                link.href = canvas.toDataURL('image/png');
-                link.click();
-            });
         }
         
         // Reset game variables
@@ -597,8 +598,24 @@
             resetGame();
         });
         
-        // Save result as image
-        saveButton.addEventListener('click', saveAsImage);
+        // ให้ปุ่มบันทึกภาพทำงานด้วย dom-to-image-more
+        if (saveButton) {
+            saveButton.addEventListener('click', function() {
+                const resultScreen = document.getElementById('result-screen');
+                if (!resultScreen) return alert('ไม่พบหน้าผลลัพธ์');
+                domtoimage.toPng(resultScreen)
+                    .then(function (dataUrl) {
+                        const link = document.createElement('a');
+                        link.download = 'speedy-key-result.png';
+                        link.href = dataUrl;
+                        link.click();
+                    })
+                    .catch(function (error) {
+                        alert('เกิดข้อผิดพลาดในการบันทึกภาพ');
+                        console.error(error);
+                    });
+            });
+        }
         
         // Start countdown before game begins
         function startCountdown() {
@@ -835,21 +852,6 @@
                     confetti.remove();
                 }, 3000);
             }
-        }
-        
-        // Save result as image
-        function saveAsImage() {
-            const resultScreen = document.getElementById('result-screen');
-            if (!resultScreen) return alert('ไม่พบหน้าผลลัพธ์');
-            html2canvas(resultScreen, {
-                backgroundColor: null,
-                useCORS: true
-            }).then(canvas => {
-                const link = document.createElement('a');
-                link.download = 'speedy-key-result.png';
-                link.href = canvas.toDataURL('image/png');
-                link.click();
-            });
         }
         
         // Reset game variables
