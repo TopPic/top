@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ค้นหาข้อมูลส่วนตัว</title>
+    <title>quest</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Kanit:wght@300;400;500;600;700&display=swap');
@@ -57,7 +57,7 @@
                             </path>
                         </svg>
                     </div>
-                    <h1 class="text-2xl font-bold text-gray-800">ค้นหาข้อมูลส่วนตัว</h1>
+                    <h1 class="text-2xl font-bold text-gray-800">ค้นหาข้อมูล quest</h1>
                 </div>
                 <div class="text-sm text-gray-600">
                     <span id="resultCount">0</span> รายการ
@@ -79,17 +79,24 @@
                     </div>
                     <input type="text" id="searchInput"
                         class="search-input block w-full pl-12 pr-4 py-4 text-lg border border-emerald-200 rounded-xl focus:ring-2 focus:ring-emerald-500 focus:border-transparent transition-all duration-200"
-                        placeholder="ค้นหาด้วยชื่อ, รหัส, หรือข้อมูลอื่นๆ..." autocomplete="off">
+                        placeholder="ค้นหาด้วยอีเมล์เท่านั้น" autocomplete="off">
+
+                    <button
+                        class="w-10 h-10 bg-gradient-to-r from-emerald-500 to-teal-600 rounded-lg flex items-center justify-center "
+                        id="searchbtn">ค้นหา</button>
                 </div>
             </div>
         </div>
 
         <!-- Loading State -->
-        <div id="loadingState" class="text-center py-12">
+        <div id="loadingState" class="hidden  text-center py-12">
             <div
                 class="loading-spinner w-8 h-8 border-4 border-emerald-200 border-t-emerald-500 rounded-full mx-auto mb-4">
             </div>
-            <p class="text-gray-600">กำลังโหลดข้อมูล...</p>
+            <p class="text-gray-600">กำลังโหลดข้อมูล</p>
+        </div>
+        <div id="searctext" class="text-center py-12">
+            <p class="text-gray-600">กรุณากรอกอีเมลเพื่อค้นหา</p>
         </div>
 
         <!-- Data Table -->
@@ -116,7 +123,7 @@
                 </svg>
             </div>
             <h3 class="text-lg font-medium text-gray-900 mb-2">ไม่พบข้อมูลที่ค้นหา</h3>
-            <p class="text-gray-500">ลองค้นหาด้วยชื่อ รหัส หรือข้อมูลอื่นๆ ที่เกี่ยวข้อง</p>
+            <p class="text-gray-500">กรุณากรอกค้นด้วยอีเมล์ที่ถูกต้อง</p>
         </div>
 
         <!-- Error Message -->
@@ -135,50 +142,120 @@
 
     <script>
         const sheetID = "1WnjJMNvurcwVXivU8nILqdfLNU5zgEsk1dMIBwTfi4w";
-        const sheetName = "Sheet3"; // เปลี่ยนให้ตรงกับชื่อแท็บใน Sheet
-        const query = encodeURIComponent("SELECT A, B, C");
+        const sheetName = "Sheet3";
+        const query = encodeURIComponent("SELECT *");
         const url = `https://docs.google.com/spreadsheets/d/${sheetID}/gviz/tq?sheet=${sheetName}&tq=${query}`;
+        const searchBtn = document.getElementById("searchbtn");
+        const searchInputField = document.getElementById("searchInput"); // ✅ ช่องกรอก input จริง
+        const searchText = document.getElementById("searctext");
+        const loadingState = document.getElementById("loadingState");
+        const dataTable = document.getElementById("dataTable");
+        const noResults = document.getElementById("noResults");
+        const errorMessage = document.getElementById("errorMessage");
+        const resultCount = document.getElementById("resultCount");
+
+        // 🔧 เริ่มต้น
+        loadingState.classList.add("hidden");
+        dataTable.classList.add("hidden");
+        noResults.classList.add("hidden");
+        errorMessage.classList.add("hidden");
+        searchText.classList.remove("hidden");
+        searchBtn.disabled = true;
+
+        let allRows = [];
 
         fetch(url)
             .then(res => res.text())
             .then(data => {
                 const jsonData = JSON.parse(data.substring(47).slice(0, -2));
-                const rows = jsonData.table.rows;
+                allRows = jsonData.table.rows;
 
-                const tableBody = document.getElementById("tableBody");
-                tableBody.innerHTML = ""; // clear existing
-                rows.forEach((row, index) => {
-                    const quest = row.c[0]?.v || "";
-                    const status = row.c[1]?.v || "";
-                    const delivery = row.c[2]?.v || "";
+                // ✅ ดึง label เฉพาะ column 1-3 สำหรับหัวตาราง
+                const headers = ["ชื่อเควสต์", "สถานะ", "การจัดส่ง"]; // ตั้งชื่อหัวเองให้ตรงกับคอลัมน์ B, C, D
 
-                    const statusIcon = getStatusIcon(status);
-                    const deliveryIcon = getDeliveryIcon(delivery);
+                const tableHeader = document.getElementById("tableHeader");
+                const headerRow = document.createElement("tr");
 
-                    tableBody.innerHTML += `
-    <tr>
-      <td class="px-6 py-4 text-sm text-gray-800">${quest}</td>
-      <td class="px-6 py-4 text-sm text-gray-800">${statusIcon} ${status}</td>
-      <td class="px-6 py-4 text-sm text-gray-800">${deliveryIcon} ${delivery}</td>
-    </tr>`;
+                headers.forEach(headerText => {
+                    const th = document.createElement("th");
+                    th.textContent = headerText;
+                    th.className = "px-6 py-3 text-left text-sm font-medium uppercase tracking-wider text-white";
+                    headerRow.appendChild(th);
                 });
 
+                tableHeader.innerHTML = "";
+                tableHeader.appendChild(headerRow);
+            })
 
-
-                document.getElementById("loadingState").classList.add("hidden");
-                document.getElementById("dataTable").classList.remove("hidden");
+            .catch(() => {
+                errorMessage.classList.remove("hidden");
             });
-        function getStatusBadgeColor(status) {
-            if (status === "สำเร็จ") return "bg-emerald-500";
-            if (status === "รอ") return "bg-amber-400";
-            return "bg-red-600";
-        }
 
-        function getDeliveryBadgeColor(delivery) {
-            if (delivery === "ส่งแล้ว") return "bg-emerald-500";
-            if (delivery === "รอ") return "bg-amber-400";
-            return "bg-gray-300 text-gray-600";
-        }
+
+        // ✅ เปิดปุ่มเมื่อมีการพิมพ์
+        searchInputField.addEventListener("input", () => {
+            const value = searchInputField.value.trim();
+            searchBtn.disabled = value === "";
+        });
+
+        // ✅ เมื่อคลิกปุ่มค้นหา
+        searchBtn.addEventListener("click", () => {
+            const keyword = searchInputField.value.trim().toLowerCase().replace(/\s/g, "");
+
+            // ✅ UI เตรียมโหลด
+            searchText.classList.add("hidden");
+            // searchInputField.classList.add("hidden");
+            // searchBtn.classList.add("hidden");
+            loadingState.classList.remove("hidden");
+            dataTable.classList.add("hidden");
+            noResults.classList.add("hidden");
+            errorMessage.classList.add("hidden");
+
+            setTimeout(() => {
+                const tableBody = document.getElementById("tableBody");
+                tableBody.innerHTML = "";
+                let matched = 0;
+
+                allRows.forEach((row) => {
+                    const email = row.c[0]?.v?.toLowerCase().trim() || "";
+                    const quest = row.c[1]?.v || "";
+                    const status = row.c[2]?.v || "";
+                    const delivery = row.c[3]?.v || "";
+
+                    if (email === keyword) {
+                        const statusIcon = getStatusIcon(status);
+                        const deliveryIcon = getDeliveryIcon(delivery);
+
+                        tableBody.innerHTML += `
+          <tr class="table-row">
+              <td class="px-6 py-4 text-sm text-gray-800">${quest}</td>
+              <td class="px-6 py-4 text-sm text-gray-800">${statusIcon} ${status}</td>
+              <td class="px-6 py-4 text-sm text-gray-800">${deliveryIcon} ${delivery}</td>
+          </tr>`;
+                        matched++;
+                    }
+                });
+
+                resultCount.textContent = matched;
+                loadingState.classList.add("hidden");
+
+                if (matched > 0) {
+                    dataTable.classList.remove("hidden");
+                } else {
+                    noResults.classList.remove("hidden");
+                    searchText.classList.add("hidden"); // ✅ เพิ่มบรรทัดนี้
+                    searchInputField.classList.remove("hidden");
+                    searchBtn.classList.remove("hidden");
+                }
+
+
+                searchInputField.classList.remove("hidden");
+                searchBtn.classList.remove("hidden");
+            }, 1000);
+        });
+
+
+        // 🟢 ไอคอนสถานะ
         function getStatusIcon(status) {
             if (status === "สำเร็จ") return "✅";
             if (status === "รอ") return "⏳";
@@ -191,8 +268,11 @@
             if (delivery === "รอ") return "⏳";
             return "";
         }
-
     </script>
+
+
+
+
 </body>
 
 </html>

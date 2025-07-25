@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ค้นหาข้อมูลส่วนตัว</title>
+    <title>PAY</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Kanit:wght@300;400;500;600;700&display=swap');
@@ -56,8 +56,10 @@
                                 d="M9 12h6m-6-4h6m2 5.291A7.962 7.962 0 0112 15c-2.34 0-4.29-.82-5.877-2.172M15 21H9a2 2 0 01-2-2V5a2 2 0 012-2h6a2 2 0 012 2v14a2 2 0 01-2 2z">
                             </path>
                         </svg>
+
+
                     </div>
-                    <h1 class="text-2xl font-bold text-gray-800">ค้นหาข้อมูลส่วนตัว</h1>
+                    <h1 class="text-2xl font-bold text-gray-800">ค้นหาข้อมูล PAY</h1>
                 </div>
                 <div class="text-sm text-gray-600">
                     <span id="resultCount">0</span> รายการ
@@ -79,7 +81,14 @@
                     </div>
                     <input type="text" id="searchInput"
                         class="search-input block w-full pl-12 pr-4 py-4 text-lg border border-emerald-200 rounded-xl focus:ring-2 focus:ring-emerald-500 focus:border-transparent transition-all duration-200"
-                        placeholder="ค้นหาด้วยชื่อ, รหัส, หรือข้อมูลอื่นๆ..." autocomplete="off">
+                        placeholder="ค้นหาด้วยอีเมล์เท่านั้น" autocomplete="off">
+                    <!-- ปุ่มค้นหา -->
+                    <div class="text-center mb-6">
+                        <button id="searchbtn" disabled
+                            class="px-6 py-3 bg-emerald-500 text-white font-semibold rounded-lg shadow hover:bg-emerald-600 transition">
+                            ค้นหา
+                        </button>
+                    </div>
                 </div>
             </div>
         </div>
@@ -91,6 +100,9 @@
             </div>
             <p class="text-gray-600">กำลังโหลดข้อมูล...</p>
         </div>
+
+        <!-- Search Text -->
+        <div id="searctext" class="text-center text-gray-600 mb-4">กรุณากรอกอีเมลเพื่อค้นหา</div>
 
         <!-- Data Table -->
         <div id="dataTable" class="hidden bg-white rounded-xl shadow-lg border border-emerald-100 overflow-hidden">
@@ -116,7 +128,7 @@
                 </svg>
             </div>
             <h3 class="text-lg font-medium text-gray-900 mb-2">ไม่พบข้อมูลที่ค้นหา</h3>
-            <p class="text-gray-500">ลองค้นหาด้วยชื่อ รหัส หรือข้อมูลอื่นๆ ที่เกี่ยวข้อง</p>
+            <p class="text-gray-500">กรุณากรอกอีเมลเพื่อค้นหา</p>
         </div>
 
         <!-- Error Message -->
@@ -131,66 +143,123 @@
             <p class="text-red-600">ไม่สามารถโหลดข้อมูลได้ กรุณาลองใหม่อีกครั้ง</p>
         </div>
     </main>
+  
+
     <script>
-        const sheetID = "1WnjJMNvurcwVXivU8nILqdfLNU5zgEsk1dMIBwTfi4w";
-        const sheetName = "Sheet4"; // เปลี่ยนให้ตรงกับชื่อแท็บใน Sheet
-        const query = encodeURIComponent("SELECT A, B, C");
-        const url = `https://docs.google.com/spreadsheets/d/${sheetID}/gviz/tq?sheet=${sheetName}&tq=${query}`;
+    const sheetID = "1WnjJMNvurcwVXivU8nILqdfLNU5zgEsk1dMIBwTfi4w";
+    const sheetName = "Sheet4"; // เปลี่ยนให้ตรงกับแท็บใน Sheet
+    const query = encodeURIComponent("SELECT A, B, C, D");
+    const url = `https://docs.google.com/spreadsheets/d/${sheetID}/gviz/tq?sheet=${sheetName}&tq=${query}`;
+
+    const searchInput = document.getElementById("searchInput");
+    const searchBtn = document.getElementById("searchbtn");
+    const loadingState = document.getElementById("loadingState");
+    const dataTable = document.getElementById("dataTable");
+    const tableHeader = document.getElementById("tableHeader");
+    const tableBody = document.getElementById("tableBody");
+    const noResults = document.getElementById("noResults");
+    const errorMessage = document.getElementById("errorMessage");
+    const searctext = document.getElementById("searctext");
+
+    let fullData = [];
+
+    // โหลดข้อมูลเริ่มต้น
+    window.addEventListener("DOMContentLoaded", () => {
+        loadingState.classList.add("hidden");
+        searctext.classList.remove("hidden");
+    });
+
+    // เปิด/ปิดปุ่มค้นหา
+    searchInput.addEventListener("input", () => {
+        const trimmed = searchInput.value.trim();
+        searchBtn.disabled = trimmed === "";
+    });
+
+    // Icon Helper
+    function getStatusIcon(status) {
+        if (status === "สำเร็จ") return "✅";
+        if (status === "รออัปเดต") return "⏳";
+        if (status === "ล็อก") return "🔒";
+        return "";
+    }
+
+    function getDeliveryIcon(delivery) {
+        if (delivery === "ส่งแล้ว") return "📦";
+        if (delivery === "รออัปเดต") return "⏳";
+        return "";
+    }
+
+    // กดค้นหา
+    searchBtn.addEventListener("click", () => {
+        const keyword = searchInput.value.trim().toLowerCase();
+
+        // UI: เริ่มโหลด
+        loadingState.classList.remove("hidden");
+        searctext.classList.add("hidden");
+        dataTable.classList.add("hidden");
+        noResults.classList.add("hidden");
+        errorMessage.classList.add("hidden");
+        tableBody.innerHTML = "";
+        tableHeader.innerHTML = "";
 
         fetch(url)
             .then(res => res.text())
             .then(data => {
-                const jsonData = JSON.parse(data.substring(47).slice(0, -2));
-                const rows = jsonData.table.rows;
+                const json = JSON.parse(data.substring(47).slice(0, -2));
+                const rows = json.table.rows;
 
-                const tableBody = document.getElementById("tableBody");
-                tableBody.innerHTML = ""; // clear existing
-                rows.forEach((row, index) => {
-                    const quest = row.c[0]?.v || "";
-                    const status = row.c[1]?.v || "";
-                    const delivery = row.c[2]?.v || "";
+                // ✅ ดึงข้อมูลจาก A (email), B, C, D
+                fullData = rows.map(row => ({
+                    email: row.c[0]?.v?.toLowerCase().trim() || "", // A
+                    quest: row.c[1]?.v || "",                      // B
+                    status: row.c[2]?.v || "",                     // C
+                    delivery: row.c[3]?.v || ""                    // D
+                }));
 
-                    const statusIcon = getStatusIcon(status);
-                    const deliveryIcon = getDeliveryIcon(delivery);
-
-                    tableBody.innerHTML += `
-    <tr>
-      <td class="px-6 py-4 text-sm text-gray-800">${quest}</td>
-      <td class="px-6 py-4 text-sm text-gray-800">${statusIcon} ${status}</td>
-      <td class="px-6 py-4 text-sm text-gray-800">${deliveryIcon} ${delivery}</td>
-    </tr>`;
+                // ✅ ใส่หัวตารางแบบ Tailwind สีเขียว
+                const headers = ["ชื่อเควสต์", "สถานะ", "การจัดส่ง"];
+                const headerRow = document.createElement("tr");
+                headerRow.className = "bg-gradient-to-r from-emerald-500 to-teal-600 text-white";
+                headers.forEach((text, index) => {
+                    const th = document.createElement("th");
+                    th.textContent = text;
+                    th.className =
+                        "px-6 py-3 text-left text-sm font-semibold uppercase tracking-wider" +
+                        (index === 0 ? " rounded-tl-xl" : "") +
+                        (index === headers.length - 1 ? " rounded-tr-xl" : "");
+                    headerRow.appendChild(th);
                 });
+                tableHeader.appendChild(headerRow);
 
+                // ✅ กรองข้อมูล
+                const matched = fullData.filter(item => item.email === keyword);
 
+                if (matched.length > 0) {
+                    matched.forEach(item => {
+                        const row = document.createElement("tr");
+                        row.innerHTML = `
+                            <td class="px-6 py-4 text-sm text-gray-800">${item.quest}</td>
+                            <td class="px-6 py-4 text-sm text-gray-800">${getStatusIcon(item.status)} ${item.status}</td>
+                            <td class="px-6 py-4 text-sm text-gray-800">${getDeliveryIcon(item.delivery)} ${item.delivery}</td>
+                        `;
+                        tableBody.appendChild(row);
+                    });
 
-                document.getElementById("loadingState").classList.add("hidden");
-                document.getElementById("dataTable").classList.remove("hidden");
+                    dataTable.classList.remove("hidden");
+                } else {
+                    noResults.classList.remove("hidden");
+                }
+
+                loadingState.classList.add("hidden");
+            })
+            .catch(error => {
+                console.error("เกิดข้อผิดพลาด:", error);
+                loadingState.classList.add("hidden");
+                errorMessage.classList.remove("hidden");
             });
-        function getStatusBadgeColor(status) {
-            if (status === "สำเร็จ") return "bg-emerald-500";
-            if (status === "รอ") return "bg-amber-400";
-            return "bg-red-600";
-        }
+    });
+</script>
 
-        function getDeliveryBadgeColor(delivery) {
-            if (delivery === "ส่งแล้ว") return "bg-emerald-500";
-            if (delivery === "รอ") return "bg-amber-400";
-            return "bg-gray-300 text-gray-600";
-        }
-        function getStatusIcon(status) {
-            if (status === "สำเร็จ") return "✅";
-            if (status === "รออัปเดต") return "⏳";
-            if (status === "ล็อก") return "🔒";
-            return "";
-        }
-
-        function getDeliveryIcon(delivery) {
-            if (delivery === "ส่งแล้ว") return "📦";
-            if (delivery === "รออัปเดต") return "⏳";
-            return "";
-        }
-
-    </script>
 </body>
 
 </html>
