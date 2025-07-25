@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="th">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ค้นหาข้อมูลส่วนตัว</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Kanit:wght@300;400;500;600;700&display=swap');
+
+        body {
+            font-family: 'Kanit', sans-serif;
+        }
+
+        .loading-spinner {
+            animation: spin 1s linear infinite;
+        }
+
+        @keyframes spin {
+            from {
+                transform: rotate(0deg);
+            }
+
+            to {
+                transform: rotate(360deg);
+            }
+        }
+
+        .search-input:focus {
+            box-shadow: 0 0 0 3px rgba(16, 185, 129, 0.1);
+        }
+
+        .table-row:hover {
+            background-color: rgba(16, 185, 129, 0.05);
+        }
+
+        .highlight {
+            background-color: #fef3c7;
+            padding: 1px 2px;
+            border-radius: 2px;
+        }
+    </style>
+</head>
+
+<body class="bg-gradient-to-br from-emerald-50 via-white to-teal-50 min-h-screen">
+    <!-- Header -->
+    <header class="bg-white shadow-md border-b border-emerald-100">
+        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-6">
+            <div class="flex items-center justify-between">
+                <div class="flex items-center space-x-3">
+                    <div
+                        class="w-10 h-10 bg-gradient-to-r from-emerald-500 to-teal-600 rounded-lg flex items-center justify-center">
+                        <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M9 12h6m-6-4h6m2 5.291A7.962 7.962 0 0112 15c-2.34 0-4.29-.82-5.877-2.172M15 21H9a2 2 0 01-2-2V5a2 2 0 012-2h6a2 2 0 012 2v14a2 2 0 01-2 2z">
+                            </path>
+                        </svg>
+                    </div>
+                    <h1 class="text-2xl font-bold text-gray-800">ค้นหาข้อมูลส่วนตัว</h1>
+                </div>
+                <div class="text-sm text-gray-600">
+                    <span id="resultCount">0</span> รายการ
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <main class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+        <!-- Search Section -->
+        <div class="bg-white rounded-xl shadow-lg p-6 mb-8 border border-emerald-100">
+            <div class="max-w-2xl mx-auto">
+                <div class="relative">
+                    <div class="absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none">
+                        <svg class="h-5 w-5 text-emerald-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path>
+                        </svg>
+                    </div>
+                    <input type="text" id="searchInput"
+                        class="search-input block w-full pl-12 pr-4 py-4 text-lg border border-emerald-200 rounded-xl focus:ring-2 focus:ring-emerald-500 focus:border-transparent transition-all duration-200"
+                        placeholder="ค้นหาด้วยชื่อ, รหัส, หรือข้อมูลอื่นๆ..." autocomplete="off">
+                </div>
+            </div>
+        </div>
+
+        <!-- Loading State -->
+        <div id="loadingState" class="text-center py-12">
+            <div
+                class="loading-spinner w-8 h-8 border-4 border-emerald-200 border-t-emerald-500 rounded-full mx-auto mb-4">
+            </div>
+            <p class="text-gray-600">กำลังโหลดข้อมูล...</p>
+        </div>
+
+        <!-- Data Table -->
+        <div id="dataTable" class="hidden bg-white rounded-xl shadow-lg border border-emerald-100 overflow-hidden">
+            <div class="overflow-x-auto">
+                <table class="min-w-full divide-y divide-gray-200">
+                    <thead id="tableHeader" class="bg-gradient-to-r from-emerald-500 to-teal-600">
+                        <!-- Headers will be populated dynamically -->
+                    </thead>
+                    <tbody id="tableBody" class="bg-white divide-y divide-gray-200">
+                        <!-- Data will be populated here -->
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <!-- No Results Message -->
+        <div id="noResults" class="hidden text-center py-12">
+            <div class="w-20 h-20 mx-auto mb-4 bg-gray-100 rounded-full flex items-center justify-center">
+                <svg class="w-10 h-10 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                        d="M9.172 16.172a4 4 0 015.656 0M9 12h6m-6-4h6m2 5.291A7.962 7.962 0 0112 15c-2.34 0-4.29-.82-5.877-2.172M15 21H9a2 2 0 01-2-2V5a2 2 0 012-2h6a2 2 0 012 2v14a2 2 0 01-2 2z">
+                    </path>
+                </svg>
+            </div>
+            <h3 class="text-lg font-medium text-gray-900 mb-2">ไม่พบข้อมูลที่ค้นหา</h3>
+            <p class="text-gray-500">ลองค้นหาด้วยชื่อ รหัส หรือข้อมูลอื่นๆ ที่เกี่ยวข้อง</p>
+        </div>
+
+        <!-- Error Message -->
+        <div id="errorMessage" class="hidden text-center py-12">
+            <div class="w-20 h-20 mx-auto mb-4 bg-red-100 rounded-full flex items-center justify-center">
+                <svg class="w-10 h-10 text-red-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                        d="M12 8v4m0 4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                </svg>
+            </div>
+            <h3 class="text-lg font-medium text-red-900 mb-2">เกิดข้อผิดพลาด</h3>
+            <p class="text-red-600">ไม่สามารถโหลดข้อมูลได้ กรุณาลองใหม่อีกครั้ง</p>
+        </div>
+    </main>
+    <script>
+        const sheetID = "1WnjJMNvurcwVXivU8nILqdfLNU5zgEsk1dMIBwTfi4w";
+        const sheetName = "Sheet4"; // เปลี่ยนให้ตรงกับชื่อแท็บใน Sheet
+        const query = encodeURIComponent("SELECT A, B, C");
+        const url = `https://docs.google.com/spreadsheets/d/${sheetID}/gviz/tq?sheet=${sheetName}&tq=${query}`;
+
+        fetch(url)
+            .then(res => res.text())
+            .then(data => {
+                const jsonData = JSON.parse(data.substring(47).slice(0, -2));
+                const rows = jsonData.table.rows;
+
+                const tableBody = document.getElementById("tableBody");
+                tableBody.innerHTML = ""; // clear existing
+                rows.forEach((row, index) => {
+                    const quest = row.c[0]?.v || "";
+                    const status = row.c[1]?.v || "";
+                    const delivery = row.c[2]?.v || "";
+
+                    const statusIcon = getStatusIcon(status);
+                    const deliveryIcon = getDeliveryIcon(delivery);
+
+                    tableBody.innerHTML += `
+    <tr>
+      <td class="px-6 py-4 text-sm text-gray-800">${quest}</td>
+      <td class="px-6 py-4 text-sm text-gray-800">${statusIcon} ${status}</td>
+      <td class="px-6 py-4 text-sm text-gray-800">${deliveryIcon} ${delivery}</td>
+    </tr>`;
+                });
+
+
+
+                document.getElementById("loadingState").classList.add("hidden");
+                document.getElementById("dataTable").classList.remove("hidden");
+            });
+        function getStatusBadgeColor(status) {
+            if (status === "สำเร็จ") return "bg-emerald-500";
+            if (status === "รอ") return "bg-amber-400";
+            return "bg-red-600";
+        }
+
+        function getDeliveryBadgeColor(delivery) {
+            if (delivery === "ส่งแล้ว") return "bg-emerald-500";
+            if (delivery === "รอ") return "bg-amber-400";
+            return "bg-gray-300 text-gray-600";
+        }
+        function getStatusIcon(status) {
+            if (status === "สำเร็จ") return "✅";
+            if (status === "รออัปเดต") return "⏳";
+            if (status === "ล็อก") return "🔒";
+            return "";
+        }
+
+        function getDeliveryIcon(delivery) {
+            if (delivery === "ส่งแล้ว") return "📦";
+            if (delivery === "รออัปเดต") return "⏳";
+            return "";
+        }
+
+    </script>
+</body>
+
+</html>
