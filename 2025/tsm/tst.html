@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+  <meta charset="UTF-8">
+  <title>ดึงข้อมูลผู้ใช้</title>
+  <script>
+    async function fetchUserData(email) {
+      const apiUrl = `https://tsx.astronize.com/tsx-event/get_user_data?email=${encodeURIComponent(email)}`;
+      try {
+        const response = await fetch(apiUrl);
+        const result = await response.json();
+
+        if (result.errorcode === 0) {
+          displayData(result.data);
+        } else {
+          document.getElementById('result').innerHTML = 'เกิดข้อผิดพลาด: ' + result.errormessage;
+        }
+      } catch (error) {
+        document.getElementById('result').innerHTML = 'ไม่สามารถเชื่อมต่อ API ได้';
+        console.error(error);
+      }
+    }
+
+    function displayData(data) {
+      let html = '<h2>ข้อมูลผู้ใช้</h2><table border="1" cellpadding="5">';
+      for (const key in data) {
+        html += `<tr><td><strong>${key}</strong></td><td>${data[key]}</td></tr>`;
+      }
+      html += '</table>';
+      document.getElementById('result').innerHTML = html;
+    }
+
+    window.onload = function () {
+      const email = 'user1@example.com'; // สามารถเปลี่ยนเป็น dynamic input ได้ภายหลัง
+      fetchUserData(email);
+    };
+  </script>
+</head>
+<body>
+  <h1>ระบบดึงข้อมูลจาก API</h1>
+  <div id="result">กำลังโหลดข้อมูล...</div>
+</body>
+</html>

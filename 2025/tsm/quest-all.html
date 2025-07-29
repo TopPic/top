@@ -1,0 +1,376 @@
+<!DOCTYPE html>
+<html lang="th">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Quest Search</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" />
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Kanit:wght@300;400;500;600;700&display=swap');
+
+        body {
+            font-family: 'Kanit', sans-serif;
+            background: linear-gradient(to bottom right, #d1fae5, #ffffff, #ccfbf1);
+            min-height: 100vh;
+        }
+
+        .spinner-border {
+            width: 2rem;
+            height: 2rem;
+        }
+
+        .highlight {
+            background-color: #fef3c7;
+            padding: 1px 2px;
+            border-radius: 2px;
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Header -->
+    <header class="bg-white shadow-sm border-bottom py-3 mb-4">
+        <div class="container d-flex justify-content-between align-items-center">
+            <div class="d-flex align-items-center gap-3">
+                <div class="bg-success text-white rounded p-2 d-flex justify-content-center align-items-center">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" stroke="currentColor"
+                        stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                        class="feather feather-clipboard">
+                        <path d="M9 12h6M9 8h6M15 21H9a2 2 0 01-2-2V5a2 2 0 012-2h6a2 2 0 012 2v14a2 2 0 01-2 2z" />
+                    </svg>
+                </div>
+                <h1 class="h4 mb-0 text-dark">ค้นหาข้อมูล Quest</h1>
+            </div>
+            <!-- <div><small><span id="resultCount">0</span> รายการ</small></div> -->
+        </div>
+    </header>
+
+    <main class="container mb-5">
+        <!-- Search Section -->
+        <div class="bg-white rounded shadow-sm border p-4 mb-4">
+            <div class="row g-2 align-items-center justify-content-center">
+                <div class="col-md-9">
+                    <div class="position-relative">
+                        <input type="text" id="searchInput" class="form-control form-control-lg ps-5"
+                            placeholder="ค้นหาด้วยอีเมล์เท่านั้น" autocomplete="off" />
+                        <div class="position-absolute top-50 start-0 translate-middle-y ps-3 text-success">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="none"
+                                stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                                class="feather feather-search">
+                                <circle cx="11" cy="11" r="8" />
+                                <line x1="21" y1="21" x2="16.65" y2="16.65" />
+                            </svg>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-3 d-grid">
+                    <button class="btn btn-success btn-lg" id="searchbtn" disabled>ค้นหา</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Messages -->
+        <div id="searctext" class="text-center text-muted py-4">กรุณากรอกอีเมลเพื่อค้นหา</div>
+
+        <div id="loadingState" class="text-center py-4 d-none">
+            <div class="spinner-border text-success" role="status"></div>
+            <p class="mt-3 text-muted">กำลังโหลดข้อมูล...</p>
+        </div>
+
+        <div id="errorMessage" class="text-center py-4 d-none">
+            <p class="text-danger fw-bold">เกิดข้อผิดพลาด</p>
+            <p class="text-danger">ไม่สามารถโหลดข้อมูลได้ กรุณาลองใหม่อีกครั้ง</p>
+        </div>
+
+        <div id="noResults" class="text-center py-4 d-none">
+            <p class="text-dark fw-semibold mb-1">ไม่พบข้อมูลที่ค้นหา</p>
+            <p class="text-muted">กรุณากรอกค้นด้วยอีเมล์ที่ถูกต้อง</p>
+        </div>
+
+        <!-- Data Table -->
+        <div id="dataTable" class="table-responsive d-none">
+            <table class="table table-bordered align-middle">
+                <thead id="tableHeader" class="table-success text-white">
+                </thead>
+                <tbody id="tableBody">
+                    <tr>
+                        <td>อีเมลสำหรับลงทะเบียน</td>
+                        <td id="acc-email"></td>
+                    </tr>
+                    <!-- <tr>
+                        <td>Account ID ตัวละครใหม่</td>
+                        <td id="acc-newchar">ตัวละครใหม่1</td>
+                    </tr> -->
+                    <tr>
+                        <td>ชื่อตัวละครใหม่</td>
+                        <td id="acc-ncharnews"></td>
+                    </tr>
+                    <tr>
+                        <td>UID ตัวละครใหม่</td>
+                        <td id="acc-udinew"></td>
+                    </tr>
+                    <!-- <tr>
+                        <td>Account ID ตัวละครเก่า</td>
+                        <td id="acc-ncharold">ตัวละครเก่า1</td>
+                    </tr> -->
+                    <tr>
+                        <td>ชื่อตัวละครเก่า</td>
+                        <td id="acc-ncharold"></td>
+                    </tr>
+                    <tr>
+                        <td>UID ตัวละครเก่า</td>
+                        <td id="acc-udiold"></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <!-- Data Table 2-->
+        <div id="dataTable2" class="table-responsive d-none">
+            <table class="table table-bordered align-middle">
+                <thead id="tableHeader" class="table-success text-white">
+                    <tr>
+                        <th scope="col">รายชื่อภารกิจ </th>
+                        <th scope="col">สถานะภารกิจ</th>
+                        <th scope="col">สถานะส่งของรางวัล</th>
+                    </tr>
+                </thead>
+                <tbody id="tableBody">
+                    <tr>
+                        <td>ภารกิจที่ 1 ทำการลงทะเบียนเสร็จสิ้น</td>
+                        <td id="quest-status-1"></td>
+                        <td id="quest-send-1"></td>
+                    </tr>
+                    <tr>
+                        <td>ภารกิจที่ 1 ทำการลงทะเบียนเสร็จสิ้น</td>
+                        <td id="quest-status-2"></td>
+                        <td id="quest-send-2"></td>
+                    </tr>
+                    <tr>
+                        <td>ภารกิจที่ 1 ทำการลงทะเบียนเสร็จสิ้น</td>
+                        <td id="quest-status-3"></td>
+                        <td id="quest-send-3"></td>
+                    </tr>
+                    <tr>
+                        <td>ภารกิจที่ 1 ทำการลงทะเบียนเสร็จสิ้น</td>
+                        <td id="quest-status-4"></td>
+                        <td id="quest-send-4"></td>
+                    </tr>
+                    <tr>
+                        <td>ภารกิจที่ 1 ทำการลงทะเบียนเสร็จสิ้น</td>
+                        <td id="quest-status-5"></td>
+                        <td id="quest-send-5"></td>
+                    </tr>
+                    <tr>
+                        <td>ภารกิจที่ 1 ทำการลงทะเบียนเสร็จสิ้น</td>
+                        <td id="quest-status-6"></td>
+                        <td id="quest-send-6"></td>
+                    </tr>
+                    <tr>
+                        <td>ภารกิจที่ 1 ทำการลงทะเบียนเสร็จสิ้น</td>
+                        <td id="quest-status-7"></td>
+                        <td id="quest-send-7"></td>
+                    </tr>
+                    <tr>
+                        <td>ภารกิจที่ 1 ทำการลงทะเบียนเสร็จสิ้น</td>
+                        <td id="quest-status-8"></td>
+                        <td id="quest-send-8"></td>
+                    </tr>
+                    <tr>
+                        <td>ภารกิจที่ 1 ทำการลงทะเบียนเสร็จสิ้น</td>
+                        <td id="quest-status-9"></td>
+                        <td id="quest-send-9"></td>
+                    </tr>
+                    <tr>
+                        <td>ภารกิจที่ 1 ทำการลงทะเบียนเสร็จสิ้น</td>
+                        <td id="quest-status-10"></td>
+                        <td id="quest-send-10"></td>
+                    </tr>
+                    <tr>
+                        <td>ภารกิจที่ 1 ทำการลงทะเบียนเสร็จสิ้น</td>
+                        <td id="quest-status-11"></td>
+                        <td id="quest-send-11"></td>
+                    </tr>
+                    <tr>
+                        <td>ภารกิจที่ 1 ทำการลงทะเบียนเสร็จสิ้น</td>
+                        <td id="quest-status-12"></td>
+                        <td id="quest-send-12"></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <!-- Data Table 3-->
+        <div id="dataTable3" class="table-responsive d-none">
+            <h4>เติมตำลึงบน Astronize Pay ที่ตัวละครใหม่ ได้รับตำลึงเพิ่มที่ตัวละครเก่า </h4>
+            <table class="table table-bordered align-middle">
+                <thead id="tableHeader" class="table-success text-white">
+                    <tr>
+                        <th scope="col">รายชื่อภารกิจ </th>
+                        <th scope="col">สถานะภารกิจ</th>
+                        <th scope="col">สถานะส่งของรางวัล</th>
+                    </tr>
+                </thead>
+                <tbody id="tableBody">
+                    <tr>
+                        <td>เติมครบ 500 ตำลึง/td>
+                        <td id="pay-status-1"></td>
+                        <td id="pay-send-1"> </td>
+                    </tr>
+                    <tr>
+                        <td>เติมครบ 1,000 ตำลึง</td>
+                        <td id="pay-status-2"></td>
+                        <td id="pay-send-2"></td>
+                    </tr>
+                    <tr>
+                        <td>เติมครบ 2,000 ตำลึง/td>
+                        <td id="pay-status-3"></td>
+                        <td id="pay-send-3"></td>
+                    </tr>
+                    <tr>
+                        <td>เติมครบ 3,000 ตำลึง</td>
+                        <td id="pay-status-4"></td>
+                        <td id="pay-send-4"></td>
+                    </tr>
+                    <tr>
+                        <td>เติมครบ 5,000 ตำลึง</td>
+                        <td id="pay-status-5"></td>
+                        <td id="pay-send-5"></td>
+                    </tr>
+                    <tr>
+                        <td>เติมครบ 7,500 ตำลึง</td>
+                        <td id="pay-status-6"></td>
+                        <td id="pay-send-6"></td>
+                    </tr>
+                    <tr>
+                        <td>เติมครบ 10,000 ตำลึง</td>
+                        <td id="pay-status-7"></td>
+                        <td id="pay-send-7"></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </main>
+
+    <!-- Scripts -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script>
+        function isValidEmail(email) {
+            const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+            return emailRegex.test(email);
+        }
+        const searchInput = document.getElementById('searchInput');
+        const searchBtn = document.getElementById('searchbtn');
+
+        const loading = document.getElementById('loadingState');
+        const error = document.getElementById('errorMessage');
+        const noResults = document.getElementById('noResults');
+        const searchText = document.getElementById('searctext');
+
+        const emailField = document.getElementById('acc-email');
+        const nCharNew = document.getElementById('acc-ncharnews');
+        const udiNew = document.getElementById('acc-udinew');
+        const nCharOld = document.getElementById('acc-ncharold');
+        const udiOld = document.getElementById('acc-udiold');
+
+        const dataTable1 = document.getElementById('dataTable');
+        const dataTable2 = document.getElementById('dataTable2');
+        const dataTable3 = document.getElementById('dataTable3');
+
+
+        // 🔗 เปลี่ยนเป็น Apps Script URL ของคุณ
+        const API_URL = 'https://script.google.com/macros/s/AKfycbyzRb6CvyeILqgJZmxKVm6-hqBzYPKIlL-3ARQmc6tBTkzNMe-Pnu94VjrhvaJl51OCtg/exec';
+
+        // เปิด/ปิดปุ่มค้นหา
+        searchInput.addEventListener('input', () => {
+            searchBtn.disabled = searchInput.value.trim() === '';
+        });
+
+        searchBtn.addEventListener('click', async () => {
+            const email = searchInput.value.trim();
+
+            // ตรวจสอบว่าเป็นอีเมลที่ถูกต้องไหม
+            if (!email || !isValidEmail(email)) {
+                // alert("กรุณากรอกอีเมลให้ถูกต้อง เช่น your@email.com");
+                Swal.fire({
+                    title: "กรุณากรอกอีเมลให้ถูกต้อง เช่น your@email.com",
+                    icon: "error",
+                    draggable: true
+                });
+                return;
+            }
+
+            // ซ่อนผลลัพธ์ก่อน
+            loading.classList.remove('d-none');
+            error.classList.add('d-none');
+            noResults.classList.add('d-none');
+            searchText.classList.add('d-none');
+            dataTable1.classList.add('d-none');
+            dataTable2.classList.add('d-none');
+            dataTable3.classList.add('d-none');
+
+            try {
+                const response = await fetch(`${API_URL}?email=${encodeURIComponent(email)}`);
+                const result = await response.json();
+
+                loading.classList.add('d-none');
+
+                if (result.status === 'ok') {
+                    // ✅ แสดงข้อมูล DataTable 1
+                    emailField.textContent = result.email || '';
+                    nCharNew.textContent = result.ncharnews || '';
+                    udiNew.textContent = result.udinew || '';
+                    nCharOld.textContent = result.ncharold || '';
+                    udiOld.textContent = result.udiold || '';
+                    dataTable1.classList.remove('d-none');
+
+                    // ✅ Quest
+                    if (Array.isArray(result.questStatuses)) {
+                        for (let i = 0; i < 12; i++) {
+                            const status = result.questStatuses[i * 2] || '';
+                            const send = result.questStatuses[i * 2 + 1] || '';
+                            const statusEl = document.getElementById(`quest-status-${i + 1}`);
+                            const sendEl = document.getElementById(`quest-send-${i + 1}`);
+                            if (statusEl) statusEl.textContent = status;
+                            if (sendEl) sendEl.textContent = send;
+                        }
+                        dataTable2.classList.remove('d-none');
+                    }
+
+                    // ✅ PAY
+                    if (Array.isArray(result.payStatuses)) {
+                        for (let i = 0; i < 7; i++) {
+                            const status = result.payStatuses[i * 2] || '';
+                            const send = result.payStatuses[i * 2 + 1] || '';
+                            const statusEl = document.getElementById(`pay-status-${i + 1}`);
+                            const sendEl = document.getElementById(`pay-send-${i + 1}`);
+                            if (statusEl) statusEl.textContent = status;
+                            if (sendEl) sendEl.textContent = send;
+                        }
+                        dataTable3.classList.remove('d-none');
+                    }
+
+                } else {
+                    noResults.classList.remove('d-none');
+                }
+
+            } catch (err) {
+                console.error(err);
+                loading.classList.add('d-none');
+                error.classList.remove('d-none');
+            }
+        });
+
+    </script>
+
+
+
+
+
+
+
+</body>
+
+</html>

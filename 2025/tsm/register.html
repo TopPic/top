@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="th">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>ฟอร์มลงทะเบียนตัวละคร</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" />
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Kanit:wght@300;400;500;600;700&display=swap');
+
+        body {
+            font-family: 'Kanit', sans-serif;
+            background: linear-gradient(to bottom right, #7e22ce, #2563eb, #312e81);
+            min-height: 100vh;
+        }
+
+        .preview-img {
+            width: 128px;
+            height: 128px;
+            object-fit: cover;
+            border: 2px solid #ccc;
+            border-radius: 0.5rem;
+        }
+    </style>
+</head>
+
+<body class="py-5">
+    <div class="container max-w-4xl">
+        <div class="bg-white shadow rounded-4 overflow-hidden">
+            <div class="bg-primary text-white text-center py-4 px-3">
+                <h1 class="h3 fw-bold mb-2">🎮 ฟอร์มลงทะเบียนตัวละคร</h1>
+                <p class="small">กรุณากรอกข้อมูลให้ครบถ้วนเพื่อลงทะเบียนเข้าร่วมกิจกรรม</p>
+            </div>
+
+            <form id="registrationForm" class="p-4">
+                <div class="mb-3">
+                    <label for="email" class="form-label fw-medium">📧 อีเมล *</label>
+                    <input type="email" id="email" class="form-control" placeholder="example@email.com" required />
+                </div>
+
+                <div class="row g-4">
+                    <!-- ตัวละครใหม่ -->
+                    <div class="col-md-6">
+                        <div class="p-3 border border-success rounded-3 bg-light">
+                            <h5 class="text-success fw-bold mb-3">✨ ตัวละครใหม่</h5>
+                            <div class="mb-3">
+                                <label class="form-label">ชื่อตัวละครใหม่ *</label>
+                                <input type="text" id="newCharName" class="form-control" required />
+                            </div>
+                            <div class="mb-3">
+                                <label class="form-label">UID ตัวละครใหม่ *</label>
+                                <input type="text" id="newCharUID" class="form-control" required />
+                            </div>
+                            <div class="mb-3">
+                                <label class="form-label">Screenshot ตัวละครใหม่ *</label>
+                                <input type="text" id="newCharPreview" class="form-control" required />
+
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- ตัวละครเก่า -->
+                    <div class="col-md-6">
+                        <div class="p-3 border border-primary rounded-3 bg-light">
+                            <h5 class="text-primary fw-bold mb-3">🔄 ตัวละครเก่า</h5>
+                            <div class="mb-3">
+                                <label class="form-label">ชื่อตัวละครเก่า *</label>
+                                <input type="text" id="oldCharName" class="form-control" required />
+                            </div>
+                            <div class="mb-3">
+                                <label class="form-label">UID ตัวละครเก่า *</label>
+                                <input type="text" id="oldCharUID" class="form-control" required />
+                            </div>
+                            <div class="mb-3">
+                                <label class="form-label">เซิร์ฟเวอร์ *</label>
+                                <select id="oldCharServer" class="form-select" required>
+                                    <option value="">เลือกเซิร์ฟเวอร์</option>
+                                    <option>Asia</option>
+                                    <option>America</option>
+                                    <option>Europe</option>
+                                    <option>TW_HK_MO</option>
+                                </select>
+                            </div>
+                            <div class="mb-3">
+                                <label class="form-label">Screenshot ตัวละครเก่า *</label>
+                                <input type="text" id="oldCharScreenshot" class="form-control" required />
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Terms -->
+                <div class="form-check mt-4">
+                    <input class="form-check-input" type="checkbox" id="acceptTerms" required />
+                    <label class="form-check-label" for="acceptTerms">
+                        ✅ ยอมรับเงื่อนไขกิจกรรม *
+                        <div class="small text-muted">ฉันได้อ่านและยอมรับเงื่อนไขการเข้าร่วมกิจกรรมแล้ว</div>
+                    </label>
+                </div>
+
+                <!-- Submit -->
+                <div class="text-center mt-4">
+                    <button type="submit" class="btn btn-primary px-5 py-3 fw-bold">🚀 ลงทะเบียนเลย!</button>
+                </div>
+            </form>
+
+
+        </div>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script>
+        const scriptURL = 'https://script.google.com/macros/s/AKfycbwtdUFt_cTYhOLwpDevmAFTOCCfkul7YMARp5J3uXKBDnBdg2ATOjCWv9WC1hgEBW60iA/exec';
+
+        document.getElementById("registrationForm").addEventListener("submit", function (e) {
+            e.preventDefault();
+
+            const formData = {
+                email: document.getElementById("email").value.trim(),
+                newCharName: document.getElementById("newCharName").value.trim(),
+                newCharUID: document.getElementById("newCharUID").value.trim(),
+                newCharPreview: document.getElementById("newCharPreview").value.trim(),
+                oldCharName: document.getElementById("oldCharName").value.trim(),
+                oldCharUID: document.getElementById("oldCharUID").value.trim(),
+                oldCharServer: document.getElementById("oldCharServer").value,
+                oldCharScreenshot: document.getElementById("oldCharScreenshot").value.trim(),
+                acceptTerms: document.getElementById("acceptTerms").checked ? "Yes" : "No"
+            };
+
+            Swal.fire({
+                title: 'กำลังบันทึกข้อมูล...',
+                text: 'กรุณารอสักครู่',
+                icon: 'info',
+                allowOutsideClick: false,
+                showConfirmButton: false
+            });
+
+            fetch(scriptURL, {
+                method: 'POST',
+                body: JSON.stringify(formData),
+                // headers: {
+                //     'Content-Type': 'application/json'
+                // }
+            })
+                .then(response => response.json()) // ✅ ต้องแปลง JSON ก่อน
+                .then(result => {
+                    if (result.status === 'success') {
+                        // alert("✅ ลงทะเบียนสำเร็จแล้ว!");
+                        Swal.fire({
+                            title: "ลงทะเบียนสำเร็จแล้ว",
+                            icon: "success",
+                            draggable: true
+                        });
+                        document.getElementById("registrationForm").reset();
+                    } else if (result.status === 'duplicate') {
+                        // alert("⚠️ มีการลงทะเบียนด้วยอีเมลนี้แล้ว กรุณาตรวจสอบอีเมล");
+                        Swal.fire({
+                            title: "มีการลงทะเบียนด้วยอีเมลนี้แล้ว กรุณาตรวจสอบอีเมล",
+                            icon: "warning",
+                            draggable: true
+                        });
+                    } else {
+                        // alert("❌ มีบางอย่างผิดพลาด กรุณาลองใหม่");
+                        Swal.fire({
+                            title: "มีบางอย่างผิดพลาด กรุณาลองใหม่",
+                            icon: "error",
+                            draggable: true
+                        });
+                    }
+                })
+                .catch(error => {
+                    console.error('Error!', error.message);
+                    // alert("❌ การส่งข้อมูลล้มเหลว");
+                    Swal.fire({
+                        title: "การส่งข้อมูลล้มเหลว",
+                        icon: "error",
+                        draggable: true
+                    });
+                });
+        });
+
+    </script>
+
+</body>
+
+</html>
