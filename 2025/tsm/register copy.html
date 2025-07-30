@@ -117,7 +117,15 @@
             const email = document.getElementById("email").value.trim();
             const submitBtn = form.querySelector("button[type=submit]");
             submitBtn.disabled = true;
-            submitBtn.innerText = "⏳ ตรวจสอบข้อมูล...";
+            // submitBtn.innerText = "⏳ ตรวจสอบข้อมูล...";
+            Swal.fire({
+                title: 'กำลังส่งข้อมูล...',
+                html: 'กรุณารอสักครู่',
+                allowOutsideClick: false,
+                didOpen: () => {
+                    Swal.showLoading();
+                }
+            });
 
             const checkURL = `https://script.google.com/macros/s/AKfycbyw59bmZrlqvnLcIdD9SxHYxXKyACvGm7Ax78FDYa8e55_qo9uTXqZjKfx1t3hRfOv21A/exec?email=${encodeURIComponent(email)}`;
 
