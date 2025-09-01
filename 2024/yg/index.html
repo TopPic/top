@@ -185,23 +185,24 @@
         });
 
         function fetchData(tabId, careerKey, careerName, server) {
-            const apiUrl = `https://secure2.playpark.com/YulgangJsonAPI/API.aspx?server=${server.id}&career=${careerKey}`;
+            const apiUrl = `https://webapi-test.playpark.com/RankingAPI/RankingClassServerAPI.ashx?GameID=8&server=${server.id}&Class=${careerKey}`;
 
             fetch(apiUrl)
                 .then(response => response.json())
                 .then(data => {
-                    const playerList = data.result.Table;
+                    const playerList = data.data;
+                    // console.log(playerList);
                     const tbody = document.getElementById(`${tabId}-${careerKey}Body`);
 
-                    playerList.forEach((player, index) => {
+                    playerList.slice(0, 30).forEach((player, index) => {
                         const row = `
                             <tr class="table-border-yg">
                                 <td>${index + 1}</td>
-                                <td>${player.charname}</td>
+                                <td>${player.role_name}</td>
                                 <td>${player.level}</td>
-                                <td>${getClassName(player.weaponclass)}</td>
-                                <td>${getJeongsa(player.jeongsa)}</td>
-                                <td>${player.guildname ? player.guildname : '-'}</td>
+                                <td>${getClassName(player.class)}</td>
+                                <td>${getJeongsa(player.faction)}</td>
+                                <td>${player.guild_name ? player.guild_name : '-'}</td>
                                 <td>${server.name}</td>
                             </tr>
                         `;
